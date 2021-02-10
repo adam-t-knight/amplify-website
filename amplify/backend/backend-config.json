@@ -8,7 +8,7 @@
     }
   },
   "api": {
-    "amplify-website": {
+    "notesapp": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
