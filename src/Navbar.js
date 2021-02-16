@@ -25,6 +25,11 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
+                    <Link to="/random-joke">
+                        RandomJoke
+                    </Link>
+                </li>
+                <li>
                     <Link to="/stock-ticker">
                         Stock Ticker
                     </Link>
@@ -42,6 +47,11 @@ const Navbar = () => {
                 <li>
                     <Link to="/world-clock">
                         World Clock
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/xkcd-comic">
+                        XKCD Comic
                     </Link>
                 </li>
             </ul>
