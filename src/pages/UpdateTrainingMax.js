@@ -19,6 +19,7 @@ const UpdateTrainingMax = () => {
           setAuthState(nextAuthState);
           setUser(authData)
       });
+      fetchNotes();
   }, []);
 
   async function onChange(e) {
