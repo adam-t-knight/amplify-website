@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { withAuthenticator, AmplifySignOut, AmplifyGreetings, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API, Storage } from 'aws-amplify';
 import { listNotes } from '../graphql/queries';
@@ -11,14 +9,8 @@ const initialFormState = { name: '', description: '' }
 const UpdateTrainingMax = () => {
   const [notes, setNotes] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
-  const [authState, setAuthState] = React.useState();
-  const [user, setUser] = React.useState();
 
   React.useEffect(() => {
-      onAuthUIStateChange((nextAuthState, authData) => {
-          setAuthState(nextAuthState);
-          setUser(authData)
-      });
       fetchNotes();
   }, []);
 

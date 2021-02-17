@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
+import CatFacts from './pages/CatFacts';
 import RandomJoke from './pages/RandomJoke';
 import UpdateTrainingMax from './pages/UpdateTrainingMax';
 import Weather from './pages/Weather';
@@ -13,6 +14,7 @@ const Main = () => {
   return (
     <Switch> {/* The Switch decides which component to show based on the current URL.*/}
       <Route exact path='/' component={Home}></Route>
+      <Route exact path='/cat-facts' component={CatFacts}></Route>
       <Route exact path='/random-joke' component={RandomJoke}></Route>
       <Route exact path='/update-training-max' component={UpdateTrainingMax}></Route>
       <Route exact path='/weather' component={Weather}></Route>

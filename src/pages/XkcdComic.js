@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-const xkcdComicUrl = "https://xkcd.com/info.0.json";
+const xkcdComicUrl = 'https://xkcd.com/info.0.json';
 
 function XkcdComic() {
     const [xkcdComicData, setXkcdComic] = useState([]);

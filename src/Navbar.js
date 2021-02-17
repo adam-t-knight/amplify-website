@@ -25,8 +25,13 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
+                    <Link to="/cat-facts">
+                        Cat Facts
+                    </Link>
+                </li>
+                <li>
                     <Link to="/random-joke">
-                        RandomJoke
+                        Random Joke
                     </Link>
                 </li>
                 <li>

@@ -1,11 +1,15 @@
 import './App.css';
 import Amplify from 'aws-amplify';
+import { Auth } from 'aws-amplify'
 import awsconfig from './aws-exports';
 import Main from './Main';
 import Navbar from './Navbar';
 import Authbar from './Authbar';
 
 Amplify.configure(awsconfig);
+
+// >>New - Configuring Auth Module
+Auth.configure(awsconfig);
 
 function App() {
   return (

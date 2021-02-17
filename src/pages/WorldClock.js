@@ -1,16 +1,16 @@
 import React from 'react';
-import Amplify from 'aws-amplify';
-import { AmplifySignIn, AmplifySignOut } from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 
 class WorldClock extends React.Component {
-  render() {
-    return (
-      <button className="square">
-        {this.props.value}
-      </button>
-    )
-  }
+
+    componentDidMount() {
+   
+    }
+    
+    render() {
+        return(
+            <div>Hello World Clock</div>
+        )
+    }
 }
 
 export default WorldClock;
