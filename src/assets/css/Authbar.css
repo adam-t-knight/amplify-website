@@ -23,6 +23,9 @@ div .auth-container {
 #AuthSignIn {
     min-height: 0;
 }
+.auth-container div {
+    min-height: 0 !important;
+}
 
 div .auth-container slot {
     min-height: 0 !important;
@@ -40,3 +43,11 @@ div #SignOut {
     font-size: 25px;
     color: #818181;
 }
+
+amplify-authenticator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 450px;
+  }

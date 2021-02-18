@@ -1,7 +1,7 @@
 /* Style page content */
 #Main {
     margin-left: 200px; /* Same as the width of the sidenav */
-    margin-right: 500px; /* Same as the width of the sidenav */
+    /* margin-right: 500px; */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }

@@ -1,10 +1,10 @@
-import './Authbar.css';
+import '../assets/css/UserInfo.css';
 import React from 'react';
 import { Auth } from 'aws-amplify'
 import { AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 
-const Authbar = () => {
+const UserInfo = () => {
     const [authState, setAuthState] = React.useState();
     const [user, setUser] = React.useState();
 
@@ -17,16 +17,14 @@ const Authbar = () => {
 
     return authState === AuthState.SignedIn && user ? (
         <div id="SignOut">
-            <div>Hello, {Auth.user.username}</div>
+            <div>Hello, {Auth.user.username}!</div>
             <AmplifySignOut />
         </div>   
     ) : (
         <div id="SignIn">
-            <AmplifyAuthenticator>
-                <AmplifySignIn slot="sign-in" hideSignUp id="AuthSignIn" />
-            </AmplifyAuthenticator>
+            <div>Hello, Guest!</div>
         </div>
     );
 }
 
-export default Authbar;
+export default UserInfo;

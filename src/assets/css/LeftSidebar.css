@@ -1,6 +1,6 @@
 #LeftSidebar {
     height: 100%;
-    width: 200px;
+    width: 500px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -8,4 +8,6 @@
     background: #111;
     overflow-x: hidden;
     padding: 10px 0;
+    font-size: 25px;
+    color: #818181;
 }

@@ -1,6 +1,6 @@
-import './RightSidebar.css';
-import Navbar from './Navbar';
-import Authbar from './Authbar';
+import '../assets/css/RightSidebar.css';
+import Navbar from '../components/Navbar';
+import Authbar from '../components/Authbar';
 
 const RightSidebar = () => {
 

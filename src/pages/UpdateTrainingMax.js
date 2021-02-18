@@ -5,6 +5,7 @@ import { API, Storage } from 'aws-amplify';
 import { listNotes } from '../graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";
+import { withAuthenticator } from '@aws-amplify/ui-react'
 
 const initialFormState = { name: '', description: '' }
 
@@ -103,4 +104,4 @@ const UpdateTrainingMax = () => {
   );
 }
 
-export default UpdateTrainingMax;
+export default withAuthenticator(UpdateTrainingMax);

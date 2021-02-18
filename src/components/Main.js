@@ -1,13 +1,13 @@
-import './Main.css';
+import '../assets/css/Main.css';
 import { Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import CatFacts from './pages/CatFacts';
-import RandomJoke from './pages/RandomJoke';
-import UpdateTrainingMax from './pages/UpdateTrainingMax';
-import Weather from './pages/Weather';
-import WorldClock from './pages/WorldClock';
-import StockTicker from './pages/StockTicker';
-import XkcdComic from './pages/XkcdComic';
+import Home from '../pages/Home';
+import CatFacts from '../pages/CatFacts';
+import RandomJoke from '../pages/RandomJoke';
+import UpdateTrainingMax from '../pages/UpdateTrainingMax';
+import Weather from '../pages/Weather';
+import WorldClock from '../pages/WorldClock';
+import StockTicker from '../pages/StockTicker';
+import XkcdComic from '../pages/XkcdComic';
 
 const Main = () => {
   return (
