@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import { listNotes } from '../graphql/queries';
+import { Link } from "react-router-dom";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -21,20 +22,27 @@ function Home() {
     }))
     setNotes(apiData.data.listNotes.items);
   }
+
   return (
-    <div style={{marginBottom: 30}}>
-    {
-      notes.map(note => (
-        <div key={note.id || note.name}>
-          <h2>{note.name}</h2>
-          <p>{note.description}</p>
-          {
-            note.image && <img src={note.image} style={{width: 400}} />
-          }
-        </div>
-      ))
-    }
-    </div>
+    <div className="App">
+      <h1>My Notes App</h1>
+      <Link to="/update-training-max">
+        Update Training Max
+      </Link>
+      <div style={{marginBottom: 30}}>
+      {
+        notes.map(note => (
+          <div key={note.id || note.name}>
+            <h2>{note.name}</h2>
+            <p>{note.description}</p>
+            {
+              note.image && <img src={note.image} style={{width: 400}} />
+            }
+          </div>
+        ))
+      }
+      </div>
+  </div>
   )
 }
 

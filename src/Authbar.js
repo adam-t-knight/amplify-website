@@ -1,8 +1,7 @@
-import './Navbar.css';
+import './Authbar.css';
 import React from 'react';
-import { Link } from "react-router-dom";
 import { Auth } from 'aws-amplify'
-import { withAuthenticator, AmplifySignOut, AmplifyGreetings, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
+import { AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 
 const Authbar = () => {
@@ -16,20 +15,16 @@ const Authbar = () => {
         });
     }, []);
 
-    return (
-        <div>
-            {Auth.user ? (
-                <div className="SignOut">
-                    <div>Hello, {Auth.user.username}</div>
-                    <AmplifySignOut />
-                </div>   
-            ) : (
-                <div className="SignIn">
-                    <AmplifyAuthenticator>
-                        <AmplifySignIn slot="sign-in" hideSignUp></AmplifySignIn>
-                    </AmplifyAuthenticator>
-                </div>
-            )}
+    return authState === AuthState.SignedIn && user ? (
+        <div id="SignOut">
+            <div>Hello, {Auth.user.username}</div>
+            <AmplifySignOut />
+        </div>   
+    ) : (
+        <div id="SignIn">
+            <AmplifyAuthenticator>
+                <AmplifySignIn slot="sign-in" hideSignUp id="AuthSignIn" />
+            </AmplifyAuthenticator>
         </div>
     );
 }

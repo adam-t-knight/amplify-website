@@ -5,9 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import Amplify from 'aws-amplify';
-import config from './aws-exports';
+import { Auth } from 'aws-amplify'
+import awsconfig from './aws-exports';
 
-Amplify.configure(config);
+Amplify.configure(awsconfig);
+
+// >>New - Configuring Auth Module
+Auth.configure(awsconfig);
 
 ReactDOM.render(
   <React.StrictMode>

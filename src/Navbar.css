@@ -1,8 +1,22 @@
-#nav {
-    width: 100%;
-    float: left;
-    margin: 0 0 3em 0;
-    padding: 0;
-    list-style: none; }
-#nav li {
-    float: left; }
+/* #Navbar {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px 0;
+} */
+
+#Navbar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+#Navbar a:hover {
+    color: #f1f1f1;
+}
