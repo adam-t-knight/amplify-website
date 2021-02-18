@@ -16,14 +16,14 @@ const Authbar = () => {
     }, []);
 
     return authState === AuthState.SignedIn && user ? (
-        <div id="SignOut">
+        <div id="AuthBarSignOut">
             <div>Hello, {Auth.user.username}</div>
             <AmplifySignOut />
         </div>   
     ) : (
-        <div id="SignIn">
-            <AmplifyAuthenticator>
-                <AmplifySignIn slot="sign-in" hideSignUp id="AuthSignIn" />
+        <div id="AuthBarSignIn">
+            <AmplifyAuthenticator hideDefault={true}>
+                <AmplifySignIn slot="sign-in" hideSignUp />
             </AmplifyAuthenticator>
         </div>
     );

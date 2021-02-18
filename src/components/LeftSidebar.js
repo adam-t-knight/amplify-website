@@ -1,6 +1,5 @@
 import '../assets/css/LeftSidebar.css';
 import Navbar from '../components/Navbar';
-import UserInfo from '../components/UserInfo';
 import Authbar from '../components/Authbar';
 
 const LeftSidebar = () => {
