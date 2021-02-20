@@ -3,7 +3,6 @@ import '../assets/css/Main.css';
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Form } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AuthToggleButton from './AuthToggleButton';
 import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
 import CatFacts from '../pages/CatFacts';
@@ -41,7 +40,6 @@ const Main = () => {
                                     </NavDropdown>
                                 </Nav>
                                 <Form inline>
-                                    {/* <AuthToggleButton /> */}
                                     <LoginToggle />
                                 </Form>
                             </Navbar.Collapse>

@@ -1,10 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/css/LoginToggle.css';
 import React from 'react';
-import { Auth } from 'aws-amplify'
-import { withAuthenticator, AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
+import { AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const SHOW_LOGIN_BUTTON_TEXT = "Show Login";
 const HIDE_LOGIN_BUTTON_TEXT = "Hide Login";

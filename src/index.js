@@ -4,14 +4,6 @@ import './assets/css/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import Amplify from 'aws-amplify';
-import { Auth } from 'aws-amplify'
-import awsconfig from './aws-exports';
-
-Amplify.configure(awsconfig);
-
-// >>New - Configuring Auth Module
-Auth.configure(awsconfig);
 
 ReactDOM.render(
   <React.StrictMode>
