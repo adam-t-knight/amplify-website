@@ -5,7 +5,7 @@ import { API, Storage } from 'aws-amplify';
 import { listNotes } from '../graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";
-import { withAuthenticator } from '@aws-amplify/ui-react'
+import { withAuthenticator, AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 
 const initialFormState = { name: '', description: '' }
 
@@ -63,7 +63,7 @@ const UpdateTrainingMax = () => {
 
   return Auth.user ? (
     <div className="App">
-      <h1>My Notes App</h1>
+      <h1>Update Training Max</h1>
       <Link to="/">
         Back
       </Link>
@@ -100,8 +100,10 @@ const UpdateTrainingMax = () => {
       </div>
     </div>
   ) : (
-    <div>Log in to make changes.</div>
+    <AmplifyAuthenticator hideDefault={true}>
+      <AmplifySignIn slot="sign-in" hideSignUp />
+    </AmplifyAuthenticator>
   );
 }
 
-export default withAuthenticator(UpdateTrainingMax);
+export default UpdateTrainingMax;

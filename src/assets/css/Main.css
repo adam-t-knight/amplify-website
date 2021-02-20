@@ -1,5 +1,9 @@
 #Main {
-    margin-left: 500px; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
+    margin-top: 64px;
+}
+
+@media (min-width: 576px) {
+    #NavTitlebar {
+        height: 64px;
+    }
 }

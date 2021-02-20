@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import { listNotes } from '../graphql/queries';
 import { Link } from "react-router-dom";
+import LoginDropdown from '../components/LoginDropdown';
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -25,10 +26,11 @@ function Home() {
 
   return (
     <div className="App">
-      <h1>My Notes App</h1>
+      <h1>Home</h1>
       <Link to="/update-training-max">
         Update Training Max
       </Link>
+      <LoginDropdown />
       <div style={{marginBottom: 30}}>
       {
         notes.map(note => (

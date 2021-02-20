@@ -17,7 +17,8 @@ function RandomJoke() {
 
     return (
         <div className="Joke">
-            <h1>A random joke from {randomJokeUrl} :</h1>
+            <h1>Random Joke</h1>
+            <h2>A random joke from {randomJokeUrl} :</h2>
             <h2>ID: {jokeData.id}</h2>
             <h2>Type: {jokeData.type}</h2>
             <h2>Setup: {jokeData.setup}</h2>

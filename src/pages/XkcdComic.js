@@ -18,7 +18,8 @@ function XkcdComic() {
 
     return (
         <div className="XkcdComic">
-            <h1>An random xkcd comic from {xkcdComicUrl} :</h1>
+            <h1>XKCD Comic</h1>
+            <h2>An random xkcd comic from {xkcdComicUrl} :</h2>
             <h2>Number: {xkcdComicData.num}</h2>
             <h2>Link: {xkcdComicData.link}</h2>
             <h2>Year: {xkcdComicData.year}</h2>

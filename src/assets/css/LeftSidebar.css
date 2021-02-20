@@ -1,13 +1,15 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
 #LeftSidebar {
     height: 100%;
-    width: 500px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background: #111;
     overflow-x: hidden;
-    padding: 10px 0;
-    font-size: 25px;
-    color: #818181;
+    padding: 10px 10px 10px 10px;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
 }

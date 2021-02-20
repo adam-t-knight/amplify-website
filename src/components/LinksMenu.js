@@ -1,21 +1,11 @@
-import '../assets/css/Navbar.css';
+import '../assets/css/LinksMenu.css';
 import React from 'react';
 import { Link } from "react-router-dom";
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 
-const Navbar = () => {
-    const [authState, setAuthState] = React.useState();
-    const [user, setUser] = React.useState();
-
-    React.useEffect(() => {
-        onAuthUIStateChange((nextAuthState, authData) => {
-            setAuthState(nextAuthState);
-            setUser(authData)
-        });
-    }, []);
+const LinksMenu = () => {
 
     return (
-        <div id="Navbar">
+        <div id="LinksMenu">
             <Link to="/">
                 Home
             </Link>
@@ -41,4 +31,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+export default LinksMenu;
