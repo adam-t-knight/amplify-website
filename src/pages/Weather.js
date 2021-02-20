@@ -22,7 +22,8 @@ function Weather() {
 
     return (
         <div className="CatFacts">
-          <h1>Hi this is my</h1>
+            <h1>Weather</h1>
+          <h2>Hi this is my</h2>
           <h1>{API_KEY}</h1>
         </div>
     );

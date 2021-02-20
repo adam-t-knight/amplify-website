@@ -1,0 +1,9 @@
+#Main {
+    margin-top: 64px;
+}
+
+@media (min-width: 576px) {
+    #NavTitlebar {
+        height: 64px;
+    }
+}

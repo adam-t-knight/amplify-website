@@ -17,7 +17,8 @@ function CatFacts() {
 
     return (
         <div className="CatFacts">
-            <h1>Random cat facts from {catFactsUrl} :</h1>
+            <h1>Cat Facts</h1>
+            <h2>Random cat facts from {catFactsUrl} :</h2>
             <ul>
                 {catFactsData.map((item, index) => (
                     <li key={index}>

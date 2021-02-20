@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API, Storage } from 'aws-amplify';
 import { listNotes } from '../graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from '../graphql/mutations';
+import { Link } from "react-router-dom";
+import { withAuthenticator, AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 
 const initialFormState = { name: '', description: '' }
 
 const UpdateTrainingMax = () => {
   const [notes, setNotes] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
+  const [authState, setAuthState] = React.useState();
+  const [user, setUser] = React.useState();
 
   React.useEffect(() => {
+      onAuthUIStateChange((nextAuthState, authData) => {
+          setAuthState(nextAuthState);
+          setUser(authData);
+      });
       fetchNotes();
   }, []);
 
@@ -54,22 +63,27 @@ const UpdateTrainingMax = () => {
 
   return Auth.user ? (
     <div className="App">
-      <h1>My Notes App</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-        placeholder="Note name"
-        value={formData.name}
-      />
-      <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-        placeholder="Note description"
-        value={formData.description}
-      />
-      <input
-        type="file"
-        onChange={onChange}
-      />
-      <button onClick={createNote}>Create Note</button>
+      <h1>Update Training Max</h1>
+      <Link to="/">
+        Back
+      </Link>
+      <div id="CreateNote">
+        <input
+          onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+          placeholder="Note name"
+          value={formData.name}
+        />
+        <input
+          onChange={e => setFormData({ ...formData, 'description': e.target.value})}
+          placeholder="Note description"
+          value={formData.description}
+        />
+        <input
+          type="file"
+          onChange={onChange}
+        />
+        <button onClick={createNote}>Create Note</button>
+      </div>
       <div style={{marginBottom: 30}}>
       {
         notes.map(note => (
@@ -86,7 +100,9 @@ const UpdateTrainingMax = () => {
       </div>
     </div>
   ) : (
-    <div>Log in to make changes.</div>
+    <AmplifyAuthenticator hideDefault={true}>
+      <AmplifySignIn slot="sign-in" hideSignUp />
+    </AmplifyAuthenticator>
   );
 }
 

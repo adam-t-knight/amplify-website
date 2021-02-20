@@ -8,7 +8,9 @@ class StockTicker extends React.Component {
   
   render() {
       return(
-          <div>Hello Stock Ticker</div>
+        <div>
+          <h1>Stock Ticker</h1>
+        </div>
       )
   }
 }

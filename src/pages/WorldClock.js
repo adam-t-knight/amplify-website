@@ -8,7 +8,9 @@ class WorldClock extends React.Component {
     
     render() {
         return(
-            <div>Hello World Clock</div>
+            <div>
+                <h1>World Clock</h1>
+            </div>
         )
     }
 }

@@ -1,0 +1,23 @@
+#LoginSignIn {
+    height: 0;
+    margin-top: 38px;
+}
+
+#LoginSignIn amplify-authenticator {
+    --container-align: initial;
+}
+
+#UserGreeting {
+    color: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    margin-top: 12px;
+    padding: 0 10px 0 0;
+}
+
+#LoginSignOut {
+    float: right;
+}
+
+#LoginToggle {
+    float: right;
+}
