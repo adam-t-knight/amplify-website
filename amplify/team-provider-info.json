@@ -1,4 +1,22 @@
 {
+  "franni": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-website-franni-235628-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-franni-235628-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-franni-235628-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify-website-franni-235628-deployment",
+      "UnauthRoleName": "amplify-amplify-website-franni-235628-unauthRole",
+      "StackName": "amplify-amplify-website-franni-235628",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplify-website-franni-235628/401198b0-73d7-11eb-9b03-0629f4d0c1a0",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      }
+    }
+  },
   "bev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify-website-bev-181322-authRole",
