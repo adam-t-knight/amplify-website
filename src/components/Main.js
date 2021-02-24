@@ -12,6 +12,7 @@ import Weather from '../pages/Weather';
 import WorldClock from '../pages/WorldClock';
 import StockTicker from '../pages/StockTicker';
 import XkcdComic from '../pages/XkcdComic';
+import NewYorkTimes from '../pages/NewYorkTimes';
 
 const Main = () => {
     return (
@@ -27,6 +28,8 @@ const Main = () => {
                                     <Nav.Link href="/">Home</Nav.Link>
                                     <NavDropdown title="Pages" id="basic-nav-dropdown" >
                                         <NavDropdown.Item href="/cat-facts">Cat Facts</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/new-york-times">New York Times</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="/random-joke">Random Joke</NavDropdown.Item>
                                         <NavDropdown.Divider />
@@ -47,6 +50,7 @@ const Main = () => {
                         <Switch>
                             <Route exact path='/' component={Home}></Route>
                             <Route exact path='/cat-facts' component={CatFacts}></Route>
+                            <Route exact path='/new-york-times' component={NewYorkTimes}></Route>
                             <Route exact path='/random-joke' component={RandomJoke}></Route>
                             <Route exact path='/update-training-max' component={UpdateTrainingMax}></Route>
                             <Route exact path='/weather' component={Weather}></Route>

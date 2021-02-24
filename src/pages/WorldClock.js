@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import moment from "moment-timezone";
+import '../assets/css/WorldClock.css';
 
 class WorldClock extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            chicagoDate: moment().tz("America/Chicago").format('HH:mm:ss DD/MM/YYYY'),
-            beijingDate: moment().tz("Asia/Shanghai").format('HH:mm:ss DD/MM/YYYY'),
-            vancouverDate: moment().tz("America/Vancouver").format('HH:mm:ss DD/MM/YYYY'),
-            copenhagenDate: moment().tz("Europe/Copenhagen").format('HH:mm:ss DD/MM/YYYY'),
-            raleighDate: moment().tz("America/New_York").format('HH:mm:ss DD/MM/YYYY')
+            date: moment()
         };
     }
 
@@ -27,11 +24,7 @@ class WorldClock extends React.Component {
 
     tick() {
         this.setState({
-            chicagoDate: moment().tz("America/Chicago").format('HH:mm:ss DD/MM/YYYY'),
-            beijingDate: moment().tz("Asia/Shanghai").format('HH:mm:ss DD/MM/YYYY'),
-            vancouverDate: moment().tz("America/Vancouver").format('HH:mm:ss DD/MM/YYYY'),
-            copenhagenDate: moment().tz("Europe/Copenhagen").format('HH:mm:ss DD/MM/YYYY'),
-            raleighDate: moment().tz("America/New_York").format('HH:mm:ss DD/MM/YYYY')
+            date: moment()
         });
     }
 
@@ -39,11 +32,92 @@ class WorldClock extends React.Component {
         return (
             <div>
                 <h1>World Clock</h1>
-                <h2>Vancouver, CA: {this.state.vancouverDate.toString()}</h2>
-                <h2>Beijing, CN: {this.state.beijingDate.toString()}</h2>
-                <h2>Copenhagen, DK: {this.state.copenhagenDate.toString()}</h2>
-                <h2>Chicago, US: {this.state.chicagoDate.toString()}</h2>                
-                <h2>Raleigh, US: {this.state.raleighDate.toString()}</h2>
+                <table id="worldClockTable">
+                    <tr>
+                        <th>
+                            City
+                        </th>
+                        <th>
+                            Country
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Time
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Vancouver
+                        </td>
+                        <td>
+                            CA
+                        </td>
+                        <td>
+                            {this.state.date.tz("America/Vancouver").format('dddd, MMMM Do')}
+                        </td>
+                        <td>
+                            {this.state.date.tz("America/Vancouver").format('HH:mm:ss')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Beijing
+                        </td>
+                        <td>
+                            CN
+                        </td>
+                        <td>
+                            {this.state.date.tz("Asia/Shanghai").format('dddd, MMMM Do')}
+                        </td>
+                        <td>
+                            {this.state.date.tz("Asia/Shanghai").format('HH:mm:ss')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Copenhagen
+                        </td>
+                        <td>
+                            DK
+                        </td>
+                        <td>
+                            {this.state.date.tz("Europe/Copenhagen").format('dddd, MMMM Do')}
+                        </td>
+                        <td>
+                            {this.state.date.tz("Europe/Copenhagen").format('HH:mm:ss')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Madison
+                        </td>
+                        <td>
+                            US
+                        </td>
+                        <td>
+                            {this.state.date.tz("America/Chicago").format('dddd, MMMM Do')}
+                        </td>
+                        <td>
+                            {this.state.date.tz("America/Chicago").format('HH:mm:ss')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Raleigh
+                        </td>
+                        <td>
+                            US
+                        </td>
+                        <td>
+                            {this.state.date.tz("America/New_York").format('dddd, MMMM Do')}
+                        </td>
+                        <td>
+                            {this.state.date.tz("America/New_York").format('HH:mm:ss')}
+                        </td>
+                    </tr>
+                </table>
             </div>
         );
       }

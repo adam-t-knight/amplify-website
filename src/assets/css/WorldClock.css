@@ -1,0 +1,8 @@
+#worldClockTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#worldClockTable td {
+    padding: 10px;
+}
