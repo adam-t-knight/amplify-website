@@ -1,4 +1,28 @@
 {
+  "liva": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-website-liva-233239-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-liva-233239-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-liva-233239-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
+      "UnauthRoleName": "amplify-amplify-website-liva-233239-unauthRole",
+      "StackName": "amplify-amplify-website-liva-233239",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplify-website-liva-233239/6c34c430-762f-11eb-a1b5-029e4edb2c3e",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      },
+      "function": {
+        "NewYorkTimes": {
+          "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
+          "s3Key": "amplify-builds/NewYorkTimes-61624d6236366d434844-build.zip"
+        }
+      }
+    }
+  },
   "tamarah": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify-website-tamarah-185426-authRole",
@@ -14,6 +38,12 @@
     "categories": {
       "auth": {
         "amplifyappd145314c": {}
+      },
+      "function": {
+        "GetPopularArticles": {
+          "deploymentBucketName": "amplify-amplify-website-tamarah-185426-deployment",
+          "s3Key": "amplify-builds/GetPopularArticles-7973305452734454316b-build.zip"
+        }
       }
     }
   },

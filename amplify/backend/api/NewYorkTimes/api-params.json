@@ -1,0 +1,45 @@
+{
+    "paths": [
+        {
+            "name": "/GetNewYorkTimes",
+            "lambdaFunction": "NewYorkTimes",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/GetNewYorkTimes"
+        }
+    ],
+    "resourceName": "NewYorkTimes",
+    "apiName": "NewYorkTimes",
+    "functionArns": [
+        {
+            "lambdaFunction": "NewYorkTimes"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-amplify-website-liva-233239-authRole",
+        "unAuthRoleName": "amplify-amplify-website-liva-233239-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "NewYorkTimes",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
