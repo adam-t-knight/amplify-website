@@ -1,4 +1,22 @@
 {
+  "tamarah": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-website-tamarah-185426-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-tamarah-185426-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-tamarah-185426-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify-website-tamarah-185426-deployment",
+      "UnauthRoleName": "amplify-amplify-website-tamarah-185426-unauthRole",
+      "StackName": "amplify-amplify-website-tamarah-185426",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplify-website-tamarah-185426/8d814f90-7608-11eb-98b8-0696f1304dd6",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      }
+    }
+  },
   "franni": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify-website-franni-235628-authRole",

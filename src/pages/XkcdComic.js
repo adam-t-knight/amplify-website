@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const xkcdComicUrl = 'https://xkcd.com/info.0.json';
+const corsAnywhereURL = 'https://cors-anywhere.herokuapp.com/';
 
 function XkcdComic() {
     const [xkcdComicData, setXkcdComic] = useState([]);
@@ -10,7 +11,8 @@ function XkcdComic() {
     }, []);
 
     const getXkcdComicWithFetch = async () => {
-        const response = await fetch(xkcdComicUrl);
+        console.log("trying out axios on: " + corsAnywhereURL + xkcdComicUrl);
+        const response = await fetch(corsAnywhereURL + xkcdComicUrl);
         const jsonData = await response.json();
         setXkcdComic(jsonData);
         console.log("json: " + jsonData);
