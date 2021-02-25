@@ -18,7 +18,7 @@
       "function": {
         "NewYorkTimes": {
           "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
-          "s3Key": "amplify-builds/NewYorkTimes-61624d6236366d434844-build.zip"
+          "s3Key": "amplify-builds/NewYorkTimes-4f6f2f43327856766a79-build.zip"
         }
       }
     }

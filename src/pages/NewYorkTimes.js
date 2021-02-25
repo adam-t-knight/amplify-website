@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { API, Storage, Function, Auth } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 
 const nytTestURL = "/NewYorkTimes";
 const nytURL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=";
@@ -8,7 +8,7 @@ function NewYorkTimes() {
     async function callAPI() {
       const user = await Auth.currentAuthenticatedUser()
       const token = user.signInUserSession.idToken.jwtToken
-      console.log({token})
+      console.log("token: " + {token})
 
       const requestInfo = {
         headers: {
@@ -18,7 +18,7 @@ function NewYorkTimes() {
 
       const data = await API.get('NewYorkTimes', '/GetNewYorkTimes', requestInfo)
 
-      console.log({ data })
+      console.log("data: " + { data })
     }
 
 /*     const [nytData, setNytData] = useState([]);
