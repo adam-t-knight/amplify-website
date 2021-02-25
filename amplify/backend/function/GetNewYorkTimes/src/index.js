@@ -4,8 +4,6 @@ exports.handler = async (event) => {
     const axios = require('axios');
     const xkcdComicUrl = 'https://xkcd.com/info.0.json';
 
-    console.log("logging from inside lambda!");
-
     if(event.requestContext.authorizer) {
         console.log('claims: ', event.requestContext.authorizer.claims)
     }
@@ -13,13 +11,6 @@ exports.handler = async (event) => {
     try {
         const res = await axios.get(xkcdComicUrl)
 
-        console.log("data:" + res.data);
-        console.log("status:" + res.status);
-        console.log("statusText:" + res.statusText);
-        console.log("headers:" + res.headers);
-        console.log("config" + res.config);
-        //console.log("my res log: " + res)
-        //console.log("my res stringify log: " + JSON.stringify(e))
         return {
             statusCode: 200,
             headers: {

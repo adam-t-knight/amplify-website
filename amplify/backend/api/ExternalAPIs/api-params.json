@@ -1,0 +1,132 @@
+{
+    "paths": [
+        {
+            "name": "/GetXkcdComic",
+            "lambdaFunction": "GetXkcdComic",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/GetXkcdComic"
+        },
+        {
+            "name": "/GetNewYorkTimes",
+            "lambdaFunction": "GetNewYorkTimes",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/GetNewYorkTimes"
+        },
+        {
+            "name": "/GetWeather",
+            "lambdaFunction": "GetWeather",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/GetWeather"
+        },
+        {
+            "name": "/GetStock",
+            "lambdaFunction": "GetStock",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/GetStock"
+        }
+    ],
+    "resourceName": "ExternalAPIs",
+    "apiName": "ExternalAPIs",
+    "functionArns": [
+        {
+            "lambdaFunction": "GetXkcdComic"
+        },
+        {
+            "lambdaFunction": "GetNewYorkTimes"
+        },
+        {
+            "lambdaFunction": "GetWeather"
+        },
+        {
+            "lambdaFunction": "GetStock"
+        }
+    ],
+    "privacy": {
+        "auth": 4,
+        "unauth": 4,
+        "authRoleName": "amplify-amplify-website-liva-233239-authRole",
+        "unAuthRoleName": "amplify-amplify-website-liva-233239-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "GetXkcdComic",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "GetNewYorkTimes",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "GetWeather",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "GetStock",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

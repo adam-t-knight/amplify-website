@@ -17,7 +17,7 @@ function XkcdComic() {
             }
         }
   
-        const data = await API.get('AmplifyWebsiteAPI', '/GetNewYorkTimes', requestInfo)
+        const data = await API.get('ExternalAPIs', '/GetXkcdComic', requestInfo)
   
         console.log({ data })
 

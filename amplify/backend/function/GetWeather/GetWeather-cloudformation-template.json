@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "NewYorkTimes",
+            "GetWeather",
             {
               "Fn::Join": [
                 "",
                 [
-                  "NewYorkTimes",
+                  "GetWeather",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "amplifywebsiteLambdaRole29e65313",
+            "amplifywebsiteLambdaRole20ceac73",
             {
               "Fn::Join": [
                 "",
                 [
-                  "amplifywebsiteLambdaRole29e65313",
+                  "amplifywebsiteLambdaRole20ceac73",
                   "-",
                   {
                     "Ref": "env"
