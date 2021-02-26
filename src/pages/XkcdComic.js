@@ -43,7 +43,7 @@ class XkcdComic extends React.Component {
         ) : (
             <div className="XkcdComic">
                 <h1>XKCD Comic</h1>
-                <h2>Latest XKCD comic from {xkcdComicUrl} :</h2>
+                <h2>Latest XKCD comic from {xkcdComicUrl}:</h2>
                 <h2>Month: {this.state.xkcdComicData.month}</h2>
                 <h2>Number: {this.state.xkcdComicData.num}</h2>
                 <h2>Link: {this.state.xkcdComicData.link}</h2>

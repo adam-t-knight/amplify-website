@@ -2,14 +2,16 @@
 
 exports.handler = async (event) => {
     const axios = require('axios');
-    const xkcdComicUrl = 'https://xkcd.com/info.0.json';
+    const NYT_API_KEY = 's4mju6AfAyGqdWGfwWMMjDzovCjAeXGI';
+    const nytMostViewedUrl = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=' + NYT_API_KEY;
+    const nytTopStoriesHomeUrl = 'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=' + NYT_API_KEY;
 
     if(event.requestContext.authorizer) {
         console.log('claims: ', event.requestContext.authorizer.claims)
     }
 
     try {
-        const res = await axios.get(xkcdComicUrl)
+        const res = await axios.get(nytTopStoriesHomeUrl)
 
         return {
             statusCode: 200,

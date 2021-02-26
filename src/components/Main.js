@@ -33,10 +33,12 @@ const Main = () => {
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="/random-joke">Random Joke</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/update-training-max">Update Training Max</NavDropdown.Item>
-                                        <NavDropdown.Divider />
                                         <NavDropdown.Item href="/stock-ticker">Stock Ticker</NavDropdown.Item>
                                         <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/update-training-max">Update Training Max</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/weather">Weather</NavDropdown.Item>
+                                        <NavDropdown.Divider />                                      
                                         <NavDropdown.Item href="/world-clock">World Clock</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="/xkcd-comic">XKCD Comic</NavDropdown.Item>

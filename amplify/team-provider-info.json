@@ -26,7 +26,7 @@
         },
         "GetNewYorkTimes": {
           "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-6e6d486e383977613751-build.zip"
+          "s3Key": "amplify-builds/GetNewYorkTimes-4b4a6242325748534632-build.zip"
         },
         "GetXkcdComic": {
           "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
