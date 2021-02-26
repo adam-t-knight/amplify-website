@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API, Auth } from 'aws-amplify';
-import NewYorkTimesArticle from '../components/NewYorkTimesArticle';
+import NewYorkTimesArticles from '../components/NewYorkTimesArticles';
 
 class NewYorkTimes extends React.Component {
 
@@ -12,7 +12,6 @@ class NewYorkTimes extends React.Component {
             num_results: 0,
             results: [],
             section: "",
-            status: "",
             isLoading: true
         };
     }
@@ -20,7 +19,6 @@ class NewYorkTimes extends React.Component {
     async componentDidMount() {
         const user = await Auth.currentAuthenticatedUser()
         const token = user.signInUserSession.idToken.jwtToken
-        console.log({token})
   
         const requestInfo = {
             headers: {
@@ -29,8 +27,6 @@ class NewYorkTimes extends React.Component {
         }
   
         const data = await API.get('ExternalAPIs', '/GetNewYorkTimes', requestInfo)
-  
-        console.log({data});
 
         this.setState({
             copyright: data.copyright,
@@ -38,7 +34,6 @@ class NewYorkTimes extends React.Component {
             num_results: data.num_results,
             results: data.results,
             section: data.section,
-            status: data.status,
             isLoading: false
         });
     }
@@ -55,9 +50,8 @@ class NewYorkTimes extends React.Component {
                 <h2>Copyright: {this.state.copyright}</h2>
                 <h2>Last updated: {this.state.last_updated}</h2>
                 <h2>Number of results: {this.state.num_results}</h2>
-                <h2>Section: {this.state.section}</h2>
-                <h2>Status: {this.state.status}</h2>
-                <NewYorkTimesArticle articles={this.state.results} />
+                <h2>News section: {this.state.section}</h2>
+                <NewYorkTimesArticles articles={this.state.results} />
             </div>
         );
       }

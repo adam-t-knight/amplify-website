@@ -15,7 +15,7 @@ class XkcdComic extends React.Component {
     }
 
     async componentDidMount() {
-        const user = await Auth.currentAuthenticatedUser()
+/*         const user = await Auth.currentAuthenticatedUser()
         const token = user.signInUserSession.idToken.jwtToken
         console.log({token})
   
@@ -25,9 +25,9 @@ class XkcdComic extends React.Component {
             }
         }
   
-        const data = await API.get('ExternalAPIs', '/GetXkcdComic', requestInfo)
-  
-        console.log({data})
+        const data = await API.get('ExternalAPIs', '/GetXkcdComic', requestInfo) */
+
+        const data = await API.get('ExternalAPIs', '/GetXkcdComic', '');
 
         this.setState({
             xkcdComicData: data,
@@ -97,18 +97,6 @@ class XkcdComic extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-{/*                 <h2>Month: {this.state.xkcdComicData.month}</h2>
-                <h2>Number: {this.state.xkcdComicData.num}</h2>
-                <h2>Link: {this.state.xkcdComicData.link}</h2>
-                <h2>Year: {this.state.xkcdComicData.year}</h2>
-                <h2>News: {this.state.xkcdComicData.news}</h2>
-                <h2>Safe Title: {this.state.xkcdComicData.safe_title}</h2>
-                <h2>Transcript: {this.state.xkcdComicData.transcript}</h2>
-                <h2>Alt Text: {this.state.xkcdComicData.alt}</h2>
-                <h2>Title: {this.state.xkcdComicData.title}</h2>
-                <h2>Day: {this.state.xkcdComicData.day}</h2>
-                <h2>Image:</h2>
-                <img src={this.state.xkcdComicData.img} alt={this.state.xkcdComicData.alt} /> */}
             </div>
         );
       }

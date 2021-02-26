@@ -1,0 +1,36 @@
+#NytTable {
+    width: 2020px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#NytTable tbody {
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 500px;
+}
+
+#NytTable thead tr {
+   display: block;
+}
+
+#NytTable thead {
+  background: black;
+  color:#fff;
+}
+
+#NytTable th {
+  text-align: center;
+  width: 200px;
+  border:1px solid #000;
+  border-width: 1px 1px 1px 1px;
+}
+
+#NytTable td {
+    text-align: center;
+    width: 200px;
+    border:1px solid #000;
+    border-width: 1px 1px 1px 1px;
+}
