@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API, Auth } from 'aws-amplify';
+import '../assets/css/XkcdComic.css';
 
 const xkcdComicUrl = "https://xkcd.com/info.0.json";
 
@@ -44,7 +45,59 @@ class XkcdComic extends React.Component {
             <div className="XkcdComic">
                 <h1>XKCD Comic</h1>
                 <h2>Latest XKCD comic from {xkcdComicUrl}:</h2>
-                <h2>Month: {this.state.xkcdComicData.month}</h2>
+                <table id="XkcdTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Number
+                            </th>
+                            <th>
+                                Day
+                            </th>
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Year
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                            <th>
+                                Alt Text
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {this.state.xkcdComicData.num}
+                            </td>
+                            <td>
+                                {this.state.xkcdComicData.day}
+                            </td>
+                            <td>
+                                {this.state.xkcdComicData.month}
+                            </td>
+                            <td>
+                                {this.state.xkcdComicData.year}
+                            </td>
+                            <td>
+                                {this.state.xkcdComicData.title}
+                            </td>
+                            <td>
+                                <img src={this.state.xkcdComicData.img} alt={this.state.xkcdComicData.alt} />
+                            </td>
+                            <td>
+                                {this.state.xkcdComicData.alt}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+{/*                 <h2>Month: {this.state.xkcdComicData.month}</h2>
                 <h2>Number: {this.state.xkcdComicData.num}</h2>
                 <h2>Link: {this.state.xkcdComicData.link}</h2>
                 <h2>Year: {this.state.xkcdComicData.year}</h2>
@@ -55,7 +108,7 @@ class XkcdComic extends React.Component {
                 <h2>Title: {this.state.xkcdComicData.title}</h2>
                 <h2>Day: {this.state.xkcdComicData.day}</h2>
                 <h2>Image:</h2>
-                <img src={this.state.xkcdComicData.img} alt={this.state.xkcdComicData.alt} />
+                <img src={this.state.xkcdComicData.img} alt={this.state.xkcdComicData.alt} /> */}
             </div>
         );
       }

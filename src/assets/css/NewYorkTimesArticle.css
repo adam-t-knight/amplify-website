@@ -1,0 +1,80 @@
+/* #NytTable {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1300px;
+    max-height: 300px;
+    overflow-y: scroll;
+} */
+
+/* #NytTable td {
+    padding: 10px;
+} */
+
+/* #NytTable thead th {
+    position: sticky;
+    top: 0;
+} */
+
+/* #NytTableContainer {
+    border: 1px solid #eeccee;
+    max-height: 300px;
+    overflow-y: scroll;
+    width: 100%;
+} */
+
+/* #NytTable tbody {
+    max-height: 300px;
+    overflow-y: scroll;
+} */
+
+/* #NytTable tbody{
+    display: block;
+    overflow: auto;
+    height: 200px;
+    width: 100%;
+}
+
+#NytTable thead tr{
+    display: block;
+} */
+
+#NytTable {
+    width: 2200px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+#NytTable tbody {
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 600px;
+}
+
+#NytTable thead tr {
+   display: block;
+}
+
+#NytTable thead {
+  background: black;
+  color:#fff;
+}
+
+#NytTable th {
+  padding: 5px;
+  text-align: center;
+  width: 200px;
+}
+
+#NytTable td {
+    padding: 5px;
+    text-align: left;
+    width: 200px;
+    border:1px solid #000;
+    border-width: 1px 1px 1px 1px;
+}
+
+#NytTable a {
+    overflow-wrap: break-word;
+}

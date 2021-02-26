@@ -1,9 +1,10 @@
-#WorldClockTable {
+#XkcdTable {
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
+    width: 1300px;
 }
 
-#WorldClockTable td {
+#XkcdTable td {
     padding: 10px;
 }
