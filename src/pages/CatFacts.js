@@ -11,7 +11,6 @@ function CatFacts() {
     }, []);
 
     const getCatFactsWithFetch = async () => {
-        console.log("getting more facts");
         const response = await fetch(catFactsUrl);
         const jsonData = await response.json();
         setCatFactsData(jsonData);
