@@ -1,7 +1,11 @@
-#WorldClockTable {
-    margin-top: 30px;
+#WorldClock {
+    float: left;
     margin-left: auto;
     margin-right: auto;
+}
+
+#WorldClockTable {
+    margin-top: 30px;
 }
 
 #WorldClockTable td {

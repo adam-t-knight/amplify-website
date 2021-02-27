@@ -18,7 +18,7 @@ function WorldClock() {
     }
 
     return (
-        <div>
+        <div id="WorldClock">
             <h1>World Clock</h1>
             <table id="WorldClockTable">
                 <thead>
@@ -33,7 +33,7 @@ function WorldClock() {
                             Date
                         </th>
                         <th>
-                            Time
+                            Local Time
                         </th>
                     </tr>
                 </thead>
