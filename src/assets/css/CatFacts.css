@@ -1,0 +1,8 @@
+#CatFactsTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#CatFactsTable td {
+    padding: 10px;
+}

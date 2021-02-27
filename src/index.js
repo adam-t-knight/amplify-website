@@ -5,6 +5,11 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
+import Amplify from 'aws-amplify';
+import config from './aws-exports';
+
+Amplify.configure(config);
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

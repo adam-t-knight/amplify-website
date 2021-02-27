@@ -1,4 +1,64 @@
 {
+  "liva": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-website-liva-233239-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-liva-233239-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-liva-233239-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
+      "UnauthRoleName": "amplify-amplify-website-liva-233239-unauthRole",
+      "StackName": "amplify-amplify-website-liva-233239",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplify-website-liva-233239/6c34c430-762f-11eb-a1b5-029e4edb2c3e",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      },
+      "function": {
+        "GetStock": {
+          "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
+          "s3Key": "amplify-builds/GetStock-7a6a4347366749333376-build.zip"
+        },
+        "GetWeather": {
+          "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
+          "s3Key": "amplify-builds/GetWeather-4d49562b44626e722b6c-build.zip"
+        },
+        "GetNewYorkTimes": {
+          "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
+          "s3Key": "amplify-builds/GetNewYorkTimes-4b4a6242325748534632-build.zip"
+        },
+        "GetXkcdComic": {
+          "deploymentBucketName": "amplify-amplify-website-liva-233239-deployment",
+          "s3Key": "amplify-builds/GetXkcdComic-304645506a566f36774b-build.zip"
+        }
+      }
+    }
+  },
+  "tamarah": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-website-tamarah-185426-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-tamarah-185426-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-tamarah-185426-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify-website-tamarah-185426-deployment",
+      "UnauthRoleName": "amplify-amplify-website-tamarah-185426-unauthRole",
+      "StackName": "amplify-amplify-website-tamarah-185426",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplify-website-tamarah-185426/8d814f90-7608-11eb-98b8-0696f1304dd6",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      },
+      "function": {
+        "GetPopularArticles": {
+          "deploymentBucketName": "amplify-amplify-website-tamarah-185426-deployment",
+          "s3Key": "amplify-builds/GetPopularArticles-7973305452734454316b-build.zip"
+        }
+      }
+    }
+  },
   "franni": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify-website-franni-235628-authRole",

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
-import { API, Storage } from 'aws-amplify';
+import { API, Storage, Function } from 'aws-amplify';
 import { listNotes } from '../graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";

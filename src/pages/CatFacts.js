@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../assets/css/CatFacts.css';
 
 const catFactsUrl = "https://cat-fact.herokuapp.com/facts";
 
@@ -16,26 +17,45 @@ function CatFacts() {
     };
 
     return (
-        <div className="CatFacts">
+        <div>
             <h1>Cat Facts</h1>
-            <h2>Random cat facts from {catFactsUrl} :</h2>
-            <ul>
-                {catFactsData.map((item, index) => (
-                    <li key={index}>
-                        Index: {index}<br/>
-                        Verified: {item.status.verified}<br/>
-                        sentCount: {item.status.sentCount}<br/>
-                        feedback: {item.status.feedback}<br/>
-                        type: {item.type}<br/>
-                        user: {item.user}<br/>
-                        text: {item.text}<br/>
-                        __v: {item.__v}<br/>
-                        source: {item.source}<br/>
-                        createdAt: {item.createdAt}<br/>
-                        used: {item.used}
-                    </li>
-                ))}
-            </ul>
+            <h2>Random cat facts from {catFactsUrl}:</h2>
+            <table id="CatFactsTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Index
+                        </th>
+                        <th>
+                            Text
+                        </th>
+                        <th>
+                            Created Date
+                        </th>
+                        <th>
+                            User
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {catFactsData.map((item, index) => (
+                        <tr key={index}>
+                            <td>
+                                {index}
+                            </td>
+                            <td>
+                                {item.text}
+                            </td>
+                            <td>
+                                {item.createdAt}
+                            </td>
+                            <td>
+                                {item.user}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }

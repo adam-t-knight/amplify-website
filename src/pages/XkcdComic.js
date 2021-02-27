@@ -1,34 +1,84 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { API } from 'aws-amplify';
+import '../assets/css/XkcdComic.css';
 
-const xkcdComicUrl = 'https://xkcd.com/info.0.json';
+const xkcdComicUrl = "https://xkcd.com/info.0.json";
 
 function XkcdComic() {
-    const [xkcdComicData, setXkcdComic] = useState([]);
+    const [xkcdComicData, setXkcdComicData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getXkcdComicWithFetch();
     }, []);
 
     const getXkcdComicWithFetch = async () => {
-        const response = await fetch(xkcdComicUrl);
-        const jsonData = await response.json();
-        setXkcdComic(jsonData);
-        console.log("json: " + jsonData);
+        const data = await API.get('ExternalAPIs', '/GetXkcdComic', '');
+        setXkcdComicData(data);
+        setIsLoading(false);
     };
 
-    return (
-        <div className="XkcdComic">
+    return isLoading ? (
+        <div>
             <h1>XKCD Comic</h1>
-            <h2>An random xkcd comic from {xkcdComicUrl} :</h2>
-            <h2>Number: {xkcdComicData.num}</h2>
-            <h2>Link: {xkcdComicData.link}</h2>
-            <h2>Year: {xkcdComicData.year}</h2>
-            <h2>News: {xkcdComicData.news}</h2>
-            <h2>Safe Title: {xkcdComicData.safe_title}</h2>
-            <h2>Transcript: {xkcdComicData.transcript}</h2>
-            <h2>Alt Text: {xkcdComicData.alt}</h2>
-            <h2>Image:</h2>
-            <img className="" src={xkcdComicData.img} alt={xkcdComicData.alt} />
+            <h2>Loading! Please wait...</h2>
+        </div>
+    ) : (
+        <div>
+            <h1>XKCD Comic</h1>
+            <h2>Latest XKCD comic from {xkcdComicUrl}:</h2>
+            <table id="XkcdTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Number
+                        </th>
+                        <th>
+                            Day
+                        </th>
+                        <th>
+                            Month
+                        </th>
+                        <th>
+                            Year
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Image
+                        </th>
+                        <th>
+                            Alt Text
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {xkcdComicData.num}
+                        </td>
+                        <td>
+                            {xkcdComicData.day}
+                        </td>
+                        <td>
+                            {xkcdComicData.month}
+                        </td>
+                        <td>
+                            {xkcdComicData.year}
+                        </td>
+                        <td>
+                            {xkcdComicData.title}
+                        </td>
+                        <td>
+                            <img src={xkcdComicData.img} alt={xkcdComicData.alt} />
+                        </td>
+                        <td>
+                            {xkcdComicData.alt}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 }
