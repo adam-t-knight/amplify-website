@@ -1,10 +1,11 @@
-/* .Weather {
-    float: left;
+.Weather {
+    margin-top: 30px;
+    width: 450px;
 }
- */
+
 #WeatherTable {
-/*     margin-left: auto;
-    margin-right: auto; */
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 30px;
 }
 

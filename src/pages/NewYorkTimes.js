@@ -21,15 +21,19 @@ function NewYorkTimes() {
     return isLoading ? (
         <div className="NewYorkTimes">
             <h1>New York Times</h1>
-            <h2>Loading! Please wait...</h2>
+            <div className="nytContainer">
+                <h2>Loading! Please wait...</h2>
+            </div>
         </div>
     ) : (
         <div className="NewYorkTimes">
             <h1>New York Times</h1>
-            <h2>Top articles on the nytimes.com {nytData.section} page</h2>
-            <h2>Last updated {moment(nytData.last_updated).tz("America/New_York").toString()}</h2>
-            <h2>{nytData.num_results} results</h2>
-            <NewYorkTimesArticles articles={nytData.results} />
+            <div className="nytContainer">
+                <h2>Top articles on the nytimes.com {nytData.section} page</h2>
+                <h2>Last updated {moment(nytData.last_updated).tz("America/New_York").toString()}</h2>
+                <h2>{nytData.num_results} results</h2>
+                <NewYorkTimesArticles articles={nytData.results} />
+            </div>
         </div>
     );
 }

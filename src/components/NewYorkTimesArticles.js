@@ -3,8 +3,8 @@ import '../assets/css/NewYorkTimesArticles.css';
 function NewYorkTimesArticles({articles}) {
 
     return (
-        <div id="NytContainer" className="table-responsive">
-            <table id="NytTable">
+        <div id="NytArticles" className="table-responsive">
+            <table id="NytArticlesTable">
                 <thead>
                     <tr>
                         <th scope="col">

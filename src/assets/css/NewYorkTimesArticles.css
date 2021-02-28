@@ -3,17 +3,17 @@
   overflow: scroll;
 }
 
-#NytContainer {
+#NytArticles {
   margin-top: 30px;
 }
 
-#NytTable th {
+#NytArticlesTable th {
   background: black;
   color: #fff;
   position: sticky;
   top: 0;
 }
 
-#NytTable td {
+#NytArticlesTable td {
     padding: 10px;
 }

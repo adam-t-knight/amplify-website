@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import WorldClock from '../pages/WorldClock';
 import NewYorkTimes from '../pages/NewYorkTimes';
 import Weather from '../pages/Weather';
+import '../assets/css/Home.css';
 
 function Home() {
 
