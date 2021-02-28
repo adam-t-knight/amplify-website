@@ -9,7 +9,13 @@ function Stock({stockData}) {
                 <thead>
                     <tr>
                         <th scope="col">
+                            Date
+                        </th>
+                        <th scope="col">
                             Open
+                        </th>
+                        <th scope="col">
+                            Close
                         </th>
                         <th scope="col">
                             High
@@ -18,10 +24,13 @@ function Stock({stockData}) {
                             Low
                         </th>
                         <th scope="col">
-                            Close
+                            Volume
                         </th>
                         <th scope="col">
-                            Volume
+                            Adj Open
+                        </th>
+                        <th scope="col">
+                            Adj Close
                         </th>
                         <th scope="col">
                             Adj High
@@ -30,16 +39,7 @@ function Stock({stockData}) {
                             Adj Low
                         </th>
                         <th scope="col">
-                            Adj Close
-                        </th>
-                        <th scope="col">
-                            Adj Open
-                        </th>
-                        <th scope="col">
                             Adj Volume
-                        </th>
-                        <th scope="col">
-                            Date
                         </th>
                     </tr>
                 </thead>
@@ -47,17 +47,17 @@ function Stock({stockData}) {
                 {
                     stockData.data && stockData.data.map((item, index) => (
                         <tr key={index}>
+                            <td>{moment(item.date).format('ddd, MMM Do YYYY').toString()}</td>
                             <td>{item.open}</td>
+                            <td>{item.close}</td>
                             <td>{item.high}</td>
                             <td>{item.low}</td>
-                            <td>{item.close}</td>
                             <td>{item.volume}</td>
+                            <td>{item.adj_open}</td>
+                            <td>{item.adj_close}</td>
                             <td>{item.adj_high}</td>
                             <td>{item.adj_low}</td>
-                            <td>{item.adj_close}</td>
-                            <td>{item.adj_open}</td>
                             <td>{item.adj_volume}</td>
-                            <td>{moment(item.date).format('dddd, MMMM Do YYYY').toString()}</td>
                         </tr>
                     ))
                 }
