@@ -30,7 +30,7 @@
         },
         "GetStock": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",
-          "s3Key": "amplify-builds/GetStock-4d4a7a4f4f4830344e50-build.zip"
+          "s3Key": "amplify-builds/GetStock-6c5958784b4b45415537-build.zip"
         }
       }
     }

@@ -3,8 +3,8 @@
 exports.handler = async (event) => {
     const axios = require('axios');
     const MS_API_KEY = 'efae7fcc7afc9843ad088ab88b6e3fac';
-    const SYMBOLS = 'GME';
-    const marketStackEODUrl = 'http://api.marketstack.com/v1/eod?access_key=' + MS_API_KEY + '&symbols=' + SYMBOLS;
+
+    const marketStackEODUrl = 'http://api.marketstack.com/v1/eod?access_key=' + MS_API_KEY + '&symbols=' + event.queryStringParameters.symbol;
 
     if(event.requestContext.authorizer) {
         console.log('claims: ', event.requestContext.authorizer.claims)

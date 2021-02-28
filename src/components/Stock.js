@@ -9,6 +9,9 @@ function Stock({stockData}) {
                 <thead>
                     <tr>
                         <th scope="col">
+                            Symbol
+                        </th>
+                        <th scope="col">
                             Date
                         </th>
                         <th scope="col">
@@ -47,6 +50,7 @@ function Stock({stockData}) {
                 {
                     stockData.data && stockData.data.map((item, index) => (
                         <tr key={index}>
+                            <td>{item.symbol}</td>
                             <td>{moment(item.date).format('ddd, MMM Do YYYY').toString()}</td>
                             <td>{item.open}</td>
                             <td>{item.close}</td>
