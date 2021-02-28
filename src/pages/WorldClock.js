@@ -23,16 +23,16 @@ function WorldClock() {
             <table id="WorldClockTable">
                 <thead>
                     <tr>
-                        <th>
+                        <th scope="col">
                             City
                         </th>
-                        <th>
+                        <th scope="col">
                             Country
                         </th>
-                        <th>
+                        <th scope="col">
                             Date
                         </th>
-                        <th>
+                        <th scope="col">
                             Local Time
                         </th>
                     </tr>

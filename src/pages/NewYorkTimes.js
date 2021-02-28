@@ -26,9 +26,9 @@ function NewYorkTimes() {
     ) : (
         <div className="NewYorkTimes">
             <h1>New York Times</h1>
-            <h2>Last updated: {moment(nytData.last_updated).tz("America/New_York").toString()}</h2>
-            <h2>Number of results: {nytData.num_results}</h2>
-            <h2>News section: {nytData.section}</h2>
+            <h2>Top articles on the nytimes.com {nytData.section} page</h2>
+            <h2>Last updated {moment(nytData.last_updated).tz("America/New_York").toString()}</h2>
+            <h2>{nytData.num_results} results</h2>
             <NewYorkTimesArticles articles={nytData.results} />
         </div>
     );

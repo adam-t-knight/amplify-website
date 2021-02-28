@@ -22,11 +22,11 @@
         },
         "GetNewYorkTimes": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-4b4a6242325748534632-build.zip"
+          "s3Key": "amplify-builds/GetNewYorkTimes-30686d784b7145786579-build.zip"
         },
         "GetWeather": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",
-          "s3Key": "amplify-builds/GetWeather-4d49562b44626e722b6c-build.zip"
+          "s3Key": "amplify-builds/GetWeather-44582b69346b6a4a4c6d-build.zip"
         },
         "GetStock": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",

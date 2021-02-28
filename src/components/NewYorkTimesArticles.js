@@ -3,7 +3,7 @@ import '../assets/css/NewYorkTimesArticles.css';
 function NewYorkTimesArticles({articles}) {
 
     return (
-        <div id="NytContainer" class="table-responsive">
+        <div id="NytContainer" className="table-responsive">
             <table id="NytTable">
                 <thead>
                     <tr>
@@ -23,7 +23,7 @@ function NewYorkTimesArticles({articles}) {
                 </thead>
                 <tbody>
                     {
-                        articles.map((item, index) => (
+                        articles && articles.map((item, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td><a href={item.url}>{item.title}</a></td>
@@ -43,7 +43,6 @@ function NewYorkTimesArticles({articles}) {
                 </tbody>
             </table>
         </div>
-
     )
     
 }
