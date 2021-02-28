@@ -165,29 +165,6 @@ function Weather() {
                         </td>
                     </tr>
                 </tbody>
-
-{/*                 <h3>Clouds: {weatherData.current.clouds}</h3>
-                <h3>Dew point: {weatherData.current.dew_point}</h3>
-                <h3>Dt: {weatherData.current.dt}</h3>
-                <h3>Feels like: {weatherData.current.feels_like}</h3>
-                <h3>Humidity: {weatherData.current.humidity}</h3>
-                <h3>Pressure: {weatherData.current.pressure}</h3>
-                <h3>Sunrise: {weatherData.current.sunrise}</h3>
-                <h3>Sunset: {weatherData.current.sunset}</h3>
-                <h3>Temp: {weatherData.current.temp}</h3>
-                <h3>UVI: {weatherData.current.uvi}</h3>
-                <h3>Visibility: {weatherData.current.visibility}</h3>
-                {
-                    weatherData.current.weather && weatherData.current.weather.map((weather, index) => (
-                        <li key={index}>
-                            {weather.description}
-                        </li>
-                    ))   
-                }
-                <h3>Latitude: {weatherData.lat}</h3>
-                <h3>Longitude: {weatherData.lon}</h3>
-                <h3>Timezone: {weatherData.timezone}</h3>
-                <h3>Timezone_Offset: {weatherData.timezone_offset}</h3> */}
             </table>
         </div>
     );

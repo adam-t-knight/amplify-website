@@ -1,0 +1,24 @@
+.StockTicker {
+    margin-top: 30px;
+    width: 1000px;
+}
+
+#StockTickerContainer {
+    margin-top: 30px;
+}
+
+.table-responsive {
+    height: 500px;  
+    overflow: scroll;
+}
+
+#StockTickerTable th {
+    background: black;
+    color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+#StockTickerTable td {
+    padding: 10px;
+}

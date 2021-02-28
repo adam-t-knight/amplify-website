@@ -18,19 +18,19 @@
       "function": {
         "GetXkcdComic": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",
-          "s3Key": "amplify-builds/GetXkcdComic-304645506a566f36774b-build.zip"
+          "s3Key": "amplify-builds/GetXkcdComic-4e543464395661413438-build.zip"
         },
         "GetNewYorkTimes": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-30686d784b7145786579-build.zip"
+          "s3Key": "amplify-builds/GetNewYorkTimes-4f41464d555178765a4b-build.zip"
         },
         "GetWeather": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",
-          "s3Key": "amplify-builds/GetWeather-44582b69346b6a4a4c6d-build.zip"
+          "s3Key": "amplify-builds/GetWeather-7971496d683769394565-build.zip"
         },
         "GetStock": {
           "deploymentBucketName": "amplify-amplify-website-kariotta-05704-deployment",
-          "s3Key": "amplify-builds/GetStock-7a6a4347366749333376-build.zip"
+          "s3Key": "amplify-builds/GetStock-4d4a7a4f4f4830344e50-build.zip"
         }
       }
     }

@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import StockTicker from '../pages/StockTicker';
 import WorldClock from '../pages/WorldClock';
 import NewYorkTimes from '../pages/NewYorkTimes';
 import Weather from '../pages/Weather';
@@ -15,6 +16,7 @@ function Home() {
       </div>
       <div id="RightHomeColumn">
         <NewYorkTimes />
+        <StockTicker />
       </div>
     </Fragment>
   )
