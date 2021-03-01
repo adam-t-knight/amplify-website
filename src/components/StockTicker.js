@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
-import Stock from '../components/Stock';
-import Emoji from '../components/Emoji';
+import Stock from './Stock';
+import Emoji from './Emoji';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../assets/css/StockTicker.css';
 

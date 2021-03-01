@@ -1,8 +1,11 @@
-#XkcdTable {
+.XkcdContainer {
     margin-top: 30px;
+}
+
+#XkcdTable {
     margin-left: auto;
     margin-right: auto;
-    width: 1300px;
+    margin-top: 30px;
 }
 
 #XkcdTable td {

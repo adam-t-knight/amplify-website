@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API, Storage, Function } from 'aws-amplify';
-import { listNotes } from '../graphql/queries';
-import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from '../graphql/mutations';
+import { listExercises } from '../graphql/queries';
+import { createExercise as createExerciseMutation, deleteExercise as deleteExerciseMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { withAuthenticator, AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
+import moment from "moment-timezone";
 
-const initialFormState = { name: '', description: '' }
+const initialFormState = { name: '', weight: '' }
 
 const UpdateTrainingMax = () => {
-  const [notes, setNotes] = useState([]);
+  const [exercises, setExercises] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();
@@ -20,7 +21,7 @@ const UpdateTrainingMax = () => {
           setAuthState(nextAuthState);
           setUser(authData);
       });
-      fetchNotes();
+      fetchExercises();
   }, []);
 
   async function onChange(e) {
@@ -28,37 +29,37 @@ const UpdateTrainingMax = () => {
     const file = e.target.files[0];
     setFormData({ ...formData, image: file.name });
     await Storage.put(file.name, file);
-    fetchNotes();
+    fetchExercises();
   }
 
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
-    await Promise.all(notesFromAPI.map(async note => {
-      if (note.image) {
-        const image = await Storage.get(note.image);
-        note.image = image;
+  async function fetchExercises() {
+    const apiData = await API.graphql({ query: listExercises });
+    const exercisesFromAPI = apiData.data.listExercises.items;
+    await Promise.all(exercisesFromAPI.map(async exercise => {
+      if (exercise.image) {
+        const image = await Storage.get(exercise.image);
+        exercise.image = image;
       }
-      return note;
+      return exercise;
     }))
-    setNotes(apiData.data.listNotes.items);
+    setExercises(apiData.data.listExercises.items);
   }
 
-  async function createNote() {
-    if (!formData.name || !formData.description) return;
-    await API.graphql({ query: createNoteMutation, variables: { input: formData } });
+  async function createExercise() {
+    if (!formData.name || !formData.weight) return;
+    await API.graphql({ query: createExerciseMutation, variables: { input: formData } });
     if (formData.image) {
       const image = await Storage.get(formData.image);
       formData.image = image;
     }
-    setNotes([ ...notes, formData ]);
+    setExercises([ ...exercises, formData ]);
     setFormData(initialFormState);
   }
 
-  async function deleteNote({ id }) {
-    const newNotesArray = notes.filter(note => note.id !== id);
-    setNotes(newNotesArray);
-    await API.graphql({ query: deleteNoteMutation, variables: { input: { id } }});
+  async function deleteExercise({ id }) {
+    const newExercisesArray = exercises.filter(exercise => exercise.id !== id);
+    setExercises(newExercisesArray);
+    await API.graphql({ query: deleteExerciseMutation, variables: { input: { id } }});
   }
 
   return Auth.user ? (
@@ -67,32 +68,34 @@ const UpdateTrainingMax = () => {
       <Link to="/">
         Back
       </Link>
-      <div id="CreateNote">
+      <div id="CreateExercise">
         <input
           onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-          placeholder="Note name"
+          placeholder="Exercise name"
           value={formData.name}
         />
         <input
-          onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-          placeholder="Note description"
-          value={formData.description}
+          onChange={e => setFormData({ ...formData, 'weight': e.target.value})}
+          placeholder="Exercise weight"
+          value={formData.weight}
         />
         <input
           type="file"
           onChange={onChange}
         />
-        <button onClick={createNote}>Create Note</button>
+        <button onClick={createExercise}>Create Exercise</button>
       </div>
       <div style={{marginBottom: 30}}>
       {
-        notes.map(note => (
-          <div key={note.id || note.name}>
-            <h2>{note.name}</h2>
-            <p>{note.description}</p>
-            <button onClick={() => deleteNote(note)}>Delete note</button>
+        exercises.map(exercise => (
+          <div key={exercise.id || exercise.name}>
+            <h2>Name: {exercise.name}</h2>
+            <p>Weight: {exercise.weight}</p>
+            <p>Created on: {moment(exercise.createdOn).format('ddd, MMM Do YYYY').toString()}</p>
+            <p>Last update on: {moment(exercise.updatedOn).format('ddd, MMM Do YYYY').toString()}</p>
+            <button onClick={() => deleteExercise(exercise)}>Delete exercise</button>
             {
-              note.image && <img src={note.image} style={{width: 400}} />
+              exercise.image && <img src={exercise.image} style={{width: 400}} />
             }
           </div>
         ))
