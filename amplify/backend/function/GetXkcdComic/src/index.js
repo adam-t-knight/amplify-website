@@ -21,6 +21,7 @@ exports.handler = async (event) => {
         }
     } catch (e) {
         console.log(e)
+        
         return {
             statusCode: 400,
             headers: {

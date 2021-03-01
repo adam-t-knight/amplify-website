@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { API, Auth } from 'aws-amplify';
+import { API } from 'aws-amplify';
 import NewYorkTimesArticles from '../components/NewYorkTimesArticles';
+import moment from "moment-timezone";
+import '../assets/css/NewYorkTimes.css';
 
 function NewYorkTimes() {
     const [nytData, setNytData] = useState([]);
@@ -17,18 +19,21 @@ function NewYorkTimes() {
     };
 
     return isLoading ? (
-        <div className="nytArticles">
+        <div className="NewYorkTimes">
             <h1>New York Times</h1>
-            <h2>Loading! Please wait...</h2>
+            <div className="nytContainer">
+                <h2>Loading! Please wait...</h2>
+            </div>
         </div>
     ) : (
-        <div className="nytArticles">
+        <div className="NewYorkTimes">
             <h1>New York Times</h1>
-            <h2>Copyright: {nytData.copyright}</h2>
-            <h2>Last updated: {nytData.last_updated}</h2>
-            <h2>Number of results: {nytData.num_results}</h2>
-            <h2>News section: {nytData.section}</h2>
-            <NewYorkTimesArticles articles={nytData.results} />
+            <div className="nytContainer">
+                <h2>Top articles on the nytimes.com {nytData.section} page</h2>
+                <h2>Last updated {moment(nytData.last_updated).tz("America/New_York").toString()}</h2>
+                <h2>{nytData.num_results} results</h2>
+                <NewYorkTimesArticles articles={nytData.results} />
+            </div>
         </div>
     );
 }

@@ -1,0 +1,9 @@
+#LeftHomeColumn {
+    float: left;
+    width: 450px;
+}
+
+#RightHomeColumn {
+    float: right;
+    width: 1000px;
+}

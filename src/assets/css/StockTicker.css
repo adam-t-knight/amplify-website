@@ -1,0 +1,13 @@
+.StockTicker {
+    margin-top: 30px;
+}
+
+.StockContainer {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#StockLoadingMessage {
+    margin-top: 30px;
+}

@@ -1,0 +1,17 @@
+.Weather {
+    margin-top: 30px;
+}
+
+.WeatherContainer {
+    margin-top: 30px;
+}
+
+#WeatherTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#WeatherTable td {
+    padding: 10px;
+}

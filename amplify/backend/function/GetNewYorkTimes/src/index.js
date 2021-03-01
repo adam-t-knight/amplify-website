@@ -3,7 +3,6 @@
 exports.handler = async (event) => {
     const axios = require('axios');
     const NYT_API_KEY = 's4mju6AfAyGqdWGfwWMMjDzovCjAeXGI';
-    const nytMostViewedUrl = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=' + NYT_API_KEY;
     const nytTopStoriesHomeUrl = 'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=' + NYT_API_KEY;
 
     if(event.requestContext.authorizer) {
@@ -23,6 +22,7 @@ exports.handler = async (event) => {
         }
     } catch (e) {
         console.log(e)
+        
         return {
             statusCode: 400,
             headers: {

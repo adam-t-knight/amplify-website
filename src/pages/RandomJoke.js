@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from 'react-bootstrap';
 import '../assets/css/RandomJoke.css';
 
 const randomJokeUrl = "https://official-joke-api.appspot.com/random_joke";
@@ -54,7 +55,7 @@ function RandomJoke() {
                     </tr>
                 </tbody>
             </table>
-            <button onClick={getRandomJokeWithFetch}>Another joke!</button>
+            <Button onClick={getRandomJokeWithFetch} variant="outline-dark">Another joke!</Button>
         </div>
     );
 }

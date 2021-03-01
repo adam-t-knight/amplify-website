@@ -18,22 +18,22 @@ function WorldClock() {
     }
 
     return (
-        <div>
+        <div id="WorldClock">
             <h1>World Clock</h1>
             <table id="WorldClockTable">
                 <thead>
                     <tr>
-                        <th>
+                        <th scope="col">
                             City
                         </th>
-                        <th>
+                        <th scope="col">
                             Country
                         </th>
-                        <th>
+                        <th scope="col">
                             Date
                         </th>
-                        <th>
-                            Time
+                        <th scope="col">
+                            Local Time
                         </th>
                     </tr>
                 </thead>
