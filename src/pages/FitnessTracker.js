@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { API, Storage, Function } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import { listExercises } from '../graphql/queries';
-import { createExercise as createExerciseMutation, deleteExercise as deleteExerciseMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import moment from "moment-timezone";
 import '../assets/css/FitnessTracker.css';
 
-function Home() {
+function FitnessTracker() {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
@@ -46,9 +45,6 @@ function Home() {
               <p>Weight: {exercise.weight}</p>
               <p>Created on: {moment(exercise.createdOn).format('ddd, MMM Do YYYY').toString()}</p>
               <p>Last update on: {moment(exercise.updatedOn).format('ddd, MMM Do YYYY').toString()}</p>
-              {
-                exercise.image && <img src={exercise.image} style={{width: 400}} />
-              }
             </div>
           ))
         }
@@ -56,4 +52,5 @@ function Home() {
     </div>
   )
 }
-export default Home;
+
+export default FitnessTracker;

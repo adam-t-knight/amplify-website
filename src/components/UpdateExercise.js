@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { useState, useEffect } from 'react';
+import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
-import { API, Storage, Function } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import { listExercises } from '../graphql/queries';
 import { updateExercise as updateExerciseMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";
-import { withAuthenticator, AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
+import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 
 const initialFormState = { name: '', weight: '' }
@@ -13,10 +13,10 @@ const initialFormState = { name: '', weight: '' }
 const UpdateExercise = () => {
   const [exercises, setExercises] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
-  const [authState, setAuthState] = React.useState();
-  const [user, setUser] = React.useState();
+  const [authState, setAuthState] = useState();
+  const [user, setUser] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
       onAuthUIStateChange((nextAuthState, authData) => {
           setAuthState(nextAuthState);
           setUser(authData);
