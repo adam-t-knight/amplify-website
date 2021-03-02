@@ -24,34 +24,14 @@ const UpdateExercise = () => {
       fetchExercises();
   }, []);
 
-  async function onChange(e) {
-    if (!e.target.files[0]) return
-    const file = e.target.files[0];
-    setFormData({ ...formData, image: file.name });
-    await Storage.put(file.name, file);
-    fetchExercises();
-  }
-
   async function fetchExercises() {
     const apiData = await API.graphql({ query: listExercises });
-    const exercisesFromAPI = apiData.data.listExercises.items;
-    await Promise.all(exercisesFromAPI.map(async exercise => {
-      if (exercise.image) {
-        const image = await Storage.get(exercise.image);
-        exercise.image = image;
-      }
-      return exercise;
-    }))
     setExercises(apiData.data.listExercises.items);
   }
 
   async function updateExercise() {
     if (!formData.name || !formData.weight) return;
     await API.graphql({ query: updateExerciseMutation, variables: { input: formData } });
-    if (formData.image) {
-      const image = await Storage.get(formData.image);
-      formData.image = image;
-    }
     setExercises([ ...exercises, formData ]);
     setFormData(initialFormState);
   }
