@@ -24,7 +24,7 @@ function StockTicker() {
 
     return (
         <div className="StockTicker">
-            <h1><Emoji symbol="💎🙌" label="diamond hands left"/>Stonk Ticker<Emoji symbol="🙌💎" label="diamond hands right"/></h1>
+            <h1>Stock Ticker</h1>
             <div className="StockContainer">
                 
                 <DropdownButton

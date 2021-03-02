@@ -17,11 +17,6 @@ function Home() {
         <WorldClock />
         <Weather />
       </div>
-      <div id="MiddleHomeColumn">
-        <XkcdComic />
-        <RandomJoke />
-        <CatFacts />
-      </div>
       <div id="RightHomeColumn">
         <NewYorkTimes />
         <StockTicker />

@@ -5,10 +5,8 @@ import { Navbar, Nav, NavDropdown, Form } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
-import CatFacts from './CatFacts';
-import RandomJoke from './RandomJoke';
+import Comedy from '../pages/Comedy';
 import UpdateTrainingMax from '../pages/UpdateTrainingMax';
-import XkcdComic from './XkcdComic';
 
 const Main = () => {
     return (
@@ -23,13 +21,9 @@ const Main = () => {
                                 <Nav className="mr-auto">
                                     <Nav.Link href="/">Home</Nav.Link>
                                     <NavDropdown title="Pages" id="basic-nav-dropdown" >
-                                        <NavDropdown.Item href="/cat-facts">Cat Facts</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/random-joke">Random Joke</NavDropdown.Item>
+                                        <NavDropdown.Item href="/comedy">Comedy</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="/update-training-max">Update Training Max</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/xkcd-comic">XKCD Comic</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                                 <Form inline>
@@ -39,10 +33,8 @@ const Main = () => {
                         </Navbar>
                         <Switch>
                             <Route exact path='/' component={Home}></Route>
-                            <Route exact path='/cat-facts' component={CatFacts}></Route>
-                            <Route exact path='/random-joke' component={RandomJoke}></Route>
+                            <Route exact path='/comedy' component={Comedy}></Route>
                             <Route exact path='/update-training-max' component={UpdateTrainingMax}></Route>
-                            <Route exact path='/xkcd-comic' component={XkcdComic}></Route>
                         </Switch>
                     </Router>
                 </div>
