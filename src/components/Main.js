@@ -6,7 +6,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
 import Comedy from '../pages/Comedy';
-import UpdateTrainingMax from '../pages/UpdateTrainingMax';
+import FitnessTracker from '../pages/FitnessTracker';
+import AddExercise from './AddExercise';
+import DeleteExercise from './DeleteExercise';
+import UpdateExercise from './UpdateExercise';
 
 const Main = () => {
     return (
@@ -23,7 +26,7 @@ const Main = () => {
                                     <NavDropdown title="Pages" id="basic-nav-dropdown" >
                                         <NavDropdown.Item href="/comedy">Comedy</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/update-training-max">Update Training Max</NavDropdown.Item>
+                                        <NavDropdown.Item href="/fitness-tracker">Fitness Tracker</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                                 <Form inline>
@@ -34,7 +37,10 @@ const Main = () => {
                         <Switch>
                             <Route exact path='/' component={Home}></Route>
                             <Route exact path='/comedy' component={Comedy}></Route>
-                            <Route exact path='/update-training-max' component={UpdateTrainingMax}></Route>
+                            <Route exact path='/fitness-tracker' component={FitnessTracker}></Route>
+                            <Route exact path='/fitness-tracker/add-exercise' component={AddExercise}></Route>
+                            <Route exact path='/fitness-tracker/delete-exercise' component={DeleteExercise}></Route>
+                            <Route exact path='/fitness-tracker/update-exercise' component={UpdateExercise}></Route>
                         </Switch>
                     </Router>
                 </div>

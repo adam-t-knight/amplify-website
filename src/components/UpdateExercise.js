@@ -3,14 +3,14 @@ import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API, Storage, Function } from 'aws-amplify';
 import { listExercises } from '../graphql/queries';
-import { createExercise as createExerciseMutation, deleteExercise as deleteExerciseMutation } from '../graphql/mutations';
+import { updateExercise as updateExerciseMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { withAuthenticator, AmplifySignOut, AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 
 const initialFormState = { name: '', weight: '' }
 
-const UpdateTrainingMax = () => {
+const UpdateExercise = () => {
   const [exercises, setExercises] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
   const [authState, setAuthState] = React.useState();
@@ -45,9 +45,9 @@ const UpdateTrainingMax = () => {
     setExercises(apiData.data.listExercises.items);
   }
 
-  async function createExercise() {
+  async function updateExercise() {
     if (!formData.name || !formData.weight) return;
-    await API.graphql({ query: createExerciseMutation, variables: { input: formData } });
+    await API.graphql({ query: updateExerciseMutation, variables: { input: formData } });
     if (formData.image) {
       const image = await Storage.get(formData.image);
       formData.image = image;
@@ -56,35 +56,12 @@ const UpdateTrainingMax = () => {
     setFormData(initialFormState);
   }
 
-  async function deleteExercise({ id }) {
-    const newExercisesArray = exercises.filter(exercise => exercise.id !== id);
-    setExercises(newExercisesArray);
-    await API.graphql({ query: deleteExerciseMutation, variables: { input: { id } }});
-  }
-
   return Auth.user ? (
-    <div className="App">
-      <h1>Update Training Max</h1>
-      <Link to="/">
+    <div id="UpdateExercise">
+      <h1>Update Exercise</h1>
+      <Link to="/fitness-tracker">
         Back
       </Link>
-      <div id="CreateExercise">
-        <input
-          onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-          placeholder="Exercise name"
-          value={formData.name}
-        />
-        <input
-          onChange={e => setFormData({ ...formData, 'weight': e.target.value})}
-          placeholder="Exercise weight"
-          value={formData.weight}
-        />
-        <input
-          type="file"
-          onChange={onChange}
-        />
-        <button onClick={createExercise}>Create Exercise</button>
-      </div>
       <div style={{marginBottom: 30}}>
       {
         exercises.map(exercise => (
@@ -93,10 +70,7 @@ const UpdateTrainingMax = () => {
             <p>Weight: {exercise.weight}</p>
             <p>Created on: {moment(exercise.createdOn).format('ddd, MMM Do YYYY').toString()}</p>
             <p>Last update on: {moment(exercise.updatedOn).format('ddd, MMM Do YYYY').toString()}</p>
-            <button onClick={() => deleteExercise(exercise)}>Delete exercise</button>
-            {
-              exercise.image && <img src={exercise.image} style={{width: 400}} />
-            }
+            <button onClick={() => updateExercise(exercise)}>Update exercise</button>
           </div>
         ))
       }
@@ -109,4 +83,4 @@ const UpdateTrainingMax = () => {
   );
 }
 
-export default UpdateTrainingMax;
+export default UpdateExercise;
