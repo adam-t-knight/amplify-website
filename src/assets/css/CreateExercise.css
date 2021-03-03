@@ -1,0 +1,13 @@
+.CreateExerciseContainer {
+    margin-top: 30px;
+}
+
+#CreateExerciseTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#CreateExerciseTable td {
+    padding: 10px;
+}

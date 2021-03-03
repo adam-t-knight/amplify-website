@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
-import { API, Storage } from 'aws-amplify';
+import { API } from 'aws-amplify';
 import { listExercises } from '../graphql/queries';
 import { updateExercise as updateExerciseMutation } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
+import '../assets/css/UpdateExercise.css';
 
 const UpdateExercise = () => {
     const blankExercise = { name: '', weight: ''}
@@ -28,15 +29,7 @@ const UpdateExercise = () => {
         setExerciseState(apiData.data.listExercises.items);
     }
 
-    async function updateExercise(idx, { id, name, weight, updatedOn, createdOn }) {
-        console.log("inside update exercise");
-        console.log("idx: " + idx);
-        console.log("id: " + id);
-        console.log("name: " + name);
-        console.log("weight: " + weight);
-        console.log("createdOn: " + createdOn);
-        console.log("updatedOn: " + updatedOn);
-        
+    async function updateExercise(idx) {      
         await API.graphql({ query: updateExerciseMutation, variables: { input: exerciseState[idx] } });
     }
 
@@ -51,6 +44,8 @@ const UpdateExercise = () => {
             newArr[index].name = e.target.value;
         }
 
+        newArr[index].updatedOn = moment().toISOString();
+
         setExerciseState(newArr);
     }
 
@@ -60,30 +55,59 @@ const UpdateExercise = () => {
             <Link to="/fitness-tracker">
                 Back
             </Link>
-            <div style={{marginBottom: 30}}>
-            {
-                exerciseState.map((exercise, idx) => (
-                <div key={exercise.id}>
-                    <label>Exercise Name: </label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={exercise.name}
-                        onChange={updateFieldChanged(idx)}
-                    />
-                    <label>Exercise Weight: </label>
-                    <input
-                        type="text"
-                        name="weight"
-                        value={exercise.weight}
-                        onChange={updateFieldChanged(idx)}
-                    />
-                    <p>Created on: {moment(exercise.createdOn).format('ddd, MMM Do YYYY').toString()}</p>
-                    <p>Last update on: {moment(exercise.updatedOn).format('ddd, MMM Do YYYY').toString()}</p>
-                    <button onClick={() => updateExercise(idx, exercise)}>Update exercise</button>
-                </div>
-                ))
-            }
+            <div id="UpdateExerciseContainer">
+                <table id="UpdateExerciseTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Name
+                            </th>
+                            <th scope="col">
+                                Weight
+                            </th>
+                            <th scope="col">
+                                Created On
+                            </th>
+                            <th scope="col">
+                                Updated On
+                            </th>
+                            <th scope="col" />
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            exerciseState.map((exercise, idx) => (
+                                <tr key={exercise.id}>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={exercise.name}
+                                            onChange={updateFieldChanged(idx)}
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            name="weight"
+                                            value={exercise.weight}
+                                            onChange={updateFieldChanged(idx)}
+                                        />
+                                    </td>
+                                    <td>
+                                        {moment(exercise.createdOn).format('DD-MM-YYYY HH:mm:ss').toString()}
+                                    </td>
+                                    <td>
+                                        {moment(exercise.updatedOn).format('DD-MM-YYYY HH:mm:ss').toString()}
+                                    </td>
+                                    <td>
+                                        <button onClick={() => updateExercise(idx)}>Save</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     ) : (

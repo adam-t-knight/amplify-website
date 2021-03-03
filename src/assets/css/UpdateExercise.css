@@ -1,0 +1,13 @@
+.UpdateExerciseContainer {
+    margin-top: 30px;
+}
+
+#UpdateExerciseTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#UpdateExerciseTable td {
+    padding: 10px;
+}
