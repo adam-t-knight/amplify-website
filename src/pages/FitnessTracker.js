@@ -31,8 +31,8 @@ function FitnessTracker() {
       <Link to="/fitness-tracker/update-exercise">
         Update Exercise
       </Link>
-      <Link to="/fitness-tracker/add-exercise">
-        Add Exercise
+      <Link to="/fitness-tracker/create-exercise">
+        Create Exercise
       </Link>
       <Link to="/fitness-tracker/delete-exercise">
         Delete Exercise

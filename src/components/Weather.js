@@ -28,7 +28,7 @@ function Weather() {
         <div className="Weather">
             <h1>Weather</h1>
             <div className="WeatherContainer">
-                <h2>Weather for Madison, WI, US</h2>
+                <h2>Madison, WI, US</h2>
                 <table id="WeatherTable">
                     <thead>
                         <tr>

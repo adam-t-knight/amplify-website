@@ -10,7 +10,7 @@ import moment from "moment-timezone";
 
 const initialFormState = { name: '', weight: '' }
 
-const AddExercise = () => {
+const CreateExercise = () => {
   const [exercises, setExercises] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
   const [authState, setAuthState] = useState();
@@ -37,8 +37,8 @@ const AddExercise = () => {
   }
 
   return Auth.user ? (
-    <div id="AddExercise">
-      <h1>Add Exercise</h1>
+    <div id="CreateExercise">
+      <h1>Create Exercise</h1>
       <Link to="/fitness-tracker">
         Back
       </Link>
@@ -75,4 +75,4 @@ const AddExercise = () => {
   );
 }
 
-export default AddExercise;
+export default CreateExercise;

@@ -7,7 +7,7 @@ import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
 import Comedy from '../pages/Comedy';
 import FitnessTracker from '../pages/FitnessTracker';
-import AddExercise from './AddExercise';
+import CreateExercise from './CreateExercise';
 import DeleteExercise from './DeleteExercise';
 import UpdateExercise from './UpdateExercise';
 
@@ -38,7 +38,7 @@ const Main = () => {
                             <Route exact path='/' component={Home}></Route>
                             <Route exact path='/comedy' component={Comedy}></Route>
                             <Route exact path='/fitness-tracker' component={FitnessTracker}></Route>
-                            <Route exact path='/fitness-tracker/add-exercise' component={AddExercise}></Route>
+                            <Route exact path='/fitness-tracker/create-exercise' component={CreateExercise}></Route>
                             <Route exact path='/fitness-tracker/delete-exercise' component={DeleteExercise}></Route>
                             <Route exact path='/fitness-tracker/update-exercise' component={UpdateExercise}></Route>
                         </Switch>
