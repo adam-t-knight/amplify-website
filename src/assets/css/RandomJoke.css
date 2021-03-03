@@ -1,9 +1,15 @@
-#JokeTable {
+.RandomJoke {
     margin-top: 30px;
+}
+
+.JokeContainer {
+    margin-top: 30px;
+}
+
+#JokeTable {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 30px;
-    width: 800px;
+    margin-top: 30px;
 }
 
 #JokeTable td {
@@ -17,4 +23,8 @@
 
 #Spoiler:hover {
     color: white; 
+}
+
+#AnotherJoke {
+    margin-top: 30px;
 }

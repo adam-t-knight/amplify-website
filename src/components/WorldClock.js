@@ -46,7 +46,7 @@ function WorldClock() {
                             CA
                         </td>
                         <td>
-                            {date.tz("America/Vancouver").format('dddd, MMMM Do')}
+                            {date.tz("America/Vancouver").format('ddd, MMM Do')}
                         </td>
                         <td>
                             {date.tz("America/Vancouver").format('HH:mm:ss')}
@@ -60,7 +60,7 @@ function WorldClock() {
                             CN
                         </td>
                         <td>
-                            {date.tz("Asia/Shanghai").format('dddd, MMMM Do')}
+                            {date.tz("Asia/Shanghai").format('ddd, MMM Do')}
                         </td>
                         <td>
                             {date.tz("Asia/Shanghai").format('HH:mm:ss')}
@@ -74,7 +74,7 @@ function WorldClock() {
                             DK
                         </td>
                         <td>
-                            {date.tz("Europe/Copenhagen").format('dddd, MMMM Do')}
+                            {date.tz("Europe/Copenhagen").format('ddd, MMM Do')}
                         </td>
                         <td>
                             {date.tz("Europe/Copenhagen").format('HH:mm:ss')}
@@ -88,7 +88,7 @@ function WorldClock() {
                             US
                         </td>
                         <td>
-                            {date.tz("America/Chicago").format('dddd, MMMM Do')}
+                            {date.tz("America/Chicago").format('ddd, MMM Do')}
                         </td>
                         <td>
                             {date.tz("America/Chicago").format('HH:mm:ss')}
@@ -102,7 +102,7 @@ function WorldClock() {
                             US
                         </td>
                         <td>
-                            {date.tz("America/New_York").format('dddd, MMMM Do')}
+                            {date.tz("America/New_York").format('ddd, MMM Do')}
                         </td>
                         <td>
                             {date.tz("America/New_York").format('HH:mm:ss')}

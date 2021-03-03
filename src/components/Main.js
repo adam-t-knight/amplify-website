@@ -5,14 +5,11 @@ import { Navbar, Nav, NavDropdown, Form } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
-import CatFacts from '../pages/CatFacts';
-import RandomJoke from '../pages/RandomJoke';
-import UpdateTrainingMax from '../pages/UpdateTrainingMax';
-import Weather from '../pages/Weather';
-import WorldClock from '../pages/WorldClock';
-import StockTicker from '../pages/StockTicker';
-import XkcdComic from '../pages/XkcdComic';
-import NewYorkTimes from '../pages/NewYorkTimes';
+import Comedy from '../pages/Comedy';
+import FitnessTracker from '../pages/FitnessTracker';
+import CreateExercise from './CreateExercise';
+import DeleteExercise from './DeleteExercise';
+import UpdateExercise from './UpdateExercise';
 
 const Main = () => {
     return (
@@ -27,21 +24,9 @@ const Main = () => {
                                 <Nav className="mr-auto">
                                     <Nav.Link href="/">Home</Nav.Link>
                                     <NavDropdown title="Pages" id="basic-nav-dropdown" >
-                                        <NavDropdown.Item href="/cat-facts">Cat Facts</NavDropdown.Item>
+                                        <NavDropdown.Item href="/comedy">Comedy</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/new-york-times">New York Times</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/random-joke">Random Joke</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/stock-ticker">Stock Ticker</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/update-training-max">Update Training Max</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/weather">Weather</NavDropdown.Item>
-                                        <NavDropdown.Divider />                                      
-                                        <NavDropdown.Item href="/world-clock">World Clock</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/xkcd-comic">XKCD Comic</NavDropdown.Item>
+                                        <NavDropdown.Item href="/fitness-tracker">Fitness Tracker</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                                 <Form inline>
@@ -51,14 +36,11 @@ const Main = () => {
                         </Navbar>
                         <Switch>
                             <Route exact path='/' component={Home}></Route>
-                            <Route exact path='/cat-facts' component={CatFacts}></Route>
-                            <Route exact path='/new-york-times' component={NewYorkTimes}></Route>
-                            <Route exact path='/random-joke' component={RandomJoke}></Route>
-                            <Route exact path='/update-training-max' component={UpdateTrainingMax}></Route>
-                            <Route exact path='/weather' component={Weather}></Route>
-                            <Route exact path='/stock-ticker' component={StockTicker}></Route>
-                            <Route exact path='/world-clock' component={WorldClock}></Route>
-                            <Route exact path='/xkcd-comic' component={XkcdComic}></Route>
+                            <Route exact path='/comedy' component={Comedy}></Route>
+                            <Route exact path='/fitness-tracker' component={FitnessTracker}></Route>
+                            <Route exact path='/fitness-tracker/create-exercise' component={CreateExercise}></Route>
+                            <Route exact path='/fitness-tracker/delete-exercise' component={DeleteExercise}></Route>
+                            <Route exact path='/fitness-tracker/update-exercise' component={UpdateExercise}></Route>
                         </Switch>
                     </Router>
                 </div>

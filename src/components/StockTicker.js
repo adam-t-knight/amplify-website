@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
-import Stock from '../components/Stock';
-import Emoji from '../components/Emoji';
+import Stock from './Stock';
+import Emoji from './Emoji';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../assets/css/StockTicker.css';
 
@@ -24,7 +24,7 @@ function StockTicker() {
 
     return (
         <div className="StockTicker">
-            <h1><Emoji symbol="💎🙌" label="diamond hands left"/>Stonk Ticker<Emoji symbol="🙌💎" label="diamond hands right"/></h1>
+            <h1>Stock Ticker</h1>
             <div className="StockContainer">
                 
                 <DropdownButton

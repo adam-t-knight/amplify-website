@@ -1,6 +1,15 @@
+.CatFacts {
+    margin-top: 30px;
+}
+
+.CatFactsContainer {
+    margin-top: 30px;
+}
+
 #CatFactsTable {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 30px;
 }
 
 #CatFactsTable td {

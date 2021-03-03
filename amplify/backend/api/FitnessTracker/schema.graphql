@@ -1,0 +1,7 @@
+type Exercise @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }) {
+  id: ID!
+  name: String!
+  weight: Int!
+  createdOn: AWSDateTime!
+  updatedOn: AWSDateTime!
+}
