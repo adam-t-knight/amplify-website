@@ -11,3 +11,7 @@
 #CreateExerciseTable td {
     padding: 10px;
 }
+
+#CreateExercise input, #CreateExercise button {
+    margin: 5px;
+}

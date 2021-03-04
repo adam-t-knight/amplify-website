@@ -44,10 +44,13 @@ const DeleteExercise = () => {
                 <thead>
                     <tr>
                         <th scope="col">
+                                Number
+                            </th>
+                        <th scope="col">
                             Name
                         </th>
                         <th scope="col">
-                            Weight
+                            Weight (lbs)
                         </th>
                         <th scope="col">
                             Created On
@@ -62,6 +65,9 @@ const DeleteExercise = () => {
                     {
                         exercises.map((exercise, idx) => (
                             <tr key={exercise.id}>
+                                <td>
+                                    {idx + 1}
+                                </td>
                                 <td>
                                     {exercise.name}
                                 </td>

@@ -8,15 +8,18 @@ import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 import '../assets/css/UpdateExercise.css';
+import { Alert } from 'react-bootstrap';
 
 const UpdateExercise = () => {
     const blankExercise = { name: '', weight: ''}
-    const [exerciseState, setExerciseState] = useState([{ ...blankExercise }]);
+    const [oldExerciseValues, setOldExerciseValues] = useState([{ ...blankExercise }]);
+    const [newExerciseValues, setNewExerciseValues] = useState([{ ...blankExercise }]);
     
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
 
     useEffect(() => {
+        console.log("in use effect!");
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
             setUser(authData);
@@ -25,28 +28,31 @@ const UpdateExercise = () => {
     }, []);
 
     async function fetchExercises() {
-        const apiData = await API.graphql({ query: listExercises });
-        setExerciseState(apiData.data.listExercises.items);
+        const apiData = await API.graphql({ query: listExercises }); 
+        setOldExerciseValues(apiData.data.listExercises.items);
+        setNewExerciseValues(JSON.parse(JSON.stringify(apiData.data.listExercises.items))); //only the second needs to pass by value
     }
 
-    async function updateExercise(idx) {      
-        await API.graphql({ query: updateExerciseMutation, variables: { input: exerciseState[idx] } });
+    //this needs regex to check for values eventually. not secure because im directly hitting the DB from javascript! move calls to lambdas?
+    async function updateExercise(idx) {
+        if( oldExerciseValues[idx].name != newExerciseValues[idx].name ||
+            oldExerciseValues[idx].weight != newExerciseValues[idx].weight) {
+            await API.graphql({ query: updateExerciseMutation, variables: { input: newExerciseValues[idx] } });
+            setOldExerciseValues(JSON.parse(JSON.stringify([...newExerciseValues]))); //have to update in case multiple changes on the same page
+            console.log("New exercise values have been set for row " + idx + 1);
+        } else {
+            console.log("No exercise values to change on this row.");
+        }
+        
     }
 
     const updateFieldChanged = index => e => {
-        let newArr = [...exerciseState];
+        let newArr = [...newExerciseValues];
 
-        if(e.target.name == "weight") {
-            newArr[index].weight = e.target.value;
-        } 
-        
-        if(e.target.name == "name") {
-            newArr[index].name = e.target.value;
-        }
-
+        newArr[index][e.target.name] = e.target.value; //[e.target.name] is like newArr[index].name or .weight but as a variable
         newArr[index].updatedOn = moment().toISOString();
 
-        setExerciseState(newArr);
+        setNewExerciseValues(newArr);
     }
 
     return Auth.user ? (
@@ -60,10 +66,13 @@ const UpdateExercise = () => {
                     <thead>
                         <tr>
                             <th scope="col">
+                                Number
+                            </th>
+                            <th scope="col">
                                 Name
                             </th>
                             <th scope="col">
-                                Weight
+                                Weight (lbs)
                             </th>
                             <th scope="col">
                                 Created On
@@ -76,8 +85,11 @@ const UpdateExercise = () => {
                     </thead>
                     <tbody>
                         {
-                            exerciseState.map((exercise, idx) => (
+                            newExerciseValues.map((exercise, idx) => (
                                 <tr key={exercise.id}>
+                                    <td>
+                                        {idx + 1}
+                                    </td>
                                     <td>
                                         <input
                                             type="text"
@@ -88,7 +100,7 @@ const UpdateExercise = () => {
                                     </td>
                                     <td>
                                         <input
-                                            type="text"
+                                            type="number"
                                             name="weight"
                                             value={exercise.weight}
                                             onChange={updateFieldChanged(idx)}
