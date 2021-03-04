@@ -15,7 +15,6 @@ function StockTicker() {
     }, [stockSymbol]);
 
     const getStockWithAPI = async () => {
-        console.log("Getting stock: " + stockSymbol);
         setIsLoading(true);
         const stockData = await API.get('ExternalAPIs', '/GetStock?symbol=' + stockSymbol, '');
         setStockData(stockData);

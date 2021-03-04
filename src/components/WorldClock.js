@@ -68,6 +68,20 @@ function WorldClock() {
                     </tr>
                     <tr>
                         <td>
+                            Berlin
+                        </td>
+                        <td>
+                            DE
+                        </td>
+                        <td>
+                            {date.tz("Europe/Berlin").format('ddd, MMM Do')}
+                        </td>
+                        <td>
+                            {date.tz("Europe/Berlin").format('HH:mm:ss')}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             Copenhagen
                         </td>
                         <td>
