@@ -3,8 +3,8 @@ import { API } from 'aws-amplify';
 import '../assets/css/Weather.css';
 
 function Weather() {
-    const [weatherData, setWeatherData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [weatherData, setWeatherData] = useState(null);
+    const [isLoaded, setIsLoading] = useState(false);
 
     useEffect(() => {
         getWeatherWithFetch();
@@ -12,19 +12,11 @@ function Weather() {
 
     const getWeatherWithFetch = async () => {
         const data = await API.get('ExternalAPIs', '/GetWeather', '');
-        console.log(data);
         setWeatherData(data);
-        setIsLoading(false);
+        setIsLoading(true);
     };
 
-    return isLoading ? (
-        <div className="Weather">
-            <h1>Weather</h1>
-            <div className="WeatherContainer">
-                <h2>Loading! Please wait...</h2>
-            </div>
-        </div>
-    ) : (
+    return isLoaded && weatherData ? (
         <div className="Weather">
             <h1>Weather</h1>
             <div className="WeatherContainer">
@@ -169,6 +161,13 @@ function Weather() {
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    ) : (
+        <div className="Weather">
+            <h1>Weather</h1>
+            <div className="WeatherContainer">
+                <h2>Loading! Please wait...</h2>
             </div>
         </div>
     );

@@ -1,4 +1,40 @@
 {
+  "nancee": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-website-nancee-123958-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-nancee-123958-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-nancee-123958-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
+      "UnauthRoleName": "amplify-amplify-website-nancee-123958-unauthRole",
+      "StackName": "amplify-amplify-website-nancee-123958",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplify-website-nancee-123958/bb536860-7ce6-11eb-a202-0216171f8fb8",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      },
+      "function": {
+        "GetXkcdComic": {
+          "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
+          "s3Key": "amplify-builds/GetXkcdComic-4e543464395661413438-build.zip"
+        },
+        "GetNewYorkTimes": {
+          "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
+          "s3Key": "amplify-builds/GetNewYorkTimes-4f41464d555178765a4b-build.zip"
+        },
+        "GetWeather": {
+          "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
+          "s3Key": "amplify-builds/GetWeather-7971496d683769394565-build.zip"
+        },
+        "GetStock": {
+          "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
+          "s3Key": "amplify-builds/GetStock-32634555376832345858-build.zip"
+        }
+      }
+    }
+  },
   "kariotta": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify-website-kariotta-05704-authRole",
