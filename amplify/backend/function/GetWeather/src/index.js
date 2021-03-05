@@ -5,10 +5,12 @@ exports.handler = async (event) => {
     const WEATHER_API_KEY = '7f16c6decfd5f094f4740bb736d96740';
     const MADISON_WI_LAT = '43.073051';
     const MADISON_WI_LON = '-89.401230';
+    const UNITS = 'metric';
     // const UNIT_SYSTEM = 'SI';
     const EXCLUSIONS = 'minutely,hourly,daily,alerts';
     const onecallOpenWeatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='    + MADISON_WI_LAT
                                                                                             + "&lon=" + MADISON_WI_LON
+                                                                                            + "&units=" + UNITS
                                                                                             + "&exclude=" + EXCLUSIONS
                                                                                             + "&appid=" + WEATHER_API_KEY;
     //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}

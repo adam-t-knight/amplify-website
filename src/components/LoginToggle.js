@@ -24,13 +24,11 @@ const LoginToggle = () => {
     function toggleLogin(e) {
         e.preventDefault();
         setLoginVisibility(state => !state);
-        {
-            loginVisibility ? (
-                setLoginButtonText(SHOW_LOGIN_BUTTON_TEXT)
-            ) : (
-                setLoginButtonText(HIDE_LOGIN_BUTTON_TEXT)
-            );
-        }
+        loginVisibility ? (
+            setLoginButtonText(SHOW_LOGIN_BUTTON_TEXT)
+        ) : (
+            setLoginButtonText(HIDE_LOGIN_BUTTON_TEXT)
+        );
     }
     
     return authState === AuthState.SignedIn && user ? (

@@ -26,7 +26,7 @@
         },
         "GetWeather": {
           "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
-          "s3Key": "amplify-builds/GetWeather-7971496d683769394565-build.zip"
+          "s3Key": "amplify-builds/GetWeather-646c7441687a54365148-build.zip"
         },
         "GetStock": {
           "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
