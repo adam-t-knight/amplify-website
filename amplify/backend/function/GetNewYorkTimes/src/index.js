@@ -4,7 +4,7 @@ exports.handler = async (event) => {
     const axios = require('axios');
     const AWS = require('aws-sdk');
     const secretName = 'NYT_API_KEY';
-    const nytTopStoriesHomeUrl = 'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=';
+    const getUrl = 'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=';
 
     const secretsManager = new AWS.SecretsManager();
 
@@ -23,7 +23,7 @@ exports.handler = async (event) => {
                 }
                 
                 try {
-                    const res = await axios.get(nytTopStoriesHomeUrl + splitSecret[1]);
+                    const res = await axios.get(getUrl + splitSecret[1]);
             
                     return {
                         statusCode: 200,

@@ -22,15 +22,15 @@
         },
         "GetNewYorkTimes": {
           "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-724a7339316b62492b37-build.zip"
+          "s3Key": "amplify-builds/GetNewYorkTimes-6d38464958512b44647a-build.zip"
         },
         "GetWeather": {
           "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
-          "s3Key": "amplify-builds/GetWeather-646c7441687a54365148-build.zip"
+          "s3Key": "amplify-builds/GetWeather-674d6e462b3261522b4b-build.zip"
         },
         "GetStock": {
           "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
-          "s3Key": "amplify-builds/GetStock-32634555376832345858-build.zip"
+          "s3Key": "amplify-builds/GetStock-67684467563665315a35-build.zip"
         }
       }
     }
