@@ -29,21 +29,6 @@ function Stock({stockData}) {
                         <th scope="col">
                             Volume
                         </th>
-{/*                         <th scope="col">
-                            Adj Open
-                        </th>
-                        <th scope="col">
-                            Adj Close
-                        </th>
-                        <th scope="col">
-                            Adj High
-                        </th>
-                        <th scope="col">
-                            Adj Low
-                        </th>
-                        <th scope="col">
-                            Adj Volume
-                        </th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -57,11 +42,6 @@ function Stock({stockData}) {
                             <td>{item.high}</td>
                             <td>{item.low}</td>
                             <td>{item.volume}</td>
-{/*                             <td>{item.adj_open}</td>
-                            <td>{item.adj_close}</td>
-                            <td>{item.adj_high}</td>
-                            <td>{item.adj_low}</td>
-                            <td>{item.adj_volume}</td> */}
                         </tr>
                     ))
                 }

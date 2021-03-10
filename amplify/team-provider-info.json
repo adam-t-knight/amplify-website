@@ -22,7 +22,7 @@
         },
         "GetNewYorkTimes": {
           "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-4f41464d555178765a4b-build.zip"
+          "s3Key": "amplify-builds/GetNewYorkTimes-724a7339316b62492b37-build.zip"
         },
         "GetWeather": {
           "deploymentBucketName": "amplify-amplify-website-nancee-123958-deployment",
