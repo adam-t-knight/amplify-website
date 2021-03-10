@@ -1,11 +1,7 @@
-import { Fragment } from 'react';
 import StockTicker from '../components/StockTicker';
 import WorldClock from '../components/WorldClock';
 import NewYorkTimes from '../components/NewYorkTimes';
 import Weather from '../components/Weather';
-import RandomJoke from '../components/RandomJoke';
-import XkcdComic from '../components/XkcdComic';
-import CatFacts from '../components/CatFacts';
 import '../assets/css/Home.css';
 
 function Home() {

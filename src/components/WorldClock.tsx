@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import moment from "moment-timezone";
+import moment from "moment";
 import '../assets/css/WorldClock.css';
 
 function WorldClock() {
-    const [date, setDate] = useState(new moment());
+    const [date, setDate] = useState(moment());
 
     useEffect(() => {
         let timerID = setInterval( () => tick(), 1000 );
@@ -14,7 +14,7 @@ function WorldClock() {
     });
 
     function tick() {
-        setDate(new moment());
+        setDate(moment());
     }
 
     return (
@@ -38,6 +38,20 @@ function WorldClock() {
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>
+                            Vienna
+                        </td>
+                        <td>
+                            AT
+                        </td>
+                        <td>
+                            {date.tz("Europe/Vienna").format('ddd, MMM Do')}
+                        </td>
+                        <td>
+                            {date.tz("Europe/Vienna").format('HH:mm:ss')}
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             Vancouver

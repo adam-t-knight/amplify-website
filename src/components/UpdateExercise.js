@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 import '../assets/css/UpdateExercise.css';
-import { Alert } from 'react-bootstrap';
 
 const UpdateExercise = () => {
     const blankExercise = { name: '', weight: ''}
@@ -35,8 +34,8 @@ const UpdateExercise = () => {
 
     //this needs regex to check for values eventually. not secure because im directly hitting the DB from javascript! move calls to lambdas?
     async function updateExercise(idx) {
-        if( oldExerciseValues[idx].name != newExerciseValues[idx].name ||
-            oldExerciseValues[idx].weight != newExerciseValues[idx].weight) {
+        if( oldExerciseValues[idx].name !== newExerciseValues[idx].name ||
+            oldExerciseValues[idx].weight !== newExerciseValues[idx].weight) {
             await API.graphql({ query: updateExerciseMutation, variables: { input: newExerciseValues[idx] } });
             setOldExerciseValues(JSON.parse(JSON.stringify([...newExerciseValues]))); //have to update in case multiple changes on the same page
             console.log("New exercise values have been set for row " + idx + 1);

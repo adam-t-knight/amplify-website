@@ -160,6 +160,25 @@
                   }
                 ]
               }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "secretsmanager:GetSecretValue"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:secretsmanager:${region}:${account}:secret:key_id",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    }
+                  }
+                ]
+              }
             }
           ]
         }
