@@ -41,6 +41,8 @@ function FitnessTracker() {
     const [overheadPressWeight, setOverheadPressWeight] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
 
+    const currentDayOfWeek = moment().format('dddd').toString();
+
     const SUNDAY_CHEST_PRESS = [
         { reps: "5", ratio: .75 },
         { reps: "3", ratio: .85 },
@@ -216,6 +218,9 @@ function FitnessTracker() {
             <Link to="/fitness-tracker/delete-exercise">
                 Delete Exercise
             </Link>
+            <div id="CurrentDayOfWeek">
+                Current day of the week: {currentDayOfWeek}
+            </div>
             <div className="FitnessTrackerContainer">
                 <table id="FitnessTrackerTable">
                     <thead>
@@ -263,7 +268,7 @@ function FitnessTracker() {
                 </table>
             </div>
             <div id="WeeklyContainer" className="table-responsive">
-                <table id="WeeklyTable">
+                <table id="WeeklyTable" className="table">
                     <thead>
                         <tr>
                             <th scope="col">
@@ -276,7 +281,7 @@ function FitnessTracker() {
                                 Reps
                             </th>
                             <th scope="col">
-                                Weight
+                                Weight (lbs)
                             </th>
                         </tr>
                     </thead>

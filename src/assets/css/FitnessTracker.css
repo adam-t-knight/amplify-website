@@ -1,5 +1,5 @@
 .table-responsive {
-    height: 500px;  
+    height: 450px;  
     overflow: scroll;
 }
 
@@ -8,23 +8,24 @@
 }
 
 .FitnessTrackerContainer {
-    margin-top: 30px;
+    float: right;
+    width: 620px;
 }
 
 #FitnessTrackerTable {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
 }
 
-#FitnessTrackerTable td, #FitnessTrackerTable th {
+#FitnessTrackerTable td {
     padding: 10px;
 }
 
-#WeeklyTable {
+#WeeklyContainer {
+    width: 470px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    float: left;
 }
 
 #WeeklyTable th {
@@ -32,9 +33,19 @@
     color: #fff;
     position: sticky;
     top: 0;
-    padding: 10px;
+    padding: 0 10px 0 10px;
 }
 
 #WeeklyTable td {
     padding: 10px;
+}
+
+#CurrentDayOfWeek {
+    padding: 20px;
+}
+
+.FitnessTracker {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1120px;
 }
