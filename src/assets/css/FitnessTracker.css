@@ -1,4 +1,9 @@
-#FitnessTracker a {
+.table-responsive {
+    height: 500px;  
+    overflow: scroll;
+}
+
+.FitnessTracker a {
     display: block;
 }
 
@@ -12,6 +17,24 @@
     margin-top: 30px;
 }
 
-#FitnessTrackerTable td {
+#FitnessTrackerTable td, #FitnessTrackerTable th {
+    padding: 10px;
+}
+
+#WeeklyTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#WeeklyTable th {
+    background: black;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    padding: 10px;
+}
+
+#WeeklyTable td {
     padding: 10px;
 }

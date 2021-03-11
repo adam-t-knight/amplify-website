@@ -91,9 +91,9 @@ const DeleteExercise = () => {
         </div>
     </div>
     ) : (
-    <AmplifyAuthenticator hideDefault={true}>
-        <AmplifySignIn slot="sign-in" hideSignUp />
-    </AmplifyAuthenticator>
+        <AmplifyAuthenticator hideDefault={true}>
+            <AmplifySignIn slot="sign-in" hideSignUp />
+        </AmplifyAuthenticator>
     );
 }
 

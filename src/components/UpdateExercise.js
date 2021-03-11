@@ -18,7 +18,6 @@ const UpdateExercise = () => {
     const [user, setUser] = useState();
 
     useEffect(() => {
-        console.log("in use effect!");
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
             setUser(authData);
