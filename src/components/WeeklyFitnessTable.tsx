@@ -122,41 +122,6 @@ const BENCH_PRESS = "Bench Press";
 const DEADLIFT = "Deadlift";
 const OVERHEAD_PRESS = "Overhead Press";
 
-const columns = [
-    {
-        name: "day",
-        label: "Day",
-        options: {
-        filter: true,
-        sort: true,
-        },
-    },
-    {
-        name: "name",
-        label: "Name",
-        options: {
-        filter: true,
-        sort: false,
-        },
-    },
-    {
-        name: "reps",
-        label: "Reps",
-        options: {
-        filter: true,
-        sort: false,
-        },
-    },
-    {
-        name: "weight",
-        label: "Weight",
-        options: {
-        filter: true,
-        sort: false,
-        },
-    },
-];
-
 type weeklyExercise = {
     day: string,
     name: string,
@@ -176,24 +141,26 @@ type trainingMaxExercise = {
 
 type trainingMaxExercises = Array<trainingMaxExercise>
 
-function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
-    const { exercises } = props;
+function WeeklyFitnessTable(props : {trainingMaxExercises : trainingMaxExercises}) {
+    const { trainingMaxExercises } = props;
 
     const [backSquatWeight, setBackSquatWeight] = useState(0);
     const [chestPressWeight, setChestPressWeight] = useState(0);
     const [benchPressWeight, setBenchPressWeight] = useState(0);
     const [deadliftWeight, setDeadliftWeight] = useState(0);
     const [overheadPressWeight, setOverheadPressWeight] = useState(0);
-
     const [tableData, setTableData] = useState<weeklyExercises>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        setTrainingMaxWeights();
-        populateData();
+        setIsLoaded(false);
+        populateWeights();
+        populateTableData();
+        setIsLoaded(true);
     }, []);
 
-    function setTrainingMaxWeights() {
-        exercises.map((exercise) => {
+    function populateWeights() {
+        trainingMaxExercises.map((exercise) => {
             switch (exercise.name) {
                 case BACK_SQUAT:
                     setBackSquatWeight(exercise.weight);
@@ -214,13 +181,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
         });
     }
 
-    function roundUpToNearestFive(value: number) {
-        
-        return Math.round(value / 5) * 5;
-
-    }
-
-    function populateData() {
+    function populateTableData() {
         let exerciseArray: weeklyExercises = [];      
 
         for(let chestPress of SUNDAY_CHEST_PRESS) {
@@ -229,7 +190,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Sunday";
             newWeeklyExercise.name = "Chest Press";
             newWeeklyExercise.reps = chestPress.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(chestPress.ratio * chestPressWeight);
+            newWeeklyExercise.weight = roundToNearestFive(chestPress.ratio * chestPressWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -240,7 +201,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Sunday";
             newWeeklyExercise.name = "Overhead Press";
             newWeeklyExercise.reps = overheadPress.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(overheadPress.ratio * overheadPressWeight);
+            newWeeklyExercise.weight = roundToNearestFive(overheadPress.ratio * overheadPressWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -251,7 +212,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Monday";
             newWeeklyExercise.name = "Back Squat";
             newWeeklyExercise.reps = backSquat.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(backSquat.ratio * backSquatWeight);
+            newWeeklyExercise.weight = roundToNearestFive(backSquat.ratio * backSquatWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -262,7 +223,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Monday";
             newWeeklyExercise.name = "Sumo Deadlift";
             newWeeklyExercise.reps = sumoDeadlift.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(sumoDeadlift.ratio * deadliftWeight);
+            newWeeklyExercise.weight = roundToNearestFive(sumoDeadlift.ratio * deadliftWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -273,7 +234,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Wednesday";
             newWeeklyExercise.name = "Overhead Press";
             newWeeklyExercise.reps = overheadPress.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(overheadPress.ratio * overheadPressWeight);
+            newWeeklyExercise.weight = roundToNearestFive(overheadPress.ratio * overheadPressWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -284,7 +245,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Wednesday";
             newWeeklyExercise.name = "Incline Bench Press";
             newWeeklyExercise.reps = inclineBenchPress.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(inclineBenchPress.ratio * benchPressWeight);
+            newWeeklyExercise.weight = roundToNearestFive(inclineBenchPress.ratio * benchPressWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -295,7 +256,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Thursday";
             newWeeklyExercise.name = "Deadlift";
             newWeeklyExercise.reps = deadlift.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(deadlift.ratio * deadliftWeight);
+            newWeeklyExercise.weight = roundToNearestFive(deadlift.ratio * deadliftWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -306,7 +267,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Thursday";
             newWeeklyExercise.name = "Front Squat";
             newWeeklyExercise.reps = frontSquat.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(frontSquat.ratio * benchPressWeight);
+            newWeeklyExercise.weight = roundToNearestFive(frontSquat.ratio * benchPressWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -317,7 +278,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Friday";
             newWeeklyExercise.name = "Bench Press";
             newWeeklyExercise.reps = benchPress.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(benchPress.ratio * benchPressWeight);
+            newWeeklyExercise.weight = roundToNearestFive(benchPress.ratio * benchPressWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -328,7 +289,7 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             newWeeklyExercise.day = "Friday";
             newWeeklyExercise.name = "Close Grip Bench Press";
             newWeeklyExercise.reps = closeGripBenchPress.reps;
-            newWeeklyExercise.weight = roundUpToNearestFive(closeGripBenchPress.ratio * benchPressWeight);
+            newWeeklyExercise.weight = roundToNearestFive(closeGripBenchPress.ratio * benchPressWeight);
             
             exerciseArray.push(newWeeklyExercise);
         }
@@ -336,7 +297,13 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
         setTableData(exerciseArray);
     }
 
-    return (
+    function roundToNearestFive(value: number) {
+        
+        return Math.round(value / 5) * 5;
+
+    }
+
+    return isLoaded ? (
 
         <div id="WeeklyContainer" className="table-responsive">
             <table id="WeeklyTable" className="table">
@@ -379,7 +346,9 @@ function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
             </table>
         </div>
 
-    )
+    ) : (
+        <h2>Loading! Please wait...</h2>
+    );
 }
 
 export default WeeklyFitnessTable;

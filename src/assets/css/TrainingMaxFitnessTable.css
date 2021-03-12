@@ -1,17 +1,13 @@
-.FitnessTracker a {
-    display: block;
-}
-
-.FitnessTrackerContainer {
+.TrainingMaxContainer {
     float: right;
     width: 620px;
 }
 
-#FitnessTrackerTable {
+#TrainingMaxTable {
     margin-left: auto;
     margin-right: auto;
 }
 
-#FitnessTrackerTable td {
+#TrainingMaxTable td {
     padding: 10px;
 }

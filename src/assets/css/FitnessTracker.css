@@ -7,3 +7,7 @@
     margin-right: auto;
     max-width: 1120px;
 }
+
+.FitnessTracker a {
+    display: block;
+}
