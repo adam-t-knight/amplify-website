@@ -1,24 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { API } from 'aws-amplify';
 import Stock from './Stock';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../assets/css/StockTicker.css';
 
 function StockTicker() {
-    const [stockSymbol, setStockSymbol] = useState("GME");
-    const [stockData, setStockData] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
+    const [stockSymbol, setStockSymbol] = useState<string>("GME");
+    const [stockData, setStockData] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getStockWithAPI(stockSymbol);
     }, [stockSymbol]);
 
-    const getStockWithAPI = async () => {
+    const getStockWithAPI = async (stockSymbol : string) => {
         setIsLoading(true);
         const stockData = await API.get('ExternalAPIs', '/GetStock?symbol=' + stockSymbol, '');
         setStockData(stockData);
         setIsLoading(false);
     };
+
+    function selectStock(stockSymbol : string | null) {
+        if(stockSymbol) {
+            setStockSymbol(stockSymbol);
+        }
+    }
 
     return (
         <div className="StockTicker">
@@ -29,7 +35,7 @@ function StockTicker() {
                     alignRight
                     title="Stock selector"
                     id="dropdown-menu-align-right"
-                    onSelect={e => setStockSymbol(e)}
+                    onSelect={e => selectStock(e)}
                 >
                     <Dropdown.Item eventKey="GME">GME (XNYS)</Dropdown.Item>
                     <Dropdown.Item eventKey="AMC">AMC (XNYS)</Dropdown.Item>
