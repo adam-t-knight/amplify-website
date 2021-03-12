@@ -1,0 +1,17 @@
+.FitnessTracker a {
+    display: block;
+}
+
+.FitnessTrackerContainer {
+    float: right;
+    width: 620px;
+}
+
+#FitnessTrackerTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#FitnessTrackerTable td {
+    padding: 10px;
+}

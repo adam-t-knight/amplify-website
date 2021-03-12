@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API } from 'aws-amplify';
-import { listExercises } from '../graphql/queries';
-import { Link } from "react-router-dom";
-import moment from "moment-timezone";
-import '../assets/css/FitnessTracker.css';
+import '../assets/css/WeeklyFitnessTable.css';
 
 const SUNDAY_CHEST_PRESS = [
     { reps: "5", ratio: .75 },
@@ -126,7 +122,51 @@ const BENCH_PRESS = "Bench Press";
 const DEADLIFT = "Deadlift";
 const OVERHEAD_PRESS = "Overhead Press";
 
-type exercise = {
+const columns = [
+    {
+        name: "day",
+        label: "Day",
+        options: {
+        filter: true,
+        sort: true,
+        },
+    },
+    {
+        name: "name",
+        label: "Name",
+        options: {
+        filter: true,
+        sort: false,
+        },
+    },
+    {
+        name: "reps",
+        label: "Reps",
+        options: {
+        filter: true,
+        sort: false,
+        },
+    },
+    {
+        name: "weight",
+        label: "Weight",
+        options: {
+        filter: true,
+        sort: false,
+        },
+    },
+];
+
+type weeklyExercise = {
+    day: string,
+    name: string,
+    reps: string,
+    weight: number
+}
+
+type weeklyExercises = Array<weeklyExercise>
+
+type trainingMaxExercise = {
     id: string,
     name: string,
     weight: number,
@@ -134,9 +174,9 @@ type exercise = {
     updatedOn: Date
 }
 
-type exercises = Array<exercise>
+type trainingMaxExercises = Array<trainingMaxExercise>
 
-function WeeklyFitnessTable(props : {exercises : exercises}) {
+function WeeklyFitnessTable(props : {exercises : trainingMaxExercises}) {
     const { exercises } = props;
 
     const [backSquatWeight, setBackSquatWeight] = useState(0);
@@ -145,13 +185,15 @@ function WeeklyFitnessTable(props : {exercises : exercises}) {
     const [deadliftWeight, setDeadliftWeight] = useState(0);
     const [overheadPressWeight, setOverheadPressWeight] = useState(0);
 
+    const [tableData, setTableData] = useState<weeklyExercises>([]);
+
     useEffect(() => {
-        setWeeklyTable();
+        setTrainingMaxWeights();
+        populateData();
     }, []);
 
-    function setWeeklyTable() {
+    function setTrainingMaxWeights() {
         exercises.map((exercise) => {
-            console.log("inside set weekly table. exercise.name: " + exercise.name);
             switch (exercise.name) {
                 case BACK_SQUAT:
                     setBackSquatWeight(exercise.weight);
@@ -174,12 +216,128 @@ function WeeklyFitnessTable(props : {exercises : exercises}) {
 
     function roundUpToNearestFive(value: number) {
         
-        console.log("value: " + value);
         return Math.round(value / 5) * 5;
 
     }
 
+    function populateData() {
+        let exerciseArray: weeklyExercises = [];      
+
+        for(let chestPress of SUNDAY_CHEST_PRESS) {
+            const newWeeklyExercise = {} as weeklyExercise;
+            
+            newWeeklyExercise.day = "Sunday";
+            newWeeklyExercise.name = "Chest Press";
+            newWeeklyExercise.reps = chestPress.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(chestPress.ratio * chestPressWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let overheadPress of SUNDAY_OVERHEAD_PRESS) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Sunday";
+            newWeeklyExercise.name = "Overhead Press";
+            newWeeklyExercise.reps = overheadPress.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(overheadPress.ratio * overheadPressWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let backSquat of MONDAY_BACK_SQUAT) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Monday";
+            newWeeklyExercise.name = "Back Squat";
+            newWeeklyExercise.reps = backSquat.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(backSquat.ratio * backSquatWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let sumoDeadlift of MONDAY_SUMO_DEADLIFT) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Monday";
+            newWeeklyExercise.name = "Sumo Deadlift";
+            newWeeklyExercise.reps = sumoDeadlift.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(sumoDeadlift.ratio * deadliftWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let overheadPress of WEDNESDAY_OVERHEAD_PRESS) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Wednesday";
+            newWeeklyExercise.name = "Overhead Press";
+            newWeeklyExercise.reps = overheadPress.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(overheadPress.ratio * overheadPressWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let inclineBenchPress of WEDNESDAY_INCLINE_BENCH_PRESS) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Wednesday";
+            newWeeklyExercise.name = "Incline Bench Press";
+            newWeeklyExercise.reps = inclineBenchPress.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(inclineBenchPress.ratio * benchPressWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let deadlift of THURSDAY_DEADLIFT) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Thursday";
+            newWeeklyExercise.name = "Deadlift";
+            newWeeklyExercise.reps = deadlift.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(deadlift.ratio * deadliftWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let frontSquat of THURSDAY_FRONT_SQUAT) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Thursday";
+            newWeeklyExercise.name = "Front Squat";
+            newWeeklyExercise.reps = frontSquat.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(frontSquat.ratio * benchPressWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let benchPress of FRIDAY_BENCH_PRESS) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Friday";
+            newWeeklyExercise.name = "Bench Press";
+            newWeeklyExercise.reps = benchPress.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(benchPress.ratio * benchPressWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        for(let closeGripBenchPress of FRIDAY_CLOSE_GRIP_BENCH_PRESS) {
+            const newWeeklyExercise = {} as weeklyExercise;
+
+            newWeeklyExercise.day = "Friday";
+            newWeeklyExercise.name = "Close Grip Bench Press";
+            newWeeklyExercise.reps = closeGripBenchPress.reps;
+            newWeeklyExercise.weight = roundUpToNearestFive(closeGripBenchPress.ratio * benchPressWeight);
+            
+            exerciseArray.push(newWeeklyExercise);
+        }
+
+        setTableData(exerciseArray);
+    }
+
     return (
+
         <div id="WeeklyContainer" className="table-responsive">
             <table id="WeeklyTable" className="table">
                 <thead>
@@ -200,181 +358,19 @@ function WeeklyFitnessTable(props : {exercises : exercises}) {
                 </thead>
                 <tbody>
                     {
-                        SUNDAY_CHEST_PRESS.map((chestPress, idx) => (
-                            <tr key={"SundayChestPress" + idx}>
+                        tableData.map((exercise, idx) => (
+                            <tr key={"WeeklyTableRow" + idx}>
                                 <td>
-                                    Sunday
+                                    {exercise.day}
                                 </td>
                                 <td>
-                                    Chest Press
+                                    {exercise.name}
                                 </td>
                                 <td>
-                                    {chestPress.reps}
+                                    {exercise.reps}
                                 </td>
                                 <td>
-                                    {roundUpToNearestFive(chestPress.ratio * chestPressWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        SUNDAY_OVERHEAD_PRESS.map((overheadPress, idx) => (
-                            <tr key={"SundayOverheadPress" + idx}>
-                                <td>
-                                    Sunday
-                                </td>
-                                <td>
-                                    Overhead Press
-                                </td>
-                                <td>
-                                    {overheadPress.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(overheadPress.ratio * overheadPressWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        MONDAY_BACK_SQUAT.map((backSquat, idx) => (
-                            <tr key={"MondayBackSquat" + idx}>
-                                <td>
-                                    Monday
-                                </td>
-                                <td>
-                                    Back Squat
-                                </td>
-                                <td>
-                                    {backSquat.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(backSquat.ratio * backSquatWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        MONDAY_SUMO_DEADLIFT.map((sumoDeadlift, idx) => (
-                            <tr key={"SundayOverheadPress" + idx}>
-                                <td>
-                                    Monday
-                                </td>
-                                <td>
-                                    Sumo Deadlift
-                                </td>
-                                <td>
-                                    {sumoDeadlift.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(sumoDeadlift.ratio * deadliftWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        WEDNESDAY_OVERHEAD_PRESS.map((overheadPress, idx) => (
-                            <tr key={"WednesdayOverheadPress" + idx}>
-                                <td>
-                                    Wednesday
-                                </td>
-                                <td>
-                                    Overhead Press
-                                </td>
-                                <td>
-                                    {overheadPress.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(overheadPress.ratio * overheadPressWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        WEDNESDAY_INCLINE_BENCH_PRESS.map((inclineBenchPress, idx) => (
-                            <tr key={"SundayOverheadPress" + idx}>
-                                <td>
-                                    Wednesday
-                                </td>
-                                <td>
-                                    Incline Bench Press
-                                </td>
-                                <td>
-                                    {inclineBenchPress.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(inclineBenchPress.ratio * benchPressWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        THURSDAY_DEADLIFT.map((deadlift, idx) => (
-                            <tr key={"ThurdayDeadlift" + idx}>
-                                <td>
-                                    Thursday
-                                </td>
-                                <td>
-                                    Deadlift
-                                </td>
-                                <td>
-                                    {deadlift.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(deadlift.ratio * deadliftWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        THURSDAY_FRONT_SQUAT.map((frontSquat, idx) => (
-                            <tr key={"ThurdayFrontSquat" + idx}>
-                                <td>
-                                    Thursday
-                                </td>
-                                <td>
-                                    Front Squat
-                                </td>
-                                <td>
-                                    {frontSquat.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(frontSquat.ratio * backSquatWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                                            {
-                        FRIDAY_BENCH_PRESS.map((benchPress, idx) => (
-                            <tr key={"FridayBenchPress" + idx}>
-                                <td>
-                                    Friday
-                                </td>
-                                <td>
-                                    Bench Press
-                                </td>
-                                <td>
-                                    {benchPress.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(benchPress.ratio * benchPressWeight)}
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    {
-                        FRIDAY_CLOSE_GRIP_BENCH_PRESS.map((closeGripBenchPress, idx) => (
-                            <tr key={"FridayCloseGripBenchPress" + idx}>
-                                <td>
-                                    Friday
-                                </td>
-                                <td>
-                                    Close Grip Bench Press
-                                </td>
-                                <td>
-                                    {closeGripBenchPress.reps}
-                                </td>
-                                <td>
-                                    {roundUpToNearestFive(closeGripBenchPress.ratio * benchPressWeight)}
+                                    {exercise.weight}
                                 </td>
                             </tr>
                         ))
@@ -382,6 +378,7 @@ function WeeklyFitnessTable(props : {exercises : exercises}) {
                 </tbody>
             </table>
         </div>
+
     )
 }
 

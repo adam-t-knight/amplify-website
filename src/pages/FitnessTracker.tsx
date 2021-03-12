@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import { listExercises } from '../graphql/queries';
 import { Link } from "react-router-dom";
-import Muitable from "../components/muidataTable";
 import TrainingMaxFitnessTable from "../components/TrainingMaxFitnessTable";
 import WeeklyFitnessTable from "../components/WeeklyFitnessTable";
 import moment from "moment-timezone";
@@ -42,9 +41,6 @@ function FitnessTracker() {
                 Current day of the week: {currentDayOfWeek}
             </div>
             <TrainingMaxFitnessTable exercises={exercises} />
-{/*             <div className="container">
-                <Muitable />
-            </div> */}
             <WeeklyFitnessTable exercises={exercises} />
         </div>
     ) : (

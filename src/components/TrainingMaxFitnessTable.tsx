@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import '../assets/css/FitnessTracker.css';
+import '../assets/css/TrainingMaxFitnessTable.css';
 
 type exercise = {
     id: string,
