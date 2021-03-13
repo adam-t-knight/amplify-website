@@ -4,20 +4,32 @@ import Stock from './Stock';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../assets/css/StockTicker.css';
 
+type stock = {
+    symbol: string,
+    date: Date,
+    open: number,
+    close: number,
+    high: number,
+    low: number,
+    volume: number
+}
+
+type stockData = Array<stock>
+
 function StockTicker() {
     const [stockSymbol, setStockSymbol] = useState<string>("GME");
-    const [stockData, setStockData] = useState<string>("");
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [stockData, setStockData] = useState<stockData>([]);
+    const [isLoaded, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         getStockWithAPI(stockSymbol);
     }, [stockSymbol]);
 
     const getStockWithAPI = async (stockSymbol : string) => {
-        setIsLoading(true);
-        const stockData = await API.get('ExternalAPIs', '/GetStock?symbol=' + stockSymbol, '');
-        setStockData(stockData);
         setIsLoading(false);
+        const stockJson = await API.get('ExternalAPIs', '/GetStock?symbol=' + stockSymbol, '');
+        setStockData(stockJson.data);
+        setIsLoading(true);
     };
 
     function selectStock(stockSymbol : string | null) {
@@ -41,12 +53,12 @@ function StockTicker() {
                     <Dropdown.Item eventKey="AMC">AMC (XNYS)</Dropdown.Item>
                     <Dropdown.Item eventKey="NOK">NOK (XNYS)</Dropdown.Item>
                 </DropdownButton>
-                {isLoading ? (
+                {isLoaded && stockData !== null ? (
+                    <Stock stockData={stockData} />
+                ) : (
                     <div id="StockLoadingMessage">
                         <h2>Loading! Please wait...</h2>
                     </div>
-                ) : (
-                    <Stock stockData={stockData} />
                 )}
                 
             </div>

@@ -149,51 +149,47 @@ type trainingMaxExercises = Array<trainingMaxExercise>
 
 function FitnessTracker() {
     const [trainingMaxList, setTrainingMaxList] = useState<trainingMaxExercises>([]);
-    const [backSquatWeight, setBackSquatWeight] = useState(0);
-    const [chestPressWeight, setChestPressWeight] = useState(0);
-    const [benchPressWeight, setBenchPressWeight] = useState(0);
-    const [deadliftWeight, setDeadliftWeight] = useState(0);
-    const [overheadPressWeight, setOverheadPressWeight] = useState(0);
     const [weeklyExerciseList, setWeeklyExerciseList] = useState<weeklyExercises>([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const currentDayOfWeek = moment().format('dddd').toString();
 
     useEffect(() => {
-        fetchExercises();
         populateWeights();
     }, []);
 
-    async function fetchExercises() {
+    async function populateWeights() {
         const apiData: any = await API.graphql({ query: listExercises })
-        setTrainingMaxList(apiData.data.listExercises.items);
-        populateWeeklyExercises();
-        setIsLoaded(true);
-    }
+        const trainingMaxExercises = apiData.data.listExercises.items;
 
-    function populateWeights() {
-        trainingMaxList.map((exercise) => {
+        setTrainingMaxList(trainingMaxExercises);
+        
+        let backSquatWeight = 0;
+        let chestPressWeight = 0;
+        let benchPressWeight = 0;
+        let deadliftWeight = 0;
+        let overheadPressWeight = 0;
+
+        trainingMaxExercises.map((exercise : trainingMaxExercise) => {
             switch (exercise.name) {
                 case BACK_SQUAT:
-                    setBackSquatWeight(exercise.weight);
+                    backSquatWeight = exercise.weight;
                     break;
                 case CHEST_PRESS:
-                    setChestPressWeight(exercise.weight);
+                    chestPressWeight = exercise.weight;
                     break;
                 case BENCH_PRESS:
-                    setBenchPressWeight(exercise.weight);
+                    benchPressWeight = exercise.weight;
                     break;
                 case DEADLIFT:
-                    setDeadliftWeight(exercise.weight);
+                    deadliftWeight = exercise.weight;
                     break;
                 case OVERHEAD_PRESS:
-                    setOverheadPressWeight(exercise.weight);
+                    overheadPressWeight = exercise.weight;
                     break;
             }
         });
-    }
 
-    function populateWeeklyExercises() {
         let exerciseArray: weeklyExercises = [];      
 
         for(let chestPress of SUNDAY_CHEST_PRESS) {
@@ -307,6 +303,8 @@ function FitnessTracker() {
         }
 
         setWeeklyExerciseList(exerciseArray);
+
+        setIsLoaded(true);
     }
 
     function roundToNearestFive(value: number) {

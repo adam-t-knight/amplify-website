@@ -16,6 +16,7 @@ function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExer
 
     return (
         <div className="TrainingMaxContainer">
+            <h2>Training Max Weights</h2>
             <table id="TrainingMaxTable">
                 <thead>
                     <tr>

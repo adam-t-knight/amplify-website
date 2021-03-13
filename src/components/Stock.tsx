@@ -1,11 +1,24 @@
 import '../assets/css/Stock.css';
 import moment from "moment-timezone";
 
-function Stock({stockData}) {
+type stock = {
+    symbol: string,
+    date: Date,
+    open: number,
+    close: number,
+    high: number,
+    low: number,
+    volume: number
+}
+
+type stockData = Array<stock>
+
+function Stock(props : {stockData : stockData}) {
+    const { stockData } = props;
 
     return (
         <div className="table-responsive Stock">
-            <table id="StockTable">
+            <table id="StockTable" className="table">
                 <thead>
                     <tr>
                         <th scope="col">
@@ -33,7 +46,7 @@ function Stock({stockData}) {
                 </thead>
                 <tbody>
                 {
-                    stockData.data && stockData.data.map((item, index) => (
+                    stockData && stockData.map((item, index) => (
                         <tr key={index}>
                             <td>{item.symbol}</td>
                             <td>{moment(item.date).format('ddd, MMM Do YYYY').toString()}</td>

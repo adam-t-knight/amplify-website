@@ -4,7 +4,7 @@ function NewYorkTimesArticles({articles}) {
 
     return (
         <div id="NytArticles" className="table-responsive">
-            <table id="NytArticlesTable">
+            <table id="NytArticlesTable" className="table">
                 <thead>
                     <tr>
                         <th scope="col">

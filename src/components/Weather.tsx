@@ -128,52 +128,6 @@ function Weather() {
                                 {weatherData.visibility}
                             </td>
                         </tr>
-{/*                         <tr>
-                            <td>
-                                Patterns
-                            </td>
-                            <td>
-                            {
-                                weatherData.current.weather && weatherData.current.weather.map((weather, index) => (
-                                    <li key={index}>
-                                        {weather.description}
-                                    </li>
-                                ))   
-                            }
-                            </td>
-                        </tr> */}
-{/*                         <tr>
-                            <td>
-                                Latitude
-                            </td>
-                            <td>
-                                {weatherData.lat}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Longitude
-                            </td>
-                            <td>
-                                {weatherData.lon}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Timezone
-                            </td>
-                            <td>
-                                {weatherData.timezone}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Timezone_Offset
-                            </td>
-                            <td>
-                                {weatherData.timezone_offset}
-                            </td>
-                        </tr> */}
                     </tbody>
                 </table>
             </div>
