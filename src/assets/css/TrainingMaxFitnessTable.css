@@ -1,0 +1,13 @@
+.TrainingMaxContainer {
+    float: right;
+    width: 620px;
+}
+
+#TrainingMaxTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#TrainingMaxTable td {
+    padding: 10px;
+}

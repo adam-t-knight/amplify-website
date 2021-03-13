@@ -1,0 +1,23 @@
+.table-responsive {
+    height: 450px;  
+    overflow: scroll;
+}
+
+#WeeklyContainer {
+    width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+}
+
+#WeeklyTable th {
+    background: black;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    padding: 0 10px 0 10px;
+}
+
+#WeeklyTable td {
+    padding: 10px;
+}
