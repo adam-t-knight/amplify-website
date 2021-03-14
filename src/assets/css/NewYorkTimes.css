@@ -6,4 +6,6 @@
 
 #NewYorkTimes {
     height: 738px;
+    padding-top: 30px;
+    float: left;
 }

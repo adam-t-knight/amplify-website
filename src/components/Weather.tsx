@@ -106,6 +106,7 @@ function Weather() {
     }, [city]);
 
     const getWeatherWithFetch = async (city : string) => {
+        setIsLoaded(false);
         const data = await API.get('ExternalAPIs', '/GetWeather?city=' + city, '');
         if(data) {
             setCurrentWeatherData(data);
@@ -139,7 +140,6 @@ function Weather() {
             <label>Selected city: {city}</label>
             {isLoaded && weatherCurrentData !== null ? (
                 <div className="WeatherContainer">
-                    <h3>Weather from <a href="https://openweathermap.org/">openweathermap.org</a>:</h3>
                     <table id="WeatherTable">
                         <thead>
                             <tr>
@@ -154,50 +154,18 @@ function Weather() {
                         <tbody>
                             <tr>
                                 <td>
-                                    Lat/Lon (°)
+                                    Curr. Temp / Feels Like (°C)
                                 </td>
                                 <td>
-                                    {weatherCurrentData.lat}/{weatherCurrentData.lon}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Timezone
-                                </td>
-                                <td>
-                                    {weatherCurrentData.timezone}
+                                    {weatherCurrentData.current.temp} / {weatherCurrentData.current.feels_like}
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Current Time
+                                    Low / High Temp (°C)
                                 </td>
                                 <td>
-                                    {moment(weatherCurrentData.current.dt * 1000).format("HH:mm").toLocaleString()}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Current Temp (°C)
-                                </td>
-                                <td>
-                                    {weatherCurrentData.current.temp}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Feels like (°C)
-                                </td>
-                                <td>
-                                    {weatherCurrentData.current.feels_like}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Low/High Temp (°C)
-                                </td>
-                                <td>
-                                    {weatherCurrentData.daily[0].temp.min}/{weatherCurrentData.daily[0].temp.max}
+                                    {weatherCurrentData.daily[0].temp.min} / {weatherCurrentData.daily[0].temp.max}
                                 </td>
                             </tr>
                             <tr>
@@ -210,58 +178,10 @@ function Weather() {
                             </tr>
                             <tr>
                                 <td>
-                                    Dew point (°C)
+                                    Sunrise / Sunset
                                 </td>
                                 <td>
-                                    {weatherCurrentData.current.dew_point}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Sunrise
-                                </td>
-                                <td>
-                                    {moment(weatherCurrentData.current.sunrise * 1000).format("HH:mm").toLocaleString()}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Sunset
-                                </td>
-                                <td>
-                                    {moment(weatherCurrentData.current.sunset * 1000).format("HH:mm").toLocaleString()}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    UVI
-                                </td>
-                                <td>
-                                    {weatherCurrentData.current.uvi}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Pressure (hPa)
-                                </td>
-                                <td>
-                                    {weatherCurrentData.current.pressure}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Clouds (%)
-                                </td>
-                                <td>
-                                    {weatherCurrentData.current.clouds}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Visibility (m)
-                                </td>
-                                <td>
-                                    {weatherCurrentData.current.visibility}
+                                    {moment(weatherCurrentData.current.sunrise * 1000).format("HH:mm").toLocaleString()} / {moment(weatherCurrentData.current.sunset * 1000).format("HH:mm").toLocaleString()}
                                 </td>
                             </tr>
                             <tr>
@@ -269,15 +189,13 @@ function Weather() {
                                     Patterns
                                 </td>
                                 <td>
-                                    <ul>
                                     {
                                         weatherCurrentData.current.weather && weatherCurrentData.current.weather.map((weather, index) => (
                                             <li key={index}>
-                                                {weather.main} / {weather.description}
+                                                {weather.description}
                                             </li>
                                         ))
                                     }
-                                    </ul>
                                 </td>
                             </tr>
                         </tbody>

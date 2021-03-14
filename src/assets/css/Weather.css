@@ -1,7 +1,3 @@
-#Weather {
-    margin-top: 50px;
-}
-
 .WeatherContainer {
     margin-top: 30px;
 }
@@ -17,5 +13,9 @@
 }
 
 #Weather button {
-    margin-top: 30px;
+    margin-top: 10px;
+}
+
+#Weather {
+    height: 402px;
 }
