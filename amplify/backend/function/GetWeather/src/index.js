@@ -7,7 +7,7 @@ exports.handler = async (event) => {
     const MADISON_WI_LAT = '43.073051';
     const MADISON_WI_LON = '-89.401230';
     const UNITS = 'metric';
-    const EXCLUSIONS = 'minutely,hourly,daily,alerts';
+    const EXCLUSIONS = 'minutely,hourly,alerts';
     const getUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='   + MADISON_WI_LAT
                                                                             + "&lon=" + MADISON_WI_LON
                                                                             + "&units=" + UNITS

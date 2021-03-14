@@ -3,7 +3,7 @@ import { API } from 'aws-amplify';
 import moment from "moment";
 import '../assets/css/Weather.css';
 
-const initialWeatherData = {
+const initialCurrentWeatherData = {
     lat: 0,
     lon: 0,
     timezone: '',
@@ -23,18 +23,57 @@ const initialWeatherData = {
         wind_speed: 0,
         wind_deg: 0,
         weather: []
-    }
+    },
+    daily: []
 }
 
-type weatherData = {
+const initialForecastDailyWeatherData = {
+    daily: []
+}
+
+type dailyWeatherData = {
+    dt: number,
+    clouds: number, 
+    dew_point: number,
+    temp: dailyTemps,
+    feels_like: dailyFeelsLikeTemps,
+    humidity: number,
+    pressure: number,
+    sunrise: number,
+    sunset: number,
+    uvi: number,
+    pop: number,
+    wind_speed: number,
+    wind_deg: number,
+    weather: weatherPatterns
+}
+
+type dailyTemps = {
+    day: number,
+    min: number,
+    max: number,
+    night: number,
+    eve: number,
+    morn: number
+}
+
+type dailyFeelsLikeTemps = {
+    day: number,
+    night: number,
+    eve: number,
+    morn: number
+}
+
+type currentWeatherData = {
     lat: number,
     lon: number,
     timezone: string,
     timezone_offset: number,
-    current: currentWeatherData
+    current: currentData,
+    daily: Array<dailyWeatherData>
 }
 
-type currentWeatherData = {
+type currentData = {
     dt: number,
     clouds: number, 
     dew_point: number,
@@ -61,7 +100,7 @@ type weatherPattern = {
 type weatherPatterns = Array<weatherPattern>
 
 function Weather() {
-    const [weatherData, setWeatherData] = useState<weatherData>(initialWeatherData);
+    const [weatherCurrentData, setCurrentWeatherData] = useState<currentWeatherData>(initialCurrentWeatherData);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -71,7 +110,7 @@ function Weather() {
     const getWeatherWithFetch = async () => {
         const data = await API.get('ExternalAPIs', '/GetWeather', '');
         if(data) {
-            setWeatherData(data);
+            setCurrentWeatherData(data);
         }
         setIsLoaded(true);
     };
@@ -79,7 +118,7 @@ function Weather() {
     return (
         <div id="Weather">
             <h2>Weather</h2>
-            {isLoaded && weatherData !== null ? (
+            {isLoaded && weatherCurrentData !== null ? (
                 <div className="WeatherContainer">
                     <h3>Madison, WI, US</h3>
                     <table id="WeatherTable">
@@ -99,23 +138,23 @@ function Weather() {
                                     Current Temp (°C)
                                 </td>
                                 <td>
-                                    {weatherData.current.temp}
+                                    {weatherCurrentData.current.temp}
                                 </td>
                             </tr>
-{/*                             <tr>
-                                <td>
-                                    Low/High Temp (°C)
-                                </td>
-                                <td>
-                                    {weatherData.temp_min}/{weatherData.temp_max}
-                                </td>
-                            </tr> */}
                             <tr>
                                 <td>
                                     Feels like (°C)
                                 </td>
                                 <td>
-                                    {weatherData.current.feels_like}
+                                    {weatherCurrentData.current.feels_like}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Low/High Temp (°C)
+                                </td>
+                                <td>
+                                    {weatherCurrentData.daily[0].temp.min}/{weatherCurrentData.daily[0].temp.max}
                                 </td>
                             </tr>
                             <tr>
@@ -123,7 +162,7 @@ function Weather() {
                                     Humidity (%)
                                 </td>
                                 <td>
-                                    {weatherData.current.humidity}
+                                    {weatherCurrentData.current.humidity}
                                 </td>
                             </tr>
                             <tr>
@@ -131,7 +170,7 @@ function Weather() {
                                     Dew point (°C)
                                 </td>
                                 <td>
-                                    {weatherData.current.dew_point}
+                                    {weatherCurrentData.current.dew_point}
                                 </td>
                             </tr>
                             <tr>
@@ -139,7 +178,7 @@ function Weather() {
                                     Sunrise
                                 </td>
                                 <td>
-                                    {moment(weatherData.current.sunrise * 1000).format("HH:mm").toLocaleString()}
+                                    {moment(weatherCurrentData.current.sunrise * 1000).format("HH:mm").toLocaleString()}
                                 </td>
                             </tr>
                             <tr>
@@ -147,7 +186,7 @@ function Weather() {
                                     Sunset
                                 </td>
                                 <td>
-                                    {moment(weatherData.current.sunset * 1000).format("HH:mm").toLocaleString()}
+                                    {moment(weatherCurrentData.current.sunset * 1000).format("HH:mm").toLocaleString()}
                                 </td>
                             </tr>
                             <tr>
@@ -155,7 +194,7 @@ function Weather() {
                                     UVI
                                 </td>
                                 <td>
-                                    {weatherData.current.uvi}
+                                    {weatherCurrentData.current.uvi}
                                 </td>
                             </tr>
                             <tr>
@@ -163,7 +202,7 @@ function Weather() {
                                     Pressure (hPa)
                                 </td>
                                 <td>
-                                    {weatherData.current.pressure}
+                                    {weatherCurrentData.current.pressure}
                                 </td>
                             </tr>
                             <tr>
@@ -171,7 +210,7 @@ function Weather() {
                                     Clouds (%)
                                 </td>
                                 <td>
-                                    {weatherData.current.clouds}
+                                    {weatherCurrentData.current.clouds}
                                 </td>
                             </tr>
                             <tr>
@@ -179,7 +218,7 @@ function Weather() {
                                     Visibility (m)
                                 </td>
                                 <td>
-                                    {weatherData.current.visibility}
+                                    {weatherCurrentData.current.visibility}
                                 </td>
                             </tr>
                             <tr>
@@ -187,13 +226,15 @@ function Weather() {
                                     Patterns
                                 </td>
                                 <td>
-                                {
-                                    weatherData.current.weather && weatherData.current.weather.map((weather, index) => (
-                                        <li key={index}>
-                                            {weather.description}
-                                        </li>
-                                    ))   
-                                }
+                                    <ul>
+                                    {
+                                        weatherCurrentData.current.weather && weatherCurrentData.current.weather.map((weather, index) => (
+                                            <li key={index}>
+                                                {weather.main} / {weather.description}
+                                            </li>
+                                        ))
+                                    }
+                                    </ul>
                                 </td>
                             </tr>
                         </tbody>
