@@ -19,66 +19,66 @@ function RandomJoke() {
         setIsLoading(false);
     };
 
-    return isLoading ? (
-        <div className="RandomJoke">
-            <h1>Random Joke</h1>
-            <div className="JokeContainer">
-                <h2>Loading! Please wait...</h2>
-            </div>
-        </div>
-    ) : (
-        <div className="RandomJoke">
-            <h1>Random Joke</h1>
-            <div className="JokeContainer">
-                <h2>A random joke from <a href={randomJokeUrl}>The Official Joke API</a>:</h2>
-                <table id="JokeTable">
-                    <thead>
-                        <tr>
-                            <th scope="col">
-                                Category
-                            </th>
-                            <th scope="col">
-                                Value
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                ID
-                            </td>
-                            <td>
-                                {jokeData.id}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Type
-                            </td>
-                            <td>
-                                {jokeData.type}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Setup
-                            </td>
-                            <td>
-                                {jokeData.setup}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Punchline
-                            </td>
-                            <td id="Spoiler">
-                                {jokeData.punchline}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <Button id="AnotherJoke" onClick={getRandomJokeWithFetch} variant="outline-dark">Another joke!</Button>
-            </div>
+    return (
+        <div id="RandomJoke">
+            <h2>Random Joke</h2>
+            {isLoading ? (
+                <div className="JokeContainer">
+                    <h3>Loading! Please wait...</h3>
+                </div>
+            ) : (
+                <div className="JokeContainer">
+                    <h3>A random joke from <a href={randomJokeUrl}>The Official Joke API</a>:</h3>
+                    <table id="JokeTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Category
+                                </th>
+                                <th scope="col">
+                                    Value
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    ID
+                                </td>
+                                <td>
+                                    {jokeData.id}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Type
+                                </td>
+                                <td>
+                                    {jokeData.type}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Setup
+                                </td>
+                                <td>
+                                    {jokeData.setup}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Punchline
+                                </td>
+                                <td id="Spoiler">
+                                    {jokeData.punchline}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <Button id="AnotherJoke" onClick={getRandomJokeWithFetch} variant="outline-dark">Another joke!</Button>
+                </div>
+            )}
+
         </div>
     );
 }

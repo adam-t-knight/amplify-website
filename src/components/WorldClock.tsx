@@ -19,7 +19,7 @@ function WorldClock() {
 
     return (
         <div id="WorldClock">
-            <h1>World Clock</h1>
+            <h2>World Clock</h2>
             <table id="WorldClockTable">
                 <thead>
                     <tr>

@@ -39,9 +39,9 @@ function StockTicker() {
     }
 
     return (
-        <div className="StockTicker">
-            <h1>Stock Ticker</h1>
-            <div className="StockContainer">
+        <div id="StockTicker">
+            <h2>Stock Ticker</h2>
+            <div id="StockContainer">
                 
                 <DropdownButton
                     alignRight
@@ -57,7 +57,7 @@ function StockTicker() {
                     <Stock stockData={stockData} />
                 ) : (
                     <div id="StockLoadingMessage">
-                        <h2>Loading! Please wait...</h2>
+                        <h3>Loading! Please wait...</h3>
                     </div>
                 )}
                 

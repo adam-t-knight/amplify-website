@@ -7,10 +7,12 @@ function Comedy() {
 
   return (
     <div id="Comedy">
-      <h1>Home</h1>   
-      <div id="MiddleComedyColumn">
-        <XkcdComic />
+      <h1>Comedy</h1>   
+      <div id="LeftComedyColumn">
         <RandomJoke />
+        <XkcdComic />
+      </div>
+      <div id="RightComedyColumn">
         <CatFacts />
       </div>
     </div>

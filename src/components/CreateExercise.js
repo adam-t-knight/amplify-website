@@ -39,7 +39,7 @@ const CreateExercise = () => {
 
     return Auth.user ? (
         <div id="CreateExercise">
-            <h1>Create Exercise</h1>
+            <h2>Create Exercise</h2>
             <Link to="/fitness-tracker">
                 Back
             </Link>
