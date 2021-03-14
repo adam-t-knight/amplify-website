@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
 import Stock from './Stock';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
@@ -39,29 +39,38 @@ function StockTicker() {
     }
 
     return (
-        <div className="StockTicker">
-            <h1>Stock Ticker</h1>
-            <div className="StockContainer">
-                
-                <DropdownButton
-                    alignRight
-                    title="Stock selector"
-                    id="dropdown-menu-align-right"
-                    onSelect={e => selectStock(e)}
-                >
-                    <Dropdown.Item eventKey="GME">GME (XNYS)</Dropdown.Item>
-                    <Dropdown.Item eventKey="AMC">AMC (XNYS)</Dropdown.Item>
-                    <Dropdown.Item eventKey="NOK">NOK (XNYS)</Dropdown.Item>
-                </DropdownButton>
-                {isLoaded && stockData !== null ? (
+        <div id="StockTicker">
+            <h2>Stock Ticker</h2>
+            <DropdownButton
+                alignRight
+                title="Stock selector"
+                id="dropdown-menu-align-right"
+                onSelect={e => selectStock(e)}
+            >
+                <Dropdown.Item eventKey="AMC">AMC (NYSE)</Dropdown.Item>
+                <Dropdown.Item eventKey="AMD">AMD (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="AMZN">AMZN (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="AAPL">AAPL (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="BYND">BYND (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="GME">GME (NYSE)</Dropdown.Item>
+                <Dropdown.Item eventKey="NFLX">NFLX (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="NOK">NOK (NYSE)</Dropdown.Item>
+                <Dropdown.Item eventKey="NVDA">NVDA (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="TSLA">TSLA (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="TWTR">TWTR (NYSE)</Dropdown.Item>
+                <Dropdown.Item eventKey="VTI">VTI (NYSEARCA)</Dropdown.Item>
+            </DropdownButton>
+            <label>Selected stock: {stockSymbol}</label>
+            {isLoaded && stockData !== null ? (
+                <div className="StockContainer">
+                    <h3>Stock data from <a href="https://marketstack.com/">marketstack.com</a>:</h3>
                     <Stock stockData={stockData} />
-                ) : (
-                    <div id="StockLoadingMessage">
-                        <h2>Loading! Please wait...</h2>
-                    </div>
-                )}
-                
-            </div>
+                </div>
+            ) : (
+                <div className="StockContainer">
+                    <h3>Loading! Please wait...</h3>
+                </div>
+            )}
         </div>
     );
 }

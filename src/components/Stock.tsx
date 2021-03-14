@@ -17,7 +17,7 @@ function Stock(props : {stockData : stockData}) {
     const { stockData } = props;
 
     return (
-        <div className="table-responsive Stock">
+        <div id="Stock" className="table-responsive">
             <table id="StockTable" className="table">
                 <thead>
                     <tr>

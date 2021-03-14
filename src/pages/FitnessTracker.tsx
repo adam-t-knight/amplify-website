@@ -333,7 +333,7 @@ function FitnessTracker() {
                 </div>
             ) : (
                 <div id="FitnessTrackerContainer">
-                    <h2>Loading! Please wait...</h2>
+                    <h3>Loading! Please wait...</h3>
                 </div>
             )}
         </div>

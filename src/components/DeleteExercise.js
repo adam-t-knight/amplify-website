@@ -35,7 +35,7 @@ const DeleteExercise = () => {
 
     return Auth.user ? (
         <div id="DeleteExercise">
-            <h1>Delete Exercise</h1>
+            <h2>Delete Exercise</h2>
             <Link to="/fitness-tracker">
                 Back
             </Link>

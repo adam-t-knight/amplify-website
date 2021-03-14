@@ -18,43 +18,42 @@ function CatFacts() {
         setIsLoading(false);
     };
 
-    return isLoading ? (
-        <div className="CatFacts">
-            <h1>Cat Facts</h1>
-            <div className="CatFactsContainer">
-                <h2>Loading! Please wait...</h2>
-            </div>
-        </div>
-    ) : (
-        <div className="CatFacts">
-            <h1>Cat Facts</h1>
-            <div className="CatFactsContainer">
-                <h2>Random cat facts from <a href={catFactsUrl}>The Cat Facts API</a>:</h2>
-                <table id="CatFactsTable">
-                    <thead>
-                        <tr>
-                            <th>
-                                Index
-                            </th>
-                            <th>
-                                Text
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {catFactsData.map((item, index) => (
-                            <tr key={index}>
-                                <td>
-                                    {index}
-                                </td>
-                                <td>
-                                    {item.text}
-                                </td>
+    return (
+        <div id="CatFacts">
+            <h2>Cat Facts</h2>
+            {isLoading ? (
+                <div className="CatFactsContainer">
+                    <h3>Loading! Please wait...</h3>
+                </div>
+            ) : (
+                <div className="CatFactsContainer">
+                    <h3>Random cat facts from <a href={catFactsUrl}>The Cat Facts API</a>:</h3>
+                    <table id="CatFactsTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Index
+                                </th>
+                                <th>
+                                    Text
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            {catFactsData.map((item, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        {index}
+                                    </td>
+                                    <td>
+                                        {item.text}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 }

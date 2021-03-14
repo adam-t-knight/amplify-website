@@ -1,4 +1,4 @@
-.StockTicker {
+#StockTicker {
     margin-top: 50px;
     height: 646px;
 }
@@ -9,6 +9,6 @@
     margin-right: auto;
 }
 
-#StockLoadingMessage {
+#StockTicker button {
     margin-top: 30px;
 }
