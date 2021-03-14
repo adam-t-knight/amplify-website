@@ -3,20 +3,65 @@ import { API } from 'aws-amplify';
 import moment from "moment";
 import '../assets/css/Weather.css';
 
-const initialWeatherData = {    clouds: '', 
-                                dew_point: '',
-                                temp: '',
-                                feels_like: '',
-                                humidity: '',
-                                pressure: '',
-                                sunrise: 0,
-                                sunset: 0,
-                                uvi: '',
-                                visibility: ''
-                            }
+const initialWeatherData = {
+    lat: 0,
+    lon: 0,
+    timezone: '',
+    timezone_offset: 0,
+    current: {
+        dt: 0,
+        clouds: 0, 
+        dew_point: 0,
+        temp: 0,
+        feels_like: 0,
+        humidity: 0,
+        pressure: 0,
+        sunrise: 0,
+        sunset: 0,
+        uvi: 0,
+        visibility: 0,
+        wind_speed: 0,
+        wind_deg: 0,
+        weather: []
+    }
+}
+
+type weatherData = {
+    lat: number,
+    lon: number,
+    timezone: string,
+    timezone_offset: number,
+    current: currentWeatherData
+}
+
+type currentWeatherData = {
+    dt: number,
+    clouds: number, 
+    dew_point: number,
+    temp: number,
+    feels_like: number,
+    humidity: number,
+    pressure: number,
+    sunrise: number,
+    sunset: number,
+    uvi: number,
+    visibility: number,
+    wind_speed: number,
+    wind_deg: number,
+    weather: weatherPatterns
+}
+
+type weatherPattern = {
+    id: string,
+    main: string,
+    description: string,
+    icon: string
+}
+
+type weatherPatterns = Array<weatherPattern>
 
 function Weather() {
-    const [weatherData, setWeatherData] = useState(initialWeatherData);
+    const [weatherData, setWeatherData] = useState<weatherData>(initialWeatherData);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -26,7 +71,7 @@ function Weather() {
     const getWeatherWithFetch = async () => {
         const data = await API.get('ExternalAPIs', '/GetWeather', '');
         if(data) {
-            setWeatherData(data.current);
+            setWeatherData(data);
         }
         setIsLoaded(true);
     };
@@ -51,18 +96,26 @@ function Weather() {
                         <tbody>
                             <tr>
                                 <td>
-                                    Temp (°C)
+                                    Current Temp (°C)
                                 </td>
                                 <td>
-                                    {weatherData.temp}
+                                    {weatherData.current.temp}
                                 </td>
                             </tr>
+{/*                             <tr>
+                                <td>
+                                    Low/High Temp (°C)
+                                </td>
+                                <td>
+                                    {weatherData.temp_min}/{weatherData.temp_max}
+                                </td>
+                            </tr> */}
                             <tr>
                                 <td>
                                     Feels like (°C)
                                 </td>
                                 <td>
-                                    {weatherData.feels_like}
+                                    {weatherData.current.feels_like}
                                 </td>
                             </tr>
                             <tr>
@@ -70,7 +123,7 @@ function Weather() {
                                     Humidity (%)
                                 </td>
                                 <td>
-                                    {weatherData.humidity}
+                                    {weatherData.current.humidity}
                                 </td>
                             </tr>
                             <tr>
@@ -78,7 +131,7 @@ function Weather() {
                                     Dew point (°C)
                                 </td>
                                 <td>
-                                    {weatherData.dew_point}
+                                    {weatherData.current.dew_point}
                                 </td>
                             </tr>
                             <tr>
@@ -86,7 +139,7 @@ function Weather() {
                                     Sunrise
                                 </td>
                                 <td>
-                                    {moment(weatherData.sunrise * 1000).format("HH:mm").toLocaleString()}
+                                    {moment(weatherData.current.sunrise * 1000).format("HH:mm").toLocaleString()}
                                 </td>
                             </tr>
                             <tr>
@@ -94,7 +147,7 @@ function Weather() {
                                     Sunset
                                 </td>
                                 <td>
-                                    {moment(weatherData.sunset * 1000).format("HH:mm").toLocaleString()}
+                                    {moment(weatherData.current.sunset * 1000).format("HH:mm").toLocaleString()}
                                 </td>
                             </tr>
                             <tr>
@@ -102,7 +155,7 @@ function Weather() {
                                     UVI
                                 </td>
                                 <td>
-                                    {weatherData.uvi}
+                                    {weatherData.current.uvi}
                                 </td>
                             </tr>
                             <tr>
@@ -110,7 +163,7 @@ function Weather() {
                                     Pressure (hPa)
                                 </td>
                                 <td>
-                                    {weatherData.pressure}
+                                    {weatherData.current.pressure}
                                 </td>
                             </tr>
                             <tr>
@@ -118,7 +171,7 @@ function Weather() {
                                     Clouds (%)
                                 </td>
                                 <td>
-                                    {weatherData.clouds}
+                                    {weatherData.current.clouds}
                                 </td>
                             </tr>
                             <tr>
@@ -126,7 +179,21 @@ function Weather() {
                                     Visibility (m)
                                 </td>
                                 <td>
-                                    {weatherData.visibility}
+                                    {weatherData.current.visibility}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Patterns
+                                </td>
+                                <td>
+                                {
+                                    weatherData.current.weather && weatherData.current.weather.map((weather, index) => (
+                                        <li key={index}>
+                                            {weather.description}
+                                        </li>
+                                    ))   
+                                }
                                 </td>
                             </tr>
                         </tbody>
