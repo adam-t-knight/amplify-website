@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import moment from "moment";
 import '../assets/css/Weather.css';
 
@@ -24,10 +25,6 @@ const initialCurrentWeatherData = {
         wind_deg: 0,
         weather: []
     },
-    daily: []
-}
-
-const initialForecastDailyWeatherData = {
     daily: []
 }
 
@@ -101,26 +98,48 @@ type weatherPatterns = Array<weatherPattern>
 
 function Weather() {
     const [weatherCurrentData, setCurrentWeatherData] = useState<currentWeatherData>(initialCurrentWeatherData);
+    const [city, setCity] = useState<string>("Madison");
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        getWeatherWithFetch();
-    }, []);
+        getWeatherWithFetch(city);
+    }, [city]);
 
-    const getWeatherWithFetch = async () => {
-        const data = await API.get('ExternalAPIs', '/GetWeather', '');
+    const getWeatherWithFetch = async (city : string) => {
+        const data = await API.get('ExternalAPIs', '/GetWeather?city=' + city, '');
         if(data) {
             setCurrentWeatherData(data);
         }
         setIsLoaded(true);
     };
 
+    function selectCity(city : string | null) {
+        if(city) {
+            setCity(city);
+        }
+    }
+
     return (
         <div id="Weather">
             <h2>Weather</h2>
+            <DropdownButton
+                alignRight
+                title="City selector"
+                id="dropdown-menu-align-right"
+                onSelect={e => selectCity(e)}
+            >
+                <Dropdown.Item eventKey="Vienna">Vienna</Dropdown.Item>
+                <Dropdown.Item eventKey="Vancouver">Vancouver</Dropdown.Item>
+                <Dropdown.Item eventKey="Beijing">Beijing</Dropdown.Item>
+                <Dropdown.Item eventKey="Berlin">Berlin</Dropdown.Item>
+                <Dropdown.Item eventKey="Copenhagen">Copenhagen</Dropdown.Item>
+                <Dropdown.Item eventKey="Madison">Madison</Dropdown.Item>
+                <Dropdown.Item eventKey="Raleigh">Raleigh</Dropdown.Item>
+            </DropdownButton>
+            <label>Selected city: {city}</label>
             {isLoaded && weatherCurrentData !== null ? (
                 <div className="WeatherContainer">
-                    <h3>Madison, WI, US</h3>
+                    <h3>Weather from <a href="https://openweathermap.org/">openweathermap.org</a>:</h3>
                     <table id="WeatherTable">
                         <thead>
                             <tr>
@@ -133,6 +152,30 @@ function Weather() {
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td>
+                                    Lat/Lon (°)
+                                </td>
+                                <td>
+                                    {weatherCurrentData.lat}/{weatherCurrentData.lon}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Timezone
+                                </td>
+                                <td>
+                                    {weatherCurrentData.timezone}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Current Time
+                                </td>
+                                <td>
+                                    {moment(weatherCurrentData.current.dt * 1000).format("HH:mm").toLocaleString()}
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     Current Temp (°C)
@@ -245,7 +288,6 @@ function Weather() {
                     <h3>Loading! Please wait...</h3>
                 </div>
             )}
-
         </div>
     );
 }
