@@ -21,9 +21,6 @@ function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExer
                 <thead>
                     <tr>
                         <th scope="col">
-                            Number
-                        </th>
-                        <th scope="col">
                             Name
                         </th>
                         <th scope="col">
@@ -39,11 +36,8 @@ function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExer
                 </thead>
                 <tbody>
                     {
-                        trainingMaxExercises.map((exercise, idx) => (
+                        trainingMaxExercises.map((exercise) => (
                             <tr key={exercise.id}>
-                                <td>
-                                    {idx + 1}
-                                </td>
                                 <td>
                                     {exercise.name}
                                 </td>

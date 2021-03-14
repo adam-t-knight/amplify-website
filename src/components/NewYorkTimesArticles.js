@@ -16,9 +16,6 @@ function NewYorkTimesArticles({articles}) {
                         <th scope="col">
                             Abstract
                         </th>
-                        <th scope="col">
-                            Tag(s)
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,15 +25,6 @@ function NewYorkTimesArticles({articles}) {
                                 <td>{index + 1}</td>
                                 <td><a href={item.url}>{item.title}</a></td>
                                 <td>{item.abstract}</td>
-                                <td>
-                                    <ul>
-                                        {
-                                            item.des_facet && item.des_facet.map((dfacet, dindex) => (
-                                                <li key={dindex}>{dfacet}</li>
-                                            ))                                
-                                        }
-                                    </ul>
-                                </td>
                             </tr>
                         ))
                     }

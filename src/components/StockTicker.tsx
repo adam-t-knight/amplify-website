@@ -19,17 +19,17 @@ type stockData = Array<stock>
 function StockTicker() {
     const [stockSymbol, setStockSymbol] = useState<string>("GME");
     const [stockData, setStockData] = useState<stockData>([]);
-    const [isLoaded, setIsLoading] = useState<boolean>(false);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         getStockWithAPI(stockSymbol);
     }, [stockSymbol]);
 
     const getStockWithAPI = async (stockSymbol : string) => {
-        setIsLoading(false);
+        setIsLoaded(false);
         const stockJson = await API.get('ExternalAPIs', '/GetStock?symbol=' + stockSymbol, '');
         setStockData(stockJson.data);
-        setIsLoading(true);
+        setIsLoaded(true);
     };
 
     function selectStock(stockSymbol : string | null) {
@@ -63,7 +63,6 @@ function StockTicker() {
             <label>Selected stock: {stockSymbol}</label>
             {isLoaded && stockData !== null ? (
                 <div className="StockContainer">
-                    <h3>Stock data from <a href="https://marketstack.com/">marketstack.com</a>:</h3>
                     <Stock stockData={stockData} />
                 </div>
             ) : (

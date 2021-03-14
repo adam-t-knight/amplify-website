@@ -1,6 +1,7 @@
 .TrainingMaxContainer {
-    float: right;
-    width: 620px;
+    float: left;
+    width: 400px;
+    padding-right: 20px;
 }
 
 #TrainingMaxTable {
