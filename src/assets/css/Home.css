@@ -1,21 +1,21 @@
 #Home {
     margin-left: auto;
     margin-right: auto;
-    max-width: 800px;
+    max-width: 840px;
 }
 
 #LeftHomeColumn {
     float: left;
-    width: 400px;
+    width: 420px;
 }
 
 #RightHomeColumn {
     float: left;
-    width: 400px;
+    width: 420px;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 840px) {
     #RightHomeColumn {
         padding-left: 20px;
     }
-  }
+}
