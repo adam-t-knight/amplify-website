@@ -16,7 +16,7 @@ const SUNDAY_CHEST_PRESS = [
     { reps: "3", ratio: .8 },
     { reps: "5", ratio: .75 },
     { reps: "3", ratio: .7 },
-    { reps: "5", ratio: .65 }
+    { reps: "5+", ratio: .65 }
 ];
 
 const SUNDAY_OVERHEAD_PRESS = [
@@ -39,7 +39,7 @@ const MONDAY_BACK_SQUAT = [
     { reps: "3", ratio: .8 },
     { reps: "5", ratio: .75 },
     { reps: "5", ratio: .7 },
-    { reps: "5", ratio: .65 }
+    { reps: "5+", ratio: .65 }
 ];
 
 const MONDAY_SUMO_DEADLIFT = [
@@ -62,7 +62,7 @@ const WEDNESDAY_OVERHEAD_PRESS = [
     { reps: "3", ratio: .8 },
     { reps: "5", ratio: .75 },
     { reps: "5", ratio: .7 },
-    { reps: "5", ratio: .65 }
+    { reps: "5+", ratio: .65 }
 ];
 
 const WEDNESDAY_INCLINE_BENCH_PRESS = [
@@ -83,9 +83,9 @@ const THURSDAY_DEADLIFT = [
     { reps: "3", ratio: .9 },
     { reps: "3", ratio: .85 },
     { reps: "3", ratio: .8 },
-    { reps: "5", ratio: .75 },
-    { reps: "5", ratio: .7 },
-    { reps: "5", ratio: .65 }
+    { reps: "3", ratio: .75 },
+    { reps: "3", ratio: .7 },
+    { reps: "3+", ratio: .65 }
 ];
 
 const THURSDAY_FRONT_SQUAT = [
@@ -108,7 +108,7 @@ const FRIDAY_BENCH_PRESS = [
     { reps: "5", ratio: .8 },
     { reps: "6", ratio: .75 },
     { reps: "7", ratio: .7 },
-    { reps: "8+", ratio: .6 }
+    { reps: "8+", ratio: .65 }
 ];
 
 const FRIDAY_CLOSE_GRIP_BENCH_PRESS = [
@@ -328,8 +328,12 @@ function FitnessTracker() {
             </div>
             {isLoaded && trainingMaxList !== null && weeklyExerciseList !== null ? (
                 <div id="FitnessTrackerContainer">
-                    <TrainingMaxFitnessTable trainingMaxExercises={trainingMaxList} />
-                    <WeeklyFitnessTable weeklyExercises={weeklyExerciseList} />
+                    <div id="LeftFitnessColumn">
+                        <TrainingMaxFitnessTable trainingMaxExercises={trainingMaxList} />
+                    </div>
+                    <div id="RightFitnessColumn">
+                        <WeeklyFitnessTable weeklyExercises={weeklyExerciseList} />
+                    </div>
                 </div>
             ) : (
                 <div id="FitnessTrackerContainer">

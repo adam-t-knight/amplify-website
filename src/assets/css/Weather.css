@@ -18,4 +18,11 @@
 
 #Weather {
     height: 402px;
+    width: 400px;
+}
+
+@media only screen and (max-width: 800px) {
+    #Weather {
+        padding-top: 30px;
+    }
 }

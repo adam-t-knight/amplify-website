@@ -14,7 +14,7 @@ function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
     const { weeklyExercises } = props;
 
     return (
-        <Fragment>
+        <div id="WeeklyFitnessTable">
             <h2>Weekly Exercises</h2>
             <div id="WeeklyContainer" className="table-responsive">
                 <table id="WeeklyTable" className="table">
@@ -56,7 +56,7 @@ function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
                     </tbody>
                 </table>
             </div>
-        </Fragment>
+        </div>
     )
 }
 

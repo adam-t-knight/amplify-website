@@ -11,7 +11,12 @@ type stock = {
     close: number,
     high: number,
     low: number,
-    volume: number
+    volume: number,
+    adj_open: number,
+    adj_high: number,
+    adj_low: number,
+    adj_close: number,
+    adj_volume: number
 }
 
 type stockData = Array<stock>

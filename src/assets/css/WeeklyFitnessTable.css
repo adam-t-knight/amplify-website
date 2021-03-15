@@ -3,13 +3,6 @@
     overflow: scroll;
 }
 
-#WeeklyContainer {
-    width: 400px;
-/*     margin-left: auto;
-    margin-right: auto; */
-    float: right;
-}
-
 #WeeklyTable th {
     background: black;
     color: #fff;

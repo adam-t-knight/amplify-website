@@ -10,11 +10,11 @@ function Comedy() {
       <h1>Comedy</h1>   
       <div id="LeftComedyColumn">
         <RandomJoke />
-        <XkcdComic />
       </div>
       <div id="RightComedyColumn">
         <CatFacts />
       </div>
+      <XkcdComic />
     </div>
   )
 }

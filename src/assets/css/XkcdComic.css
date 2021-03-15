@@ -1,5 +1,6 @@
 #XkcdComic {
-    margin-top: 30px;
+    padding-top: 30px;
+    float: left;
 }
 
 .XkcdContainer {
