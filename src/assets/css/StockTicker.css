@@ -2,14 +2,14 @@
     padding-top: 30px;
     height: 652px;
     float: left;
-    width: 400px;
+    width: 420px;
 }
 
 #StockTicker button {
     margin-top: 26px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 840px) {
     #StockTicker {
         padding-top: 60px;
     }
