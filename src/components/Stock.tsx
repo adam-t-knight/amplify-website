@@ -8,7 +8,12 @@ type stock = {
     close: number,
     high: number,
     low: number,
-    volume: number
+    volume: number,
+    adj_open: number,
+    adj_high: number,
+    adj_low: number,
+    adj_close: number,
+    adj_volume: number
 }
 
 type stockData = Array<stock>
@@ -25,12 +30,6 @@ function Stock(props : {stockData : stockData}) {
                             Date
                         </th>
                         <th scope="col">
-                            Open
-                        </th>
-                        <th scope="col">
-                            Close
-                        </th>
-                        <th scope="col">
                             High
                         </th>
                         <th scope="col">
@@ -45,9 +44,7 @@ function Stock(props : {stockData : stockData}) {
                 {
                     stockData && stockData.map((item, index) => (
                         <tr key={index}>
-                            <td>{moment(item.date).format('ddd, MMM Do YYYY').toString()}</td>
-                            <td>{item.open}</td>
-                            <td>{item.close}</td>
+                            <td>{moment(item.date).format('MMM Do').toString()}</td>
                             <td>{item.high}</td>
                             <td>{item.low}</td>
                             <td>{item.volume}</td>

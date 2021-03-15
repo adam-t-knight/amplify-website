@@ -1,14 +1,16 @@
 #StockTicker {
-    padding-top: 50px;
-    height: 646px;
-}
-
-.StockContainer {
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-top: 30px;
+    height: 652px;
+    float: left;
+    width: 400px;
 }
 
 #StockTicker button {
-    margin-top: 30px;
+    margin-top: 26px;
+}
+
+@media only screen and (max-width: 800px) {
+    #StockTicker {
+        padding-top: 60px;
+    }
 }

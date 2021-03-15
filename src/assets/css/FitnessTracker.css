@@ -11,3 +11,14 @@
 .FitnessTracker a {
     display: block;
 }
+
+#LeftFitnessColumn {
+    float: left;
+    width: 400px;
+}
+
+#RightFitnessColumn {
+    float: left;
+    width: 400px;
+    padding-left: 20px;
+}
