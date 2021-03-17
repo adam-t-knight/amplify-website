@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API } from 'aws-amplify';
-import { listExercises } from '../graphql/queries';
-import { deleteExercise as deleteExerciseMutation } from '../graphql/mutations';
+import { listWeeklyExercises } from '../graphql/queries';
+import { deleteWeeklyExercise } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
-import '../assets/css/DeleteExercise.css';
+import '../assets/css/DeleteWeeklyExercise.css';
 
-const DeleteExercise = () => {
+const DeleteWeeklyExercise = () => {
     const [exercises, setExercises] = useState([]);
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
@@ -23,34 +23,49 @@ const DeleteExercise = () => {
     }, []);
 
     async function fetchExercises() {
-        const apiData = await API.graphql({ query: listExercises });
-        setExercises(apiData.data.listExercises.items);
+        const apiData = await API.graphql({ query: listWeeklyExercises });
+        const weeklyExercises = apiData.data.listWeeklyExercises.items;
+
+        weeklyExercises.sort(function(a, b) {
+            return a.dayOfWeekNum - b.dayOfWeekNum || a.exerciseNum - b.exerciseNum || a.setNum - b.setNum;
+        });
+
+        setExercises(weeklyExercises);
     }
 
     async function deleteExercise({ id }) {
         const newExercisesArray = exercises.filter(exercise => exercise.id !== id);
         setExercises(newExercisesArray);
-        await API.graphql({ query: deleteExerciseMutation, variables: { input: { id } }});
+        await API.graphql({ query: deleteWeeklyExercise, variables: { input: { id } }});
     }
 
     return Auth.user ? (
-        <div id="DeleteExercise">
-            <h2>Delete Exercise</h2>
+        <div id="DeleteWeeklyExercise">
+            <h2>Delete Weekly Exercise</h2>
             <Link to="/fitness-tracker">
                 Back
             </Link>
-            <div id="DeleteExerciseContainer">
-            <table id="DeleteExerciseTable">
+            <div id="DeleteWeeklyExerciseContainer">
+            <table id="DeleteWeeklyExerciseTable">
                 <thead>
                     <tr>
                         <th scope="col">
-                                Number
-                            </th>
-                        <th scope="col">
-                            Name
+                            Day of Week Number
                         </th>
                         <th scope="col">
-                            Weight (lbs)
+                            Exercise Name
+                        </th>
+                        <th scope="col">
+                            Exercise Number
+                        </th>
+                        <th scope="col">
+                            Set Number
+                        </th>
+                        <th scope="col">
+                            Reps
+                        </th>
+                        <th scope="col">
+                            Ratio
                         </th>
                         <th scope="col">
                             Created On
@@ -58,21 +73,29 @@ const DeleteExercise = () => {
                         <th scope="col">
                             Updated On
                         </th>
-                        <th scope="col" />
                     </tr>
                 </thead>
                 <tbody>
                     {
                         exercises.map((exercise, idx) => (
-                            <tr key={exercise.id}>
+                            <tr key={idx}>
                                 <td>
-                                    {idx + 1}
+                                    {exercise.dayOfWeekNum}
                                 </td>
                                 <td>
                                     {exercise.name}
                                 </td>
                                 <td>
-                                    {exercise.weight}
+                                    {exercise.exerciseNum}
+                                </td>
+                                <td>
+                                    {exercise.setNum}
+                                </td>
+                                <td>
+                                    {exercise.reps}
+                                </td>
+                                <td>
+                                    {exercise.ratio}
                                 </td>
                                 <td>
                                     {moment(exercise.createdOn).format('DD-MM-YYYY HH:mm:ss').toString()}
@@ -97,4 +120,4 @@ const DeleteExercise = () => {
     );
 }
 
-export default DeleteExercise;
+export default DeleteWeeklyExercise;

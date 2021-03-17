@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API } from 'aws-amplify';
-import { listExercises } from '../graphql/queries';
-import { updateExercise as updateExerciseMutation } from '../graphql/mutations';
+import { listWeeklyExercises } from '../graphql/queries';
+import { updateWeeklyExercise } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
-import '../assets/css/UpdateExercise.css';
+import '../assets/css/UpdateWeeklyExercise.css';
 
-const UpdateExercise = () => {
-    const blankExercise = { name: '', weight: ''}
+const UpdateWeeklyExercise = () => {
+    const blankExercise = { dayOfWeekNum: '', name: '', exerciseNum: '', setNum: '', reps: '', ratio: '' }
     const [oldExerciseValues, setOldExerciseValues] = useState([{ ...blankExercise }]);
     const [newExerciseValues, setNewExerciseValues] = useState([{ ...blankExercise }]);
     
@@ -26,16 +26,26 @@ const UpdateExercise = () => {
     }, []);
 
     async function fetchExercises() {
-        const apiData = await API.graphql({ query: listExercises }); 
-        setOldExerciseValues(apiData.data.listExercises.items);
-        setNewExerciseValues(JSON.parse(JSON.stringify(apiData.data.listExercises.items))); //only the second needs to pass by value
+        const apiData = await API.graphql({ query: listWeeklyExercises }); 
+        const weeklyExercises = apiData.data.listWeeklyExercises.items;
+
+        weeklyExercises.sort(function(a, b) {
+            return a.dayOfWeekNum - b.dayOfWeekNum || a.exerciseNum - b.exerciseNum || a.setNum - b.setNum;
+        });
+
+        setOldExerciseValues(weeklyExercises);
+        setNewExerciseValues(JSON.parse(JSON.stringify(weeklyExercises))); //only the second needs to pass by value
     }
 
     //this needs regex to check for values eventually. not secure because im directly hitting the DB from javascript! move calls to lambdas?
     async function updateExercise(idx) {
-        if( oldExerciseValues[idx].name !== newExerciseValues[idx].name ||
-            oldExerciseValues[idx].weight !== newExerciseValues[idx].weight) {
-            await API.graphql({ query: updateExerciseMutation, variables: { input: newExerciseValues[idx] } });
+        if( oldExerciseValues[idx].dayOfWeekNum !== newExerciseValues[idx].dayOfWeekNum ||
+            oldExerciseValues[idx].name !== newExerciseValues[idx].name ||
+            oldExerciseValues[idx].exerciseNum !== newExerciseValues[idx].exerciseNum ||
+            oldExerciseValues[idx].setNum !== newExerciseValues[idx].setNum ||
+            oldExerciseValues[idx].reps !== newExerciseValues[idx].reps ||
+            oldExerciseValues[idx].ratio !== newExerciseValues[idx].ratio) {
+            await API.graphql({ query: updateWeeklyExercise, variables: { input: newExerciseValues[idx] } });
             setOldExerciseValues(JSON.parse(JSON.stringify([...newExerciseValues]))); //have to update in case multiple changes on the same page
             console.log("New exercise values have been set for row " + idx + 1);
         } else {
@@ -54,23 +64,32 @@ const UpdateExercise = () => {
     }
 
     return Auth.user ? (
-        <div id="UpdateExercise">
-            <h2>Update Exercise</h2>
+        <div id="UpdateWeeklyExercise">
+            <h2>Update Weekly Exercise</h2>
             <Link to="/fitness-tracker">
                 Back
             </Link>
-            <div id="UpdateExerciseContainer">
-                <table id="UpdateExerciseTable">
+            <div id="UpdateWeeklyExerciseContainer">
+                <table id="UpdateWeeklyExerciseTable">
                     <thead>
                         <tr>
                             <th scope="col">
-                                Number
+                                Day of Week Number
                             </th>
                             <th scope="col">
-                                Name
+                                Exercise Name
                             </th>
                             <th scope="col">
-                                Weight (lbs)
+                                Exercise Number
+                            </th>
+                            <th scope="col">
+                                Set Number
+                            </th>
+                            <th scope="col">
+                                Reps
+                            </th>
+                            <th scope="col">
+                                Ratio
                             </th>
                             <th scope="col">
                                 Created On
@@ -78,15 +97,19 @@ const UpdateExercise = () => {
                             <th scope="col">
                                 Updated On
                             </th>
-                            <th scope="col" />
                         </tr>
                     </thead>
                     <tbody>
                         {
                             newExerciseValues.map((exercise, idx) => (
-                                <tr key={exercise.id}>
+                                <tr key={idx}>
                                     <td>
-                                        {idx + 1}
+                                        <input
+                                            type="text"
+                                            name="dayOfWeekNum"
+                                            value={exercise.dayOfWeekNum}
+                                            onChange={updateFieldChanged(idx)}
+                                        />
                                     </td>
                                     <td>
                                         <input
@@ -99,8 +122,32 @@ const UpdateExercise = () => {
                                     <td>
                                         <input
                                             type="number"
-                                            name="weight"
-                                            value={exercise.weight}
+                                            name="exerciseNum"
+                                            value={exercise.exerciseNum}
+                                            onChange={updateFieldChanged(idx)}
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            name="setNum"
+                                            value={exercise.setNum}
+                                            onChange={updateFieldChanged(idx)}
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            name="reps"
+                                            value={exercise.reps}
+                                            onChange={updateFieldChanged(idx)}
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            name="ratio"
+                                            value={exercise.ratio}
                                             onChange={updateFieldChanged(idx)}
                                         />
                                     </td>
@@ -127,4 +174,4 @@ const UpdateExercise = () => {
     );
 }
 
-export default UpdateExercise;
+export default UpdateWeeklyExercise;

@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API } from 'aws-amplify';
-import { listExercises } from '../graphql/queries';
-import { createExercise as createExerciseMutation } from '../graphql/mutations';
+import { listTrainingMaxExercises } from '../graphql/queries';
+import { createTrainingMaxExercise } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
-import '../assets/css/CreateExercise.css';
+import '../assets/css/CreateTrainingMaxExercise.css';
 
 const initialFormState = { name: '', weight: '' }
 
-const CreateExercise = () => {
+const CreateTrainingMaxExercise = () => {
     const [exercises, setExercises] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
     const [authState, setAuthState] = useState();
@@ -26,41 +26,65 @@ const CreateExercise = () => {
     }, []);
 
     async function fetchExercises() {
-        const apiData = await API.graphql({ query: listExercises });
-        setExercises(apiData.data.listExercises.items);
+        const apiData = await API.graphql({ query: listTrainingMaxExercises });
+        const trainingMaxExercises = apiData.data.listTrainingMaxExercises.items;
+
+        setExercises(trainingMaxExercises);
     }
 
     async function createExercise() {
         if (!formData.name || !formData.weight) return;
-        await API.graphql({ query: createExerciseMutation, variables: { input: formData } });
+        await API.graphql({ query: createTrainingMaxExercise, variables: { input: formData } });
         setExercises([ ...exercises, formData ]);
         setFormData(initialFormState);
     }
 
     return Auth.user ? (
-        <div id="CreateExercise">
-            <h2>Create Exercise</h2>
+        <div id="CreateTrainingMaxExercise">
+            <h2>Create Training Max Exercise</h2>
             <Link to="/fitness-tracker">
                 Back
             </Link>
-            <input
-                onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-                placeholder="Exercise name"
-                value={formData.name}
-            />
-            <input
-                onChange={e => setFormData({ ...formData, 'weight': e.target.value})}
-                placeholder="Exercise weight"
-                value={formData.weight}
-            />
-            <button onClick={createExercise}>Create Exercise</button>
-            <div id="CreateExerciseContainer">
-                <table id="CreateExerciseTable">
+            <table className="CreateTrainingMaxExerciseTable">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Exercise Name
+                        </th>
+                        <th scope="col">
+                            Weight (lbs)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input
+                                id="nameInput"
+                                name="nameInput"
+                                onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+                                placeholder="Exercise Name"
+                                value={formData.name}
+                            />
+                        </td>
+                        <td>
+                            <input
+                                id="weightInput"
+                                name="weightInput"
+                                type="number"
+                                onChange={e => setFormData({ ...formData, 'weight': e.target.value})}
+                                placeholder="Weight"
+                                value={formData.weight}
+                            />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onClick={createExercise}>Create Training Max Exercise</button>
+            <div id="CreateTrainingMaxExerciseContainer">
+                <table className="CreateTrainingMaxExerciseTable">
                     <thead>
                         <tr>
-                            <th scope="col">
-                                Number
-                            </th>
                             <th scope="col">
                                 Name
                             </th>
@@ -78,10 +102,7 @@ const CreateExercise = () => {
                     <tbody>
                         {
                             exercises.map((exercise, idx) => (
-                                <tr key={exercise.id}>
-                                    <td>
-                                        {idx + 1}
-                                    </td>
+                                <tr key={idx}>
                                     <td>
                                         {exercise.name}
                                     </td>
@@ -108,4 +129,4 @@ const CreateExercise = () => {
     );
 }
 
-export default CreateExercise;
+export default CreateTrainingMaxExercise;

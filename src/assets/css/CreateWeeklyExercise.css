@@ -1,0 +1,13 @@
+.CreateWeeklyExerciseContainer {
+    margin-top: 30px;
+}
+
+.CreateWeeklyExerciseTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.CreateWeeklyExerciseTable td, .CreateWeeklyExerciseTable th {
+    padding: 10px;
+}

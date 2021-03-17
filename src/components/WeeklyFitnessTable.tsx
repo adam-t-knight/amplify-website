@@ -1,11 +1,15 @@
-import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import '../assets/css/WeeklyFitnessTable.css';
 
 type weeklyExercise = {
-    day: string,
+    id: string,
+    dayOfWeekNum: number,
     name: string,
+    exerciseNum: number,
+    setNum: number,
     reps: string,
-    weight: number
+    weight: number,
+    ratio: number
 }
 
 type weeklyExercises = Array<weeklyExercise>
@@ -16,15 +20,26 @@ function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
     return (
         <div id="WeeklyFitnessTable">
             <h2>Weekly Exercises</h2>
+            <div id="WeeklyFitnessTableLinkBlock">
+                <Link to="/fitness-tracker/update-weekly-exercise">
+                    Update Weekly Exercise
+                </Link>
+                <Link to="/fitness-tracker/create-weekly-exercise">
+                    Create Weekly Exercise
+                </Link>
+                <Link to="/fitness-tracker/delete-weekly-exercise">
+                    Delete Weekly Exercise
+                </Link>
+            </div>
             <div id="WeeklyContainer" className="table-responsive">
                 <table id="WeeklyTable" className="table">
                     <thead>
                         <tr>
                             <th scope="col">
-                                Day
+                                Day of Week Number
                             </th>
                             <th scope="col">
-                                Exercise
+                                Name
                             </th>
                             <th scope="col">
                                 Reps
@@ -37,9 +52,9 @@ function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
                     <tbody>
                         {
                             weeklyExercises.map((exercise, idx) => (
-                                <tr key={"WeeklyTableRow" + idx}>
+                                <tr key={idx}>
                                     <td>
-                                        {exercise.day}
+                                        {exercise.dayOfWeekNum}
                                     </td>
                                     <td>
                                         {exercise.name}

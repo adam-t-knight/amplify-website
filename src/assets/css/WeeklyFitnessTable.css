@@ -4,7 +4,7 @@
 }
 
 #WeeklyTable th {
-    background: black;
+    background: #343a40;
     color: #fff;
     position: sticky;
     top: 0;
@@ -13,4 +13,8 @@
 
 #WeeklyTable td {
     padding: 10px;
+}
+
+#WeeklyFitnessTableLinkBlock {
+    padding-bottom: 10px;
 }
