@@ -1,15 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/css/Main.css';
-import React from 'react';
 import { Navbar, Nav, NavDropdown, Form } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
 import Comedy from '../pages/Comedy';
 import FitnessTracker from '../pages/FitnessTracker';
-import CreateExercise from './CreateExercise';
-import DeleteExercise from './DeleteExercise';
-import UpdateExercise from './UpdateExercise';
+import CreateTrainingMaxExercise from './CreateTrainingMaxExercise';
+import DeleteTrainingMaxExercise from './DeleteTrainingMaxExercise';
+import UpdateTrainingMaxExercise from './UpdateTrainingMaxExercise';
+import CreateWeeklyExercise from './CreateWeeklyExercise';
+import DeleteWeeklyExercise from './DeleteWeeklyExercise';
+import UpdateWeeklyExercise from './UpdateWeeklyExercise';
 
 const Main = () => {
     return (
@@ -38,9 +40,12 @@ const Main = () => {
                             <Route exact path='/' component={Home}></Route>
                             <Route exact path='/comedy' component={Comedy}></Route>
                             <Route exact path='/fitness-tracker' component={FitnessTracker}></Route>
-                            <Route exact path='/fitness-tracker/create-exercise' component={CreateExercise}></Route>
-                            <Route exact path='/fitness-tracker/delete-exercise' component={DeleteExercise}></Route>
-                            <Route exact path='/fitness-tracker/update-exercise' component={UpdateExercise}></Route>
+                            <Route exact path='/fitness-tracker/create-training-max-exercise' component={CreateTrainingMaxExercise}></Route>
+                            <Route exact path='/fitness-tracker/delete-training-max-exercise' component={DeleteTrainingMaxExercise}></Route>
+                            <Route exact path='/fitness-tracker/update-training-max-exercise' component={UpdateTrainingMaxExercise}></Route>
+                            <Route exact path='/fitness-tracker/create-weekly-exercise' component={CreateWeeklyExercise}></Route>
+                            <Route exact path='/fitness-tracker/delete-weekly-exercise' component={DeleteWeeklyExercise}></Route>
+                            <Route exact path='/fitness-tracker/update-weekly-exercise' component={UpdateWeeklyExercise}></Route>
                         </Switch>
                     </Router>
                 </div>

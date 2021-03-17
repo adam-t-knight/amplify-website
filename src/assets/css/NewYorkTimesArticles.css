@@ -1,5 +1,5 @@
 .table-responsive {
-  height: 500px;  
+  height: 450px;  
   overflow: scroll;
 }
 
@@ -8,7 +8,7 @@
 }
 
 #NytArticlesTable th {
-  background: black;
+  background: #343a40;
   color: #fff;
   position: sticky;
   top: 0;

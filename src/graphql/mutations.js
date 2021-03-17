@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createExercise = /* GraphQL */ `
-  mutation CreateExercise(
-    $input: CreateExerciseInput!
-    $condition: ModelExerciseConditionInput
+export const createTrainingMaxExercise = /* GraphQL */ `
+  mutation CreateTrainingMaxExercise(
+    $input: CreateTrainingMaxExerciseInput!
+    $condition: ModelTrainingMaxExerciseConditionInput
   ) {
-    createExercise(input: $input, condition: $condition) {
+    createTrainingMaxExercise(input: $input, condition: $condition) {
       id
       name
       weight
@@ -15,12 +15,12 @@ export const createExercise = /* GraphQL */ `
     }
   }
 `;
-export const updateExercise = /* GraphQL */ `
-  mutation UpdateExercise(
-    $input: UpdateExerciseInput!
-    $condition: ModelExerciseConditionInput
+export const updateTrainingMaxExercise = /* GraphQL */ `
+  mutation UpdateTrainingMaxExercise(
+    $input: UpdateTrainingMaxExerciseInput!
+    $condition: ModelTrainingMaxExerciseConditionInput
   ) {
-    updateExercise(input: $input, condition: $condition) {
+    updateTrainingMaxExercise(input: $input, condition: $condition) {
       id
       name
       weight
@@ -29,15 +29,69 @@ export const updateExercise = /* GraphQL */ `
     }
   }
 `;
-export const deleteExercise = /* GraphQL */ `
-  mutation DeleteExercise(
-    $input: DeleteExerciseInput!
-    $condition: ModelExerciseConditionInput
+export const deleteTrainingMaxExercise = /* GraphQL */ `
+  mutation DeleteTrainingMaxExercise(
+    $input: DeleteTrainingMaxExerciseInput!
+    $condition: ModelTrainingMaxExerciseConditionInput
   ) {
-    deleteExercise(input: $input, condition: $condition) {
+    deleteTrainingMaxExercise(input: $input, condition: $condition) {
       id
       name
       weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const createWeeklyExercise = /* GraphQL */ `
+  mutation CreateWeeklyExercise(
+    $input: CreateWeeklyExerciseInput!
+    $condition: ModelWeeklyExerciseConditionInput
+  ) {
+    createWeeklyExercise(input: $input, condition: $condition) {
+      id
+      dayOfWeekNum
+      name
+      exerciseNum
+      setNum
+      reps
+      ratio
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const updateWeeklyExercise = /* GraphQL */ `
+  mutation UpdateWeeklyExercise(
+    $input: UpdateWeeklyExerciseInput!
+    $condition: ModelWeeklyExerciseConditionInput
+  ) {
+    updateWeeklyExercise(input: $input, condition: $condition) {
+      id
+      dayOfWeekNum
+      name
+      exerciseNum
+      setNum
+      reps
+      ratio
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const deleteWeeklyExercise = /* GraphQL */ `
+  mutation DeleteWeeklyExercise(
+    $input: DeleteWeeklyExerciseInput!
+    $condition: ModelWeeklyExerciseConditionInput
+  ) {
+    deleteWeeklyExercise(input: $input, condition: $condition) {
+      id
+      dayOfWeekNum
+      name
+      exerciseNum
+      setNum
+      reps
+      ratio
       createdOn
       updatedOn
     }

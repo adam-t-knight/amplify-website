@@ -1,4 +1,5 @@
 import moment from "moment-timezone";
+import { Link } from "react-router-dom";
 import '../assets/css/TrainingMaxFitnessTable.css';
 
 type trainingMaxExercise = {
@@ -17,6 +18,17 @@ function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExer
     return (
         <div className="TrainingMaxContainer">
             <h2>Training Max Weights</h2>
+            <div id="TrainingMaxTableLinkBlock">
+                <Link to="/fitness-tracker/update-training-max-exercise">
+                    Update Training Max Exercise
+                </Link>
+                <Link to="/fitness-tracker/create-training-max-exercise">
+                    Create Training Max Exercise
+                </Link>
+                <Link to="/fitness-tracker/delete-training-max-exercise">
+                    Delete Training Max Exercise
+                </Link>
+            </div>
             <table id="TrainingMaxTable">
                 <thead>
                     <tr>

@@ -1,13 +1,13 @@
-.UpdateExerciseContainer {
+.UpdateWeeklyExerciseContainer {
     margin-top: 30px;
 }
 
-#UpdateExerciseTable {
+#UpdateWeeklyExerciseTable {
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
 }
 
-#UpdateExerciseTable td {
+#UpdateWeeklyExerciseTable td {
     padding: 10px;
 }

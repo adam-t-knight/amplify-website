@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getExercise = /* GraphQL */ `
-  query GetExercise($id: ID!) {
-    getExercise(id: $id) {
+export const getTrainingMaxExercise = /* GraphQL */ `
+  query GetTrainingMaxExercise($id: ID!) {
+    getTrainingMaxExercise(id: $id) {
       id
       name
       weight
@@ -12,17 +12,58 @@ export const getExercise = /* GraphQL */ `
     }
   }
 `;
-export const listExercises = /* GraphQL */ `
-  query ListExercises(
-    $filter: ModelExerciseFilterInput
+export const listTrainingMaxExercises = /* GraphQL */ `
+  query ListTrainingMaxExercises(
+    $filter: ModelTrainingMaxExerciseFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTrainingMaxExercises(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
         name
         weight
+        createdOn
+        updatedOn
+      }
+      nextToken
+    }
+  }
+`;
+export const getWeeklyExercise = /* GraphQL */ `
+  query GetWeeklyExercise($id: ID!) {
+    getWeeklyExercise(id: $id) {
+      id
+      dayOfWeekNum
+      name
+      exerciseNum
+      setNum
+      reps
+      ratio
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const listWeeklyExercises = /* GraphQL */ `
+  query ListWeeklyExercises(
+    $filter: ModelWeeklyExerciseFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listWeeklyExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        dayOfWeekNum
+        name
+        exerciseNum
+        setNum
+        reps
+        ratio
         createdOn
         updatedOn
       }

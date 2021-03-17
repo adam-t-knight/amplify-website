@@ -1,7 +1,19 @@
-type Exercise @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }) {
+type TrainingMaxExercise @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }) {
   id: ID!
   name: String!
   weight: Int!
+  createdOn: AWSDateTime!
+  updatedOn: AWSDateTime!
+}
+
+type WeeklyExercise @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }) {
+  id: ID!
+  dayOfWeekNum: Int!
+  name: String!
+  exerciseNum: Int!
+  setNum: Int!
+  reps: String!
+  ratio: Float!
   createdOn: AWSDateTime!
   updatedOn: AWSDateTime!
 }
