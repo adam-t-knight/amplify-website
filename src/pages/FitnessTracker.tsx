@@ -9,6 +9,7 @@ import '../assets/css/FitnessTracker.css';
 
 type weeklyExercise = {
     id: string,
+    dayOfWeek: string,
     dayOfWeekNum: number,
     name: string,
     exerciseNum: number,
@@ -71,6 +72,30 @@ function FitnessTracker() {
 
             const trainingMaxWeight = trainingMaxMap.get(newWeeklyExercise.name) as number;
             newWeeklyExercise.weight = roundToNearestFive(weeklyExercise.ratio * trainingMaxWeight);
+
+            switch(weeklyExercise.dayOfWeekNum) {
+                case 1:
+                    newWeeklyExercise.dayOfWeek = "Sunday";
+                    break;
+                case 2:
+                    newWeeklyExercise.dayOfWeek = "Monday";
+                    break;
+                case 3:
+                    newWeeklyExercise.dayOfWeek = "Tuesday";
+                    break;
+                case 4:
+                    newWeeklyExercise.dayOfWeek = "Wednesday";
+                    break;
+                case 5:
+                    newWeeklyExercise.dayOfWeek = "Thurday";
+                    break;
+                case 6:
+                    newWeeklyExercise.dayOfWeek = "Friday";
+                    break;
+                case 7:
+                    newWeeklyExercise.dayOfWeek = "Saturday";
+                    break;
+            }
             
             exerciseArray.push(newWeeklyExercise);
         }

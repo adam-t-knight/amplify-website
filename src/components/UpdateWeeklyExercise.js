@@ -105,7 +105,7 @@ const UpdateWeeklyExercise = () => {
                                 <tr key={idx}>
                                     <td>
                                         <input
-                                            type="text"
+                                            type="number"
                                             name="dayOfWeekNum"
                                             value={exercise.dayOfWeekNum}
                                             onChange={updateFieldChanged(idx)}
