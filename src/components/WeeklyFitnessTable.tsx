@@ -3,6 +3,7 @@ import '../assets/css/WeeklyFitnessTable.css';
 
 type weeklyExercise = {
     id: string,
+    dayOfWeek: string,
     dayOfWeekNum: number,
     name: string,
     exerciseNum: number,
@@ -36,7 +37,7 @@ function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
                     <thead>
                         <tr>
                             <th scope="col">
-                                Day of Week Number
+                                Day of Week
                             </th>
                             <th scope="col">
                                 Name
@@ -52,9 +53,9 @@ function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
                     <tbody>
                         {
                             weeklyExercises.map((exercise, idx) => (
-                                <tr key={idx}>
+                                <tr key={idx} className={exercise.dayOfWeek}>
                                     <td>
-                                        {exercise.dayOfWeekNum}
+                                        {exercise.dayOfWeek}
                                     </td>
                                     <td>
                                         {exercise.name}

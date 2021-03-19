@@ -18,3 +18,31 @@
 #WeeklyFitnessTableLinkBlock {
     padding-bottom: 10px;
 }
+
+.Sunday {
+    background: lightcoral;
+}
+
+.Monday {
+    background: lightpink;
+}
+
+.Tuesday {
+    background: lightsalmon;
+}
+
+.Wednesday {
+    background: lightyellow;
+}
+
+.Thursday {
+    background: lightseagreen;
+}
+
+.Friday {
+    background: lightslategray;
+}
+
+.Saturday {
+    background: lightskyblue;
+}
