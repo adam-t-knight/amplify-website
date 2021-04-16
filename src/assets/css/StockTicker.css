@@ -1,8 +1,9 @@
 #StockTicker {
-    padding-top: 30px;
-    height: 652px;
+    margin-top: 8px;
+    height: 622px;
     float: left;
     width: 410px;
+    background-color: #ffffff;
 }
 
 #StockTicker button {

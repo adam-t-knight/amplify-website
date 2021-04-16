@@ -3,6 +3,11 @@
     overflow: scroll;
 }
 
+#WeeklyFitnessTable {
+    background-color: #ffffff;
+    margin-top: 8px;
+}
+
 #WeeklyTable th {
     background: #343a40;
     color: #fff;

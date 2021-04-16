@@ -16,7 +16,7 @@ function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExer
     const { trainingMaxExercises } = props;
 
     return (
-        <div className="TrainingMaxContainer">
+        <div id="TrainingMaxContainer">
             <h2>Training Max Weights</h2>
             <div id="TrainingMaxTableLinkBlock">
                 <Link to="/fitness-tracker/update-training-max-exercise">

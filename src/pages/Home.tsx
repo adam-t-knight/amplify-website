@@ -10,12 +10,12 @@ function Home() {
     <div id="Home">
       <h1>Home</h1>   
       <div id="LeftHomeColumn">
-        <WorldClock />
-        <NewYorkTimes />
+          <WorldClock />
+          <NewYorkTimes />
       </div>
       <div id="RightHomeColumn">
-        <Weather />
-        <StockTicker />
+          <Weather />
+          <StockTicker />
       </div>
     </div>
   )

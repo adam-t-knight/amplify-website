@@ -2,8 +2,8 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "amplify-website",
-  "version": "3.0",
+  "projectName": "amplifywebsite",
+  "version": "3.1",
   "frontend": "javascript",
   "javascript": {
     "framework": "react",
