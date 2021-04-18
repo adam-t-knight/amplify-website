@@ -11,12 +11,18 @@ import '../assets/css/CreateTrainingMaxExercise.css';
 
 const initialFormState = { name: '', weight: '' }
 
+/**
+ * Page to allow authenticated user to write a new training max exercise to the database
+ */
 const CreateTrainingMaxExercise = () => {
     const [exercises, setExercises] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
 
+    /**
+     * Sets auth state and fetches on change
+     */
     useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -25,6 +31,9 @@ const CreateTrainingMaxExercise = () => {
         fetchExercises();
     }, []);
 
+    /**
+     * Fetches exercises from training max db
+     */    
     async function fetchExercises() {
         const apiData = await API.graphql({ query: listTrainingMaxExercises });
         const trainingMaxExercises = apiData.data.listTrainingMaxExercises.items;
@@ -32,6 +41,9 @@ const CreateTrainingMaxExercise = () => {
         setExercises(trainingMaxExercises);
     }
 
+    /**
+     * Writes new exercise to db using form data
+     */   
     async function createExercise() {
         if (!formData.name || !formData.weight) return;
         await API.graphql({ query: createTrainingMaxExercise, variables: { input: formData } });
@@ -52,7 +64,7 @@ const CreateTrainingMaxExercise = () => {
                             Exercise Name
                         </th>
                         <th scope="col">
-                            Weight (lbs)
+                            Weight (kg)
                         </th>
                     </tr>
                 </thead>
@@ -89,7 +101,7 @@ const CreateTrainingMaxExercise = () => {
                                 Name
                             </th>
                             <th scope="col">
-                                Weight (lbs)
+                                Weight (kg)
                             </th>
                             <th scope="col">
                                 Created On

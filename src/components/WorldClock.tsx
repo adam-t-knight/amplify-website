@@ -2,9 +2,15 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import '../assets/css/WorldClock.css';
 
+/**
+ * Fetches weather data based on symbols selected and passes them to the Stock component to be displayed.
+ */
 function WorldClock() {
     const [date, setDate] = useState(moment());
 
+    /**
+     * Sets a timer that ends after 1000 ticks. Calls tick function to update the current date/time.
+     */    
     useEffect(() => {
         let timerID = setInterval( () => tick(), 1000 );
    
@@ -13,6 +19,9 @@ function WorldClock() {
         };
     });
 
+    /**
+     * Sets the date variable to the moment when the function is called.
+     */   
     function tick() {
         setDate(moment());
     }

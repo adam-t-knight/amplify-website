@@ -9,11 +9,17 @@ import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 import '../assets/css/DeleteWeeklyExercise.css';
 
+/**
+ * Page to allow authenticated user to delete a training max exercise from the database
+ */
 const DeleteWeeklyExercise = () => {
     const [exercises, setExercises] = useState([]);
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
 
+    /**
+     * Sets auth state and fetches on change
+     */
     useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -22,6 +28,9 @@ const DeleteWeeklyExercise = () => {
         fetchExercises();
     }, []);
 
+    /**
+     * Function to retrieve Exercises from the database
+     */
     async function fetchExercises() {
         const apiData = await API.graphql({ query: listWeeklyExercises });
         const weeklyExercises = apiData.data.listWeeklyExercises.items;
@@ -33,6 +42,10 @@ const DeleteWeeklyExercise = () => {
         setExercises(weeklyExercises);
     }
 
+    /**
+     * Function to delete Exercises from the database
+     * @param {string} id id key of exercise to be deleted
+     */
     async function deleteExercise({ id }) {
         const newExercisesArray = exercises.filter(exercise => exercise.id !== id);
         setExercises(newExercisesArray);

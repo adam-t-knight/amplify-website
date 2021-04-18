@@ -1,5 +1,8 @@
 import '../assets/css/NewYorkTimesArticles.css';
 
+/**
+ * The NewYorkTimesArticles subcomponent of the main NewYorkTimes component. Displayes the articles passed to it.
+ */
 function NewYorkTimesArticles({articles}) {
 
     return (

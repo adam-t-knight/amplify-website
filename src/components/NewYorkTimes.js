@@ -4,14 +4,23 @@ import NewYorkTimesArticles from './NewYorkTimesArticles';
 import moment from "moment-timezone";
 import '../assets/css/NewYorkTimes.css';
 
+/**
+ * Main New York Times component. Fetches the articles which are then displayed by the NewYorkTimesArticles subcomponent.
+ */
 function NewYorkTimes() {
     const [nytData, setNytData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    /**
+     * Fetches on change
+     */
     useEffect(() => {
         getNewYorkTimesWithFetch();
     }, []);
 
+    /**
+     * Fetches the New York Times articles
+     */
     const getNewYorkTimesWithFetch = async () => {
         const data = await API.get('ExternalAPIs', '/GetNewYorkTimes', '');
         setNytData(data);

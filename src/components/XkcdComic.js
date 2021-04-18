@@ -4,14 +4,23 @@ import '../assets/css/XkcdComic.css';
 
 const xkcdComicUrl = "https://xkcd.com/info.0.json";
 
+/**
+ * Fetches weather data based on symbols selected and passes them to the Stock component to be displayed.
+ */
 function XkcdComic() {
     const [xkcdComicData, setXkcdComicData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    /**
+     * Fetches XKCD comic on page load.
+     */    
     useEffect(() => {
         getXkcdComicWithFetch();
     }, []);
 
+    /**
+     * Fetches XKCD comic and sets the data variables.
+     */ 
     const getXkcdComicWithFetch = async () => {
         const data = await API.get('ExternalAPIs', '/GetXkcdComic', '');
         setXkcdComicData(data);

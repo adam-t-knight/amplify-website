@@ -9,11 +9,17 @@ import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 import '../assets/css/DeleteTrainingMaxExercise.css';
 
+/**
+ * Page to allow authenticated user to delete a training max exercise from the database
+ */
 const DeleteTrainingMaxExercise = () => {
     const [exercises, setExercises] = useState([]);
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
 
+    /**
+     * Sets auth state and fetches on change
+     */
     useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -22,6 +28,9 @@ const DeleteTrainingMaxExercise = () => {
         fetchExercises();
     }, []);
 
+    /**
+     * Function to retrieve Exercises from the database
+     */
     async function fetchExercises() {
         const apiData = await API.graphql({ query: listTrainingMaxExercises });
         const trainingMaxExercises = apiData.data.listTrainingMaxExercises.items;
@@ -29,6 +38,10 @@ const DeleteTrainingMaxExercise = () => {
         setExercises(trainingMaxExercises);
     }
 
+    /**
+     * Function to delete Exercises from the database
+     * @param {string} id id key of exercise to be deleted
+     */
     async function deleteExercise({ id }) {
         const newExercisesArray = exercises.filter(exercise => exercise.id !== id);
         setExercises(newExercisesArray);
@@ -49,7 +62,7 @@ const DeleteTrainingMaxExercise = () => {
                             Exercise Name
                         </th>
                         <th scope="col">
-                            Weight (lbs)
+                            Weight (kg)
                         </th>
                         <th scope="col">
                             Created On

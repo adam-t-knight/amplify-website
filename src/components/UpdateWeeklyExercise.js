@@ -9,6 +9,9 @@ import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 import '../assets/css/UpdateWeeklyExercise.css';
 
+/**
+ * Page to allow authenticated user to update a new weekly exercise in the database
+ */
 const UpdateWeeklyExercise = () => {
     const blankExercise = { dayOfWeekNum: '', name: '', exerciseNum: '', setNum: '', reps: '', ratio: '' }
     const [oldExerciseValues, setOldExerciseValues] = useState([{ ...blankExercise }]);
@@ -17,6 +20,9 @@ const UpdateWeeklyExercise = () => {
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
 
+    /**
+     * Sets auth state and fetches on change
+     */ 
     useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -25,6 +31,9 @@ const UpdateWeeklyExercise = () => {
         fetchExercises();
     }, []);
 
+    /**
+     * Fetches exercises from weekly exercise table
+     */    
     async function fetchExercises() {
         const apiData = await API.graphql({ query: listWeeklyExercises }); 
         const weeklyExercises = apiData.data.listWeeklyExercises.items;
@@ -37,7 +46,10 @@ const UpdateWeeklyExercise = () => {
         setNewExerciseValues(JSON.parse(JSON.stringify(weeklyExercises))); //only the second needs to pass by value
     }
 
-    //this needs regex to check for values eventually. not secure because im directly hitting the DB from javascript! move calls to lambdas?
+    /**
+     * Updates exercise to db using form data
+     * @param {string} idx id key of exercise to be updated
+     */ 
     async function updateExercise(idx) {
         if( oldExerciseValues[idx].dayOfWeekNum !== newExerciseValues[idx].dayOfWeekNum ||
             oldExerciseValues[idx].name !== newExerciseValues[idx].name ||
@@ -54,6 +66,9 @@ const UpdateWeeklyExercise = () => {
         
     }
 
+    /**
+     * Updates exercise function variable using form data
+     */  
     const updateFieldChanged = index => e => {
         let newArr = [...newExerciseValues];
 

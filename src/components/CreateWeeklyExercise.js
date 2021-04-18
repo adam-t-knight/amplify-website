@@ -12,12 +12,18 @@ import '../assets/css/CreateWeeklyExercise.css';
 
 const initialFormState = { dayOfWeekNum: '', name: '', exerciseNum: '', setNum: '', reps: '', ratio: '' }
 
+/**
+ * Page to allow authenticated user to write a new weekly max exercise to the database
+ */
 const CreateWeeklyExercise = () => {
     const [exercises, setExercises] = useState([]);
     const [formData, setFormData] = useState(initialFormState);
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
 
+    /**
+     * Sets auth state and fetches on change
+     */
     useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -26,6 +32,9 @@ const CreateWeeklyExercise = () => {
         fetchExercises();
     }, []);
 
+    /**
+     * Fetches exercises from weekly exercise db
+     */    
     async function fetchExercises() {
         const apiData = await API.graphql({ query: listWeeklyExercises });
         const weeklyExercises = apiData.data.listWeeklyExercises.items;
@@ -37,6 +46,9 @@ const CreateWeeklyExercise = () => {
         setExercises(weeklyExercises);
     }
 
+    /**
+     * Writes new exercise to db using form data
+     */   
     async function createExercise() {
         if (!formData.dayOfWeekNum || !formData.name || !formData.exerciseNum || !formData.setNum || !formData.reps || !formData.ratio) {
             return;

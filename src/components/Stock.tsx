@@ -18,6 +18,9 @@ type stock = {
 
 type stockData = Array<stock>
 
+/**
+ * The Stock subcomponent of the main StockTicker component. Displayes the stock data passed to it.
+ */
 function Stock(props : {stockData : stockData}) {
     const { stockData } = props;
 

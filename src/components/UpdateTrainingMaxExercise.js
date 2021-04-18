@@ -9,6 +9,9 @@ import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
 import '../assets/css/UpdateTrainingMaxExercise.css';
 
+/**
+ * Page to allow authenticated user to update a new training max exercise in the database
+ */
 const UpdateTrainingMaxExercise = () => {
     const blankExercise = { name: '', weight: ''}
     const [oldExerciseValues, setOldExerciseValues] = useState([{ ...blankExercise }]);
@@ -17,6 +20,9 @@ const UpdateTrainingMaxExercise = () => {
     const [authState, setAuthState] = useState();
     const [user, setUser] = useState();
 
+    /**
+     * Sets auth state and fetches on change
+     */
     useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -25,6 +31,9 @@ const UpdateTrainingMaxExercise = () => {
         fetchExercises();
     }, []);
 
+    /**
+     * Fetches exercises from training max db
+     */    
     async function fetchExercises() {
         const apiData = await API.graphql({ query: listTrainingMaxExercises }); 
         const trainingMaxExercises = apiData.data.listTrainingMaxExercises.items;
@@ -33,7 +42,10 @@ const UpdateTrainingMaxExercise = () => {
         setNewExerciseValues(JSON.parse(JSON.stringify(trainingMaxExercises))); //only the second needs to pass by value
     }
 
-    //this needs regex to check for values eventually. not secure because im directly hitting the DB from javascript! move calls to lambdas?
+    /**
+     * Updates exercise to db using form data
+     * @param {string} idx id key of exercise to be updated
+     */  
     async function updateExercise(idx) {
         if( oldExerciseValues[idx].name !== newExerciseValues[idx].name ||
             oldExerciseValues[idx].weight !== newExerciseValues[idx].weight) {
@@ -46,6 +58,9 @@ const UpdateTrainingMaxExercise = () => {
         
     }
 
+    /**
+     * Updates exercise function variable using form data
+     */  
     const updateFieldChanged = index => e => {
         let newArr = [...newExerciseValues];
 
@@ -69,7 +84,7 @@ const UpdateTrainingMaxExercise = () => {
                                 Exercise Name
                             </th>
                             <th scope="col">
-                                Weight (lbs)
+                                Weight (kg)
                             </th>
                             <th scope="col">
                                 Created On

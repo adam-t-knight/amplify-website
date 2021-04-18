@@ -12,6 +12,9 @@ type trainingMaxExercise = {
 
 type trainingMaxExercises = Array<trainingMaxExercise>
 
+/**
+ * Component for showing training max exercises in a table. Populates table based on exercises passed to it.
+ */
 function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExercises}) {
     const { trainingMaxExercises } = props;
 
@@ -36,7 +39,7 @@ function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExer
                             Name
                         </th>
                         <th scope="col">
-                            Weight (lbs)
+                            Weight (kg)
                         </th>
                         <th scope="col">
                             Created On
