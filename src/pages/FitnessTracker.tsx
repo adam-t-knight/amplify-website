@@ -114,7 +114,7 @@ function FitnessTracker() {
     }
 
     return (
-        <div className="FitnessTracker">
+        <div id="FitnessTracker">
             <h1>Fitness Tracker</h1>
             <div id="CurrentDayOfWeek">
                 Current day of the week: {currentDayOfWeek}

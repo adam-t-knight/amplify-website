@@ -4,6 +4,9 @@ import NewYorkTimes from '../components/NewYorkTimes';
 import Weather from '../components/Weather';
 import '../assets/css/Home.css';
 
+/**
+ * Main landing page. Has components for news, weather, time, and stocks.
+ */
 function Home() {
 
   return (
