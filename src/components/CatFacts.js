@@ -3,14 +3,23 @@ import '../assets/css/CatFacts.css';
 
 const catFactsUrl = "https://cat-fact.herokuapp.com/facts";
 
+/**
+ * A component that shows a list of cat facts fetched from an external site
+ */
 function CatFacts() {
     const [catFactsData, setCatFactsData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    /**
+     * Fetches cat facts on change
+     */
     useEffect(() => {
         getCatFactsWithFetch();
     }, []);
 
+    /**
+     * Fetches cat facts
+     */
     const getCatFactsWithFetch = async () => {
         const response = await fetch(catFactsUrl);
         const jsonData = await response.json();

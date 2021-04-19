@@ -8,12 +8,18 @@ import { Button } from 'react-bootstrap';
 const SHOW_LOGIN_BUTTON_TEXT = "Show Login";
 const HIDE_LOGIN_BUTTON_TEXT = "Hide Login";
 
+/**
+ * Component to control sign in and sign out for users in nav bar
+ */
 const LoginToggle = () => {
     const [authState, setAuthState] = React.useState();
     const [user, setUser] = React.useState();
     const [loginVisibility, setLoginVisibility] = React.useState(false);
     const [loginButtonText, setLoginButtonText] = React.useState(SHOW_LOGIN_BUTTON_TEXT);
 
+    /**
+     * Sets auth state
+     */
     React.useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
@@ -21,6 +27,9 @@ const LoginToggle = () => {
         });
     }, []);
 
+    /**
+     * Sets auth state and populates table
+     */
     function toggleLogin(e) {
         e.preventDefault();
         setLoginVisibility(state => !state);

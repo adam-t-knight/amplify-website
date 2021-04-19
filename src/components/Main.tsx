@@ -6,12 +6,12 @@ import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
 import Comedy from '../pages/Comedy';
 import FitnessTracker from '../pages/FitnessTracker';
-import CreateTrainingMaxExercise from './CreateTrainingMaxExercise';
-import DeleteTrainingMaxExercise from './DeleteTrainingMaxExercise';
-import UpdateTrainingMaxExercise from './UpdateTrainingMaxExercise';
-import CreateWeeklyExercise from './CreateWeeklyExercise';
-import DeleteWeeklyExercise from './DeleteWeeklyExercise';
-import UpdateWeeklyExercise from './UpdateWeeklyExercise';
+import CreateTrainingMaxExercise from '../pages/CreateTrainingMaxExercise';
+import DeleteTrainingMaxExercise from '../pages/DeleteTrainingMaxExercise';
+import UpdateTrainingMaxExercise from '../pages/UpdateTrainingMaxExercise';
+import CreateWeeklyExercise from '../pages/CreateWeeklyExercise';
+import DeleteWeeklyExercise from '../pages/DeleteWeeklyExercise';
+import UpdateWeeklyExercise from '../pages/UpdateWeeklyExercise';
 
 const Main = () => {
     return (

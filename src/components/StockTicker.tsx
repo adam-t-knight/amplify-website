@@ -21,15 +21,25 @@ type stock = {
 
 type stockData = Array<stock>
 
+/**
+ * Main Stock component. Fetches stocks based on symbols selected and passes them to the Stock component to be displayed.
+ */
 function StockTicker() {
-    const [stockSymbol, setStockSymbol] = useState<string>("GME");
+    const [stockSymbol, setStockSymbol] = useState<string>("GME"); //initialized to GME to fetch a stock on load
     const [stockData, setStockData] = useState<stockData>([]);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
+    /**
+     * Fetches stock symbol on change
+     */
     useEffect(() => {
         getStockWithAPI(stockSymbol);
     }, [stockSymbol]);
 
+    /**
+     * Fetches stock data based on the inputted stock symbol.
+     * @param {string} stockSymbol stock symbol of data to be fetched
+     */
     const getStockWithAPI = async (stockSymbol : string) => {
         setIsLoaded(false);
         const stockJson = await API.get('ExternalAPIs', '/GetStock?symbol=' + stockSymbol, '');
@@ -37,6 +47,10 @@ function StockTicker() {
         setIsLoaded(true);
     };
 
+    /**
+     * Sets the stock symbol when the dropdown changes. If inputted value is null, no change is made.
+     * @param {string} stockSymbol stock symbol to be set
+     */
     function selectStock(stockSymbol : string | null) {
         if(stockSymbol) {
             setStockSymbol(stockSymbol);

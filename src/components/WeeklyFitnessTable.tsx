@@ -15,6 +15,9 @@ type weeklyExercise = {
 
 type weeklyExercises = Array<weeklyExercise>
 
+/**
+ * Component for showing weekly fitness exercises in a table. Populates table based on exercises passed to it.
+ */
 function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
     const { weeklyExercises } = props;
 
@@ -46,7 +49,7 @@ function WeeklyFitnessTable(props : {weeklyExercises : weeklyExercises}) {
                                 Reps
                             </th>
                             <th scope="col">
-                                Weight (lbs)
+                                Weight (kg)
                             </th>
                         </tr>
                     </thead>

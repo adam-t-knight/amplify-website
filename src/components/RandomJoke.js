@@ -4,14 +4,23 @@ import '../assets/css/RandomJoke.css';
 
 const randomJokeUrl = "https://official-joke-api.appspot.com/random_joke";
 
+/**
+ * Component for displaying a random joke from the official joke API. Provides a button to fetch another random joke.
+ */
 function RandomJoke() {
     const [jokeData, setJokeData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    /**
+     * Fetches on random joke on change
+     */
     useEffect(() => {
         getRandomJokeWithFetch();
     }, []);
 
+    /**
+     * Fetches a random joke from the joke API
+     */
     const getRandomJokeWithFetch = async () => {
         const response = await fetch(randomJokeUrl);
         const jsonData = await response.json();

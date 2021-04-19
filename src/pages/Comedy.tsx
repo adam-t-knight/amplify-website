@@ -3,6 +3,9 @@ import XkcdComic from '../components/XkcdComic';
 import CatFacts from '../components/CatFacts';
 import '../assets/css/Comedy.css';
 
+/**
+ * Comedy page. Has components for random jokes, cat facts, and XKCD.
+ */
 function Comedy() {
 
   return (

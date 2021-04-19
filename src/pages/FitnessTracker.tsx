@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import { listTrainingMaxExercises } from '../graphql/queries';
 import { listWeeklyExercises } from '../graphql/queries';
-import TrainingMaxFitnessTable from "../components/TrainingMaxFitnessTable";
+import TrainingMaxWeightsTable from "../components/TrainingMaxFitnessTable";
 import WeeklyFitnessTable from "../components/WeeklyFitnessTable";
 import moment from "moment-timezone";
 import '../assets/css/FitnessTracker.css';
@@ -23,7 +23,7 @@ type weeklyExercise = {
 
 type weeklyExercises = Array<weeklyExercise>
 
-type trainingMaxExercise = {
+type trainingMaxWeight = {
     id: string,
     name: string,
     weight: number,
@@ -31,11 +31,11 @@ type trainingMaxExercise = {
     updatedOn: Date
 }
 
-type trainingMaxExercises = Array<trainingMaxExercise>
+type trainingMaxWeights = Array<trainingMaxWeight>
 
 
 function FitnessTracker() {
-    const [trainingMaxList, setTrainingMaxList] = useState<trainingMaxExercises>([]);
+    const [trainingMaxList, setTrainingMaxList] = useState<trainingMaxWeights>([]);
     const [weeklyExerciseList, setWeeklyExerciseList] = useState<weeklyExercises>([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -47,11 +47,11 @@ function FitnessTracker() {
 
     async function populateWeights() {
         const listTrainingMaxExercisesData: any = await API.graphql({ query: listTrainingMaxExercises })
-        const trainingMaxExercises = listTrainingMaxExercisesData.data.listTrainingMaxExercises.items;
+        const trainingMaxWeights = listTrainingMaxExercisesData.data.listTrainingMaxExercises.items;
 
-        setTrainingMaxList(trainingMaxExercises);
+        setTrainingMaxList(trainingMaxWeights);
 
-        const trainingMaxMap = new Map(trainingMaxExercises.map((x: { name: string; weight: number; }) => [x.name, x.weight] as [string, number]));
+        const trainingMaxMap = new Map(trainingMaxWeights.map((x: { name: string; weight: number; }) => [x.name, x.weight] as [string, number]));
 
         const listWeeklyExercisesData: any = await API.graphql({ query: listWeeklyExercises })
         const weeklyExercises: weeklyExercises = listWeeklyExercisesData.data.listWeeklyExercises.items;
@@ -87,7 +87,7 @@ function FitnessTracker() {
                     newWeeklyExercise.dayOfWeek = "Wednesday";
                     break;
                 case 5:
-                    newWeeklyExercise.dayOfWeek = "Thurday";
+                    newWeeklyExercise.dayOfWeek = "Thursday";
                     break;
                 case 6:
                     newWeeklyExercise.dayOfWeek = "Friday";
@@ -114,7 +114,7 @@ function FitnessTracker() {
     }
 
     return (
-        <div className="FitnessTracker">
+        <div id="FitnessTracker">
             <h1>Fitness Tracker</h1>
             <div id="CurrentDayOfWeek">
                 Current day of the week: {currentDayOfWeek}
@@ -122,7 +122,7 @@ function FitnessTracker() {
             {isLoaded && trainingMaxList !== null && weeklyExerciseList !== null ? (
                 <div id="FitnessTrackerContainer">
                     <div id="LeftFitnessColumn">
-                        <TrainingMaxFitnessTable trainingMaxExercises={trainingMaxList} />
+                        <TrainingMaxWeightsTable trainingMaxExercises={trainingMaxList} />
                     </div>
                     <div id="RightFitnessColumn">
                         <WeeklyFitnessTable weeklyExercises={weeklyExerciseList} />

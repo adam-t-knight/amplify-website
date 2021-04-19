@@ -5,8 +5,9 @@
 }
 
 #NewYorkTimes {
-    height: 652px;
+    height: 812px;
     width: 410px;
-    padding-top: 30px;
+    margin-top: 8px;
     float: left;
+    background-color: #ffffff;
 }

@@ -96,15 +96,25 @@ type weatherPattern = {
 
 type weatherPatterns = Array<weatherPattern>
 
+/**
+ * Fetches weather data based on symbols selected and passes them to the Stock component to be displayed.
+ */
 function Weather() {
     const [weatherCurrentData, setCurrentWeatherData] = useState<currentWeatherData>(initialCurrentWeatherData);
     const [city, setCity] = useState<string>("Madison");
     const [isLoaded, setIsLoaded] = useState(false);
 
+    /**
+     * Fetches stock symbol on change
+     */    
     useEffect(() => {
         getWeatherWithFetch(city);
     }, [city]);
 
+    /**
+     * Fetches stock data based on the inputted stock symbol.
+     * @param {string} city city of data to be fetched
+     */
     const getWeatherWithFetch = async (city : string) => {
         setIsLoaded(false);
         const data = await API.get('ExternalAPIs', '/GetWeather?city=' + city, '');
@@ -114,6 +124,10 @@ function Weather() {
         setIsLoaded(true);
     };
 
+    /**
+     * Sets the city when the dropdown changes. If inputted value is null, no change is made.
+     * @param {string} city city to be set
+     */
     function selectCity(city : string | null) {
         if(city) {
             setCity(city);
