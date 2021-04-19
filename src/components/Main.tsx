@@ -12,7 +12,6 @@ import UpdateTrainingMaxExercise from '../pages/UpdateTrainingMaxExercise';
 import CreateWeeklyExercise from '../pages/CreateWeeklyExercise';
 import DeleteWeeklyExercise from '../pages/DeleteWeeklyExercise';
 import UpdateWeeklyExercise from '../pages/UpdateWeeklyExercise';
-import TemperatureSensor from '../pages/TemperatureSensor';
 
 const Main = () => {
     return (
@@ -30,8 +29,6 @@ const Main = () => {
                                         <NavDropdown.Item href="/comedy">Comedy</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="/fitness-tracker">Fitness Tracker</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/temperature-sensor">Temperature Sensor</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                                 <Form inline>
@@ -49,7 +46,6 @@ const Main = () => {
                             <Route exact path='/fitness-tracker/create-weekly-exercise' component={CreateWeeklyExercise}></Route>
                             <Route exact path='/fitness-tracker/delete-weekly-exercise' component={DeleteWeeklyExercise}></Route>
                             <Route exact path='/fitness-tracker/update-weekly-exercise' component={UpdateWeeklyExercise}></Route>
-                            <Route exact path='/temperature-sensor' component={TemperatureSensor}></Route>
                         </Switch>
                     </Router>
                 </div>
