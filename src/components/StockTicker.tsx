@@ -75,6 +75,7 @@ function StockTicker() {
                 <Dropdown.Item eventKey="NFLX">NFLX (NASDAQ)</Dropdown.Item>
                 <Dropdown.Item eventKey="NOK">NOK (NYSE)</Dropdown.Item>
                 <Dropdown.Item eventKey="NVDA">NVDA (NASDAQ)</Dropdown.Item>
+                <Dropdown.Item eventKey="NVO">NVO (NYSE)</Dropdown.Item>
                 <Dropdown.Item eventKey="TSLA">TSLA (NASDAQ)</Dropdown.Item>
                 <Dropdown.Item eventKey="TWTR">TWTR (NYSE)</Dropdown.Item>
                 <Dropdown.Item eventKey="VTI">VTI (NYSEARCA)</Dropdown.Item>
