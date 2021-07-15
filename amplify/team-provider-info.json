@@ -1,4 +1,41 @@
 {
+  "madelin": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifywebsite-madelin-213247-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-madelin-213247-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-madelin-213247-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
+      "UnauthRoleName": "amplify-amplifywebsite-madelin-213247-unauthRole",
+      "StackName": "amplify-amplifywebsite-madelin-213247",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-madelin-213247/0915c040-e4eb-11eb-b411-029341a13002",
+      "AmplifyAppId": "d1jlbefkm0m4rx",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplifywebsite-madelin-213247-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      },
+      "function": {
+        "GetXkcdComic": {
+          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
+          "s3Key": "amplify-builds/GetXkcdComic-4e543464395661413438-build.zip"
+        },
+        "GetNewYorkTimes": {
+          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
+          "s3Key": "amplify-builds/GetNewYorkTimes-6d38464958512b44647a-build.zip"
+        },
+        "GetWeather": {
+          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
+          "s3Key": "amplify-builds/GetWeather-51512b597a6b45504448-build.zip"
+        },
+        "GetStock": {
+          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
+          "s3Key": "amplify-builds/GetStock-67684467563665315a35-build.zip"
+        }
+      }
+    }
+  },
   "amanda": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplify-website-amanda-124526-authRole",
