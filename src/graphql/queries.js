@@ -34,6 +34,39 @@ export const listTrainingMaxExercises = /* GraphQL */ `
     }
   }
 `;
+export const getTrainingMaxExerciseHistory = /* GraphQL */ `
+  query GetTrainingMaxExerciseHistory($id: ID!) {
+    getTrainingMaxExerciseHistory(id: $id) {
+      id
+      name
+      weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const listTrainingMaxExerciseHistorys = /* GraphQL */ `
+  query ListTrainingMaxExerciseHistorys(
+    $filter: ModelTrainingMaxExerciseHistoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTrainingMaxExerciseHistorys(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        weight
+        createdOn
+        updatedOn
+      }
+      nextToken
+    }
+  }
+`;
 export const getWeeklyExercise = /* GraphQL */ `
   query GetWeeklyExercise($id: ID!) {
     getWeeklyExercise(id: $id) {

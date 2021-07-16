@@ -3,7 +3,7 @@ import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify'
 import { API } from 'aws-amplify';
 import { listTrainingMaxExercises } from '../graphql/queries';
-import { createTrainingMaxExercise } from '../graphql/mutations';
+import { createTrainingMaxExercise, createTrainingMaxExerciseHistory } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
@@ -47,6 +47,7 @@ const CreateTrainingMaxExercise = () => {
     async function createExercise() {
         if (!formData.name || !formData.weight) return;
         await API.graphql({ query: createTrainingMaxExercise, variables: { input: formData } });
+        await API.graphql({ query: createTrainingMaxExerciseHistory, variables: { input: formData } });
         setExercises([ ...exercises, formData ]);
         setFormData(initialFormState);
     }

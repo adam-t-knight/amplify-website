@@ -31,6 +31,9 @@ function TrainingMaxFitnessTable(props : {trainingMaxExercises : trainingMaxExer
                 <Link to="/fitness-tracker/delete-training-max-exercise">
                     Delete Training Max Exercise
                 </Link>
+                <Link to="/fitness-tracker/view-training-max-history">
+                    View Training Max History
+                </Link>
             </div>
             <table id="TrainingMaxTable">
                 <thead>

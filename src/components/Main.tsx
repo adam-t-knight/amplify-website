@@ -9,6 +9,7 @@ import FitnessTracker from '../pages/FitnessTracker';
 import CreateTrainingMaxExercise from '../pages/CreateTrainingMaxExercise';
 import DeleteTrainingMaxExercise from '../pages/DeleteTrainingMaxExercise';
 import UpdateTrainingMaxExercise from '../pages/UpdateTrainingMaxExercise';
+import ViewTrainingMaxHistory from '../pages/ViewTrainingMaxHistory';
 import CreateWeeklyExercise from '../pages/CreateWeeklyExercise';
 import DeleteWeeklyExercise from '../pages/DeleteWeeklyExercise';
 import UpdateWeeklyExercise from '../pages/UpdateWeeklyExercise';
@@ -43,6 +44,7 @@ const Main = () => {
                             <Route exact path='/fitness-tracker/create-training-max-exercise' component={CreateTrainingMaxExercise}></Route>
                             <Route exact path='/fitness-tracker/delete-training-max-exercise' component={DeleteTrainingMaxExercise}></Route>
                             <Route exact path='/fitness-tracker/update-training-max-exercise' component={UpdateTrainingMaxExercise}></Route>
+                            <Route exact path='/fitness-tracker/view-training-max-history' component={ViewTrainingMaxHistory}></Route>
                             <Route exact path='/fitness-tracker/create-weekly-exercise' component={CreateWeeklyExercise}></Route>
                             <Route exact path='/fitness-tracker/delete-weekly-exercise' component={DeleteWeeklyExercise}></Route>
                             <Route exact path='/fitness-tracker/update-weekly-exercise' component={UpdateWeeklyExercise}></Route>

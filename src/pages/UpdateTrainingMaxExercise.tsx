@@ -3,7 +3,7 @@ import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { CognitoUserInterface } from '@aws-amplify/ui-components';
 import { API } from 'aws-amplify';
 import { listTrainingMaxExercises } from '../graphql/queries';
-import { createTrainingMaxExercise } from '../graphql/mutations';
+import { updateTrainingMaxExercise, createTrainingMaxExerciseHistory } from '../graphql/mutations';
 import { Link } from "react-router-dom";
 import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
 import moment from "moment-timezone";
@@ -30,7 +30,7 @@ const UpdateTrainingMaxExercise = () => {
     const [authState, setAuthState] = useState<AuthState>();
     const [user, setUser] = useState<CognitoUserInterface | undefined>();
 
-    //not always loading for some reason :(
+    //not always loading for some reason :( something with Auth on load?
 
     /**
      * Sets auth state and fetches on change
@@ -51,22 +51,8 @@ const UpdateTrainingMaxExercise = () => {
         const listTrainingMaxExercisesData: any = await API.graphql({ query: listTrainingMaxExercises })
         const trainingMaxWeights: trainingMaxWeights = listTrainingMaxExercisesData.data.listTrainingMaxExercises.items;
 
-        trainingMaxWeights.sort(function(a, b) {
-            return a.name.localeCompare(b.name) || +new Date(b.updatedOn) - +new Date(a.updatedOn); //+ symbol forces date to be interpreted as a number
-        });
-
-        let weightArray: trainingMaxWeights = [];
-        let currentExerciseName = "";
-
-        for(let trainingMaxWeight of trainingMaxWeights) {
-            if(currentExerciseName !== trainingMaxWeight.name) {
-                weightArray.push(trainingMaxWeight);
-                currentExerciseName = trainingMaxWeight.name
-            }
-        }
-
-        setOldExerciseValues(weightArray);
-        setNewExerciseValues(JSON.parse(JSON.stringify(weightArray))); //only the second needs to pass by value
+        setOldExerciseValues(trainingMaxWeights);
+        setNewExerciseValues(JSON.parse(JSON.stringify(trainingMaxWeights))); //only the second needs to pass by value
 
         setIsLoaded(true);
     }
@@ -78,7 +64,8 @@ const UpdateTrainingMaxExercise = () => {
     async function updateExercise(idx: number) {
         if( oldExerciseValues[idx].weight !== newExerciseValues[idx].weight) {
             console.log("Setting exercise values for row " + idx + 1);
-            await API.graphql({ query: createTrainingMaxExercise, variables: { input: { name: newExerciseValues[idx].name, weight: newExerciseValues[idx].weight } } });
+            await API.graphql({ query: updateTrainingMaxExercise, variables: { input: newExerciseValues[idx] } });
+            await API.graphql({ query: createTrainingMaxExerciseHistory, variables: { input: { name: newExerciseValues[idx].name, weight: newExerciseValues[idx].weight } } });
             setOldExerciseValues(JSON.parse(JSON.stringify([...newExerciseValues]))); //have to update in case multiple changes on the same page
             console.log("New exercise values have been set for row " + idx + 1);
         } else {
