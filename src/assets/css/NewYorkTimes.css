@@ -1,13 +1,13 @@
 .nytContainer {
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #NewYorkTimes {
-    height: 812px;
-    width: 410px;
-    margin-top: 8px;
-    float: left;
-    background-color: #ffffff;
+  height: 812px;
+  width: 410px;
+  margin-top: 8px;
+  float: left;
+  background-color: #ffffff;
 }

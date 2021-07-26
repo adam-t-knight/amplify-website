@@ -1,17 +1,13 @@
-#CatFacts {
-  background-color: #ffffff;
-}
-
-.CatFactsContainer {
+.ViewTrainingMaxHistoryContainer {
   margin-top: 30px;
 }
 
-#CatFactsTable {
+#ViewTrainingMaxHistoryTable {
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
 }
 
-#CatFactsTable td {
+#ViewTrainingMaxHistoryTable td {
   padding: 10px;
 }

@@ -15,34 +15,22 @@
         {
           "category": "function",
           "resourceName": "GetXkcdComic",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
         },
         {
           "category": "function",
           "resourceName": "GetNewYorkTimes",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
         },
         {
           "category": "function",
           "resourceName": "GetWeather",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
         },
         {
           "category": "function",
           "resourceName": "GetStock",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
         }
       ]
     },

@@ -34,6 +34,39 @@ export const onDeleteTrainingMaxExercise = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTrainingMaxExerciseHistory = /* GraphQL */ `
+  subscription OnCreateTrainingMaxExerciseHistory {
+    onCreateTrainingMaxExerciseHistory {
+      id
+      name
+      weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const onUpdateTrainingMaxExerciseHistory = /* GraphQL */ `
+  subscription OnUpdateTrainingMaxExerciseHistory {
+    onUpdateTrainingMaxExerciseHistory {
+      id
+      name
+      weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const onDeleteTrainingMaxExerciseHistory = /* GraphQL */ `
+  subscription OnDeleteTrainingMaxExerciseHistory {
+    onDeleteTrainingMaxExerciseHistory {
+      id
+      name
+      weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
 export const onCreateWeeklyExercise = /* GraphQL */ `
   subscription OnCreateWeeklyExercise {
     onCreateWeeklyExercise {

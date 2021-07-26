@@ -1,53 +1,53 @@
 .table-responsive {
-    height: 640px;  
-    overflow: scroll;
+  height: 640px;
+  overflow: scroll;
 }
 
 #WeeklyFitnessTable {
-    background-color: #ffffff;
-    margin-top: 8px;
+  background-color: #ffffff;
+  margin-top: 8px;
 }
 
 #WeeklyTable th {
-    background: #343a40;
-    color: #fff;
-    position: sticky;
-    top: 0;
-    padding: 0 10px 0 10px;
+  background: #343a40;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  padding: 0 10px 0 10px;
 }
 
 #WeeklyTable td {
-    padding: 10px;
+  padding: 10px;
 }
 
 #WeeklyFitnessTableLinkBlock {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .Sunday {
-    background: lightcoral;
+  background: lightcoral;
 }
 
 .Monday {
-    background: lightpink;
+  background: lightpink;
 }
 
 .Tuesday {
-    background: lightsalmon;
+  background: lightsalmon;
 }
 
 .Wednesday {
-    background: lightyellow;
+  background: lightyellow;
 }
 
 .Thursday {
-    background: lightseagreen;
+  background: lightseagreen;
 }
 
 .Friday {
-    background: lightslategray;
+  background: lightslategray;
 }
 
 .Saturday {
-    background: lightskyblue;
+  background: lightskyblue;
 }

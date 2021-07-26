@@ -43,6 +43,48 @@ export const deleteTrainingMaxExercise = /* GraphQL */ `
     }
   }
 `;
+export const createTrainingMaxExerciseHistory = /* GraphQL */ `
+  mutation CreateTrainingMaxExerciseHistory(
+    $input: CreateTrainingMaxExerciseHistoryInput!
+    $condition: ModelTrainingMaxExerciseHistoryConditionInput
+  ) {
+    createTrainingMaxExerciseHistory(input: $input, condition: $condition) {
+      id
+      name
+      weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const updateTrainingMaxExerciseHistory = /* GraphQL */ `
+  mutation UpdateTrainingMaxExerciseHistory(
+    $input: UpdateTrainingMaxExerciseHistoryInput!
+    $condition: ModelTrainingMaxExerciseHistoryConditionInput
+  ) {
+    updateTrainingMaxExerciseHistory(input: $input, condition: $condition) {
+      id
+      name
+      weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const deleteTrainingMaxExerciseHistory = /* GraphQL */ `
+  mutation DeleteTrainingMaxExerciseHistory(
+    $input: DeleteTrainingMaxExerciseHistoryInput!
+    $condition: ModelTrainingMaxExerciseHistoryConditionInput
+  ) {
+    deleteTrainingMaxExerciseHistory(input: $input, condition: $condition) {
+      id
+      name
+      weight
+      createdOn
+      updatedOn
+    }
+  }
+`;
 export const createWeeklyExercise = /* GraphQL */ `
   mutation CreateWeeklyExercise(
     $input: CreateWeeklyExerciseInput!

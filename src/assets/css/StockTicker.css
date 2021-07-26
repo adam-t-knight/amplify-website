@@ -1,17 +1,17 @@
 #StockTicker {
-    margin-top: 8px;
-    height: 812px;
-    float: left;
-    width: 410px;
-    background-color: #ffffff;
+  margin-top: 8px;
+  height: 812px;
+  float: left;
+  width: 410px;
+  background-color: #ffffff;
 }
 
 #StockTicker button {
-    margin-top: 26px;
+  margin-top: 26px;
 }
 
 @media only screen and (max-width: 820px) {
-    #StockTicker {
-        padding-top: 60px;
-    }
+  #StockTicker {
+    padding-top: 60px;
+  }
 }

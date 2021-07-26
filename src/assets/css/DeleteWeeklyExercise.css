@@ -1,13 +1,14 @@
 .DeleteWeeklyExerciseContainer {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 #DeleteWeeklyExerciseTable {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
 
-#DeleteWeeklyExerciseTable td, #DeleteWeeklyExerciseTable th {
-    padding: 10px;
+#DeleteWeeklyExerciseTable td,
+#DeleteWeeklyExerciseTable th {
+  padding: 10px;
 }

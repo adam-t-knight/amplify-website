@@ -1,5 +1,5 @@
 .table-responsive {
-  height: 450px;  
+  height: 450px;
   overflow: scroll;
 }
 
@@ -14,6 +14,7 @@
   top: 0;
 }
 
-#NytArticlesTable td, #NytArticlesTable th {
-    padding: 10px;
+#NytArticlesTable td,
+#NytArticlesTable th {
+  padding: 10px;
 }
