@@ -37,51 +37,29 @@ const TrainingMaxHistory = () => {
       listTrainingMaxExerciseHistorysData.data
         .listTrainingMaxExerciseHistorys.items;
 
+    let weightArray: TrainingMaxWeights = [];
+
     if (location.state) {
-      // const { name } = location.state;
+      const selectedName = location.state.name;
+      setTrainingMaxName(selectedName);
 
-      const weightArray: TrainingMaxWeights = [];
-
-      console.log(`trainingMaxName: ${trainingMaxName}`);
-
-      // if("".localeCompare(name) !== 0) {
-      if (''.localeCompare(trainingMaxName) !== 0) {
-        console.log('training max name is not empty');
-        history.forEach((trainingMaxWeight) => {
-          if (
-            trainingMaxWeight.name.localeCompare(trainingMaxName) ===
-            0
-          ) {
-            weightArray.push(trainingMaxWeight);
-          }
-        });
-        /*         for (const trainingMaxWeight of trainingMaxHistory) {
-          // if(trainingMaxWeight.name.localeCompare(name) === 0) {
-          if (
-            trainingMaxWeight.name.localeCompare(trainingMaxName) ===
-            0
-          ) {
-            weightArray.push(trainingMaxWeight);
-          }
-        } */
-      }
-
-      weightArray.sort(
-        (a, b) =>
-          a.name.localeCompare(b.name) ||
-          +new Date(b.updatedOn) - +new Date(a.updatedOn), // + symbol forces date to be interpreted as a number
-      );
-
-      setTrainingMaxHistory(weightArray);
+      history.forEach((trainingMaxWeight) => {
+        if (
+          trainingMaxWeight.name.localeCompare(selectedName) === 0
+        ) {
+          weightArray.push(trainingMaxWeight);
+        }
+      });
     } else {
-      console.log('no location.state');
-      trainingMaxHistory.sort(
-        (a, b) =>
-          a.name.localeCompare(b.name) ||
-          +new Date(b.updatedOn) - +new Date(a.updatedOn), // + symbol forces date to be interpreted as a number
-      );
-      setTrainingMaxHistory(trainingMaxHistory);
+      weightArray = history;
     }
+
+    weightArray.sort(
+      (a, b) =>
+        a.name.localeCompare(b.name) ||
+        +new Date(b.updatedOn) - +new Date(a.updatedOn), // + symbol forces date to be interpreted as a number
+    );
+    setTrainingMaxHistory(weightArray);
 
     setIsLoaded(true);
   }
@@ -96,10 +74,10 @@ const TrainingMaxHistory = () => {
   return (
     <div id="ViewTrainingMaxHistory">
       <h2>View Training Max Exercise History</h2>
-      <h3>Selected Exercise: {location.state.name}</h3>
       <Link to="/fitness-tracker">Back</Link>
-      {isLoaded && trainingMaxHistory !== null ? (
+      {isLoaded && trainingMaxHistory ? (
         <div id="ViewTrainingMaxHistoryContainer">
+          <h3>Selected Exercise: {trainingMaxName}</h3>
           <table id="ViewTrainingMaxHistoryTable">
             <thead>
               <tr>
