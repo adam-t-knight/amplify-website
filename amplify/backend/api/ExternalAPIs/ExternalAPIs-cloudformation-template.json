@@ -89,18 +89,12 @@
               }
             ]
           },
-          "schemes": [
-            "https"
-          ],
+          "schemes": ["https"],
           "paths": {
             "/GetXkcdComic": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -136,12 +130,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -195,12 +185,8 @@
             },
             "/GetXkcdComic/{proxy+}": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -236,12 +222,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -295,12 +277,8 @@
             },
             "/GetNewYorkTimes": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -336,12 +314,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -395,12 +369,8 @@
             },
             "/GetNewYorkTimes/{proxy+}": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -436,12 +406,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -495,12 +461,8 @@
             },
             "/GetWeather": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -536,12 +498,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -595,12 +553,8 @@
             },
             "/GetWeather/{proxy+}": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -636,12 +590,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -695,12 +645,8 @@
             },
             "/GetStock": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -736,12 +682,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -795,12 +737,8 @@
             },
             "/GetStock/{proxy+}": {
               "options": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "responses": {
                   "200": {
                     "description": "200 response",
@@ -836,12 +774,8 @@
                 }
               },
               "x-amazon-apigateway-any-method": {
-                "consumes": [
-                  "application/json"
-                ],
-                "produces": [
-                  "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "parameters": [
                   {
                     "in": "body",
@@ -905,9 +839,7 @@
           "definitions": {
             "RequestSchema": {
               "type": "object",
-              "required": [
-                "request"
-              ],
+              "required": ["request"],
               "properties": {
                 "request": {
                   "type": "string"
@@ -917,9 +849,7 @@
             },
             "ResponseSchema": {
               "type": "object",
-              "required": [
-                "response"
-              ],
+              "required": ["response"],
               "properties": {
                 "response": {
                   "type": "string"

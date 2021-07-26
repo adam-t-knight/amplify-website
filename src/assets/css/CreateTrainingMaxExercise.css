@@ -1,13 +1,14 @@
 .CreateTrainingMaxExerciseContainer {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .CreateTrainingMaxExerciseTable {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
 
-.CreateTrainingMaxExerciseTable td, .CreateTrainingMaxExerciseTable th {
-    padding: 10px;
+.CreateTrainingMaxExerciseTable td,
+.CreateTrainingMaxExerciseTable th {
+  padding: 10px;
 }

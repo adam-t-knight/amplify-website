@@ -1,19 +1,20 @@
 .table-responsive {
-    height: 450px;  
-    overflow: scroll;
+  height: 450px;
+  overflow: scroll;
 }
-  
+
 #Stock {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 #StockTable th {
-    background: #343a40;
-    color: #fff;
-    position: sticky;
-    top: 0;
+  background: #343a40;
+  color: #fff;
+  position: sticky;
+  top: 0;
 }
 
-#StockTable td, #StockTable th {
-    padding: 10px;
+#StockTable td,
+#StockTable th {
+  padding: 10px;
 }

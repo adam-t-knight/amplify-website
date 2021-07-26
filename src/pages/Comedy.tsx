@@ -7,10 +7,9 @@ import '../assets/css/Comedy.css';
  * Comedy page. Has components for random jokes, cat facts, and XKCD.
  */
 function Comedy() {
-
   return (
     <div id="Comedy">
-      <h1>Comedy</h1>   
+      <h1>Comedy</h1>
       <div id="LeftComedyColumn">
         <RandomJoke />
       </div>
@@ -19,7 +18,7 @@ function Comedy() {
       </div>
       <XkcdComic />
     </div>
-  )
+  );
 }
 
 export default Comedy;

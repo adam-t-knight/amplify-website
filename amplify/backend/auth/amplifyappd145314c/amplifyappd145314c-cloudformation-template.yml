@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Parameters:
   env:
     Type: String
@@ -72,7 +72,7 @@ Conditions:
   ShouldOutputAppClientSecrets:
     Fn::Equals:
       - Ref: userpoolClientGenerateSecret
-      - 'true'
+      - "true"
 Resources:
   SNSRole:
     Type: AWS::IAM::Role
@@ -82,20 +82,20 @@ Resources:
           - ShouldNotCreateEnvResources
           - amplifd145314c_sns-role
           - Fn::Join:
-              - ''
+              - ""
               - - sns
                 - d145314c
                 - Fn::Select:
-                    - '3'
+                    - "3"
                     - Fn::Split:
-                        - '-'
+                        - "-"
                         - Ref: AWS::StackName
-                - '-'
+                - "-"
                 - Ref: env
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
-          - Sid: ''
+          - Sid: ""
             Effect: Allow
             Principal:
               Service: cognito-idp.amazonaws.com
@@ -107,12 +107,12 @@ Resources:
       Policies:
         - PolicyName: amplifd145314c-sns-policy
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
                   - sns:Publish
-                Resource: '*'
+                Resource: "*"
   UserPool:
     Type: AWS::Cognito::UserPool
     UpdateReplacePolicy: Retain
@@ -122,16 +122,16 @@ Resources:
           - ShouldNotCreateEnvResources
           - Ref: userPoolName
           - Fn::Join:
-              - ''
+              - ""
               - - Ref: userPoolName
-                - '-'
+                - "-"
                 - Ref: env
       UsernameConfiguration:
-        CaseSensitive: 'false'
+        CaseSensitive: "false"
       Schema:
         - Name: email
-          Required: 'true'
-          Mutable: 'true'
+          Required: "true"
+          Mutable: "true"
       AutoVerifiedAttributes:
         Ref: autoVerifiedAttributes
       EmailVerificationMessage:
@@ -142,10 +142,10 @@ Resources:
         PasswordPolicy:
           MinimumLength:
             Ref: passwordPolicyMinLength
-          RequireLowercase: 'false'
-          RequireNumbers: 'false'
-          RequireSymbols: 'false'
-          RequireUppercase: 'false'
+          RequireLowercase: "false"
+          RequireNumbers: "false"
+          RequireSymbols: "false"
+          RequireUppercase: "false"
       MfaConfiguration:
         Ref: mfaConfiguration
       SmsVerificationMessage:
@@ -182,18 +182,18 @@ Resources:
           - ShouldNotCreateEnvResources
           - Ref: userpoolClientLambdaRole
           - Fn::Join:
-              - ''
+              - ""
               - - upClientLambdaRole
                 - d145314c
                 - Fn::Select:
-                    - '3'
+                    - "3"
                     - Fn::Split:
-                        - '-'
+                        - "-"
                         - Ref: AWS::StackName
-                - '-'
+                - "-"
                 - Ref: env
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -208,31 +208,31 @@ Resources:
       Code:
         ZipFile:
           Fn::Join:
-            - ''
+            - ""
             - - const response = require('cfn-response');
               - const aws = require('aws-sdk');
               - const identity = new aws.CognitoIdentityServiceProvider();
               - exports.handler = (event, context, callback) => {
-              - ' if (event.RequestType == ''Delete'') { '
-              - '   response.send(event, context, response.SUCCESS, {})'
-              - ' }'
-              - ' if (event.RequestType == ''Update'' || event.RequestType == ''Create'') {'
-              - '   const params = {'
-              - '     ClientId: event.ResourceProperties.clientId,'
-              - '     UserPoolId: event.ResourceProperties.userpoolId'
-              - '   };'
-              - '   identity.describeUserPoolClient(params).promise()'
-              - '     .then((res) => {'
-              - '       response.send(event, context, response.SUCCESS, {''appSecret'': res.UserPoolClient.ClientSecret});'
-              - '     })'
-              - '     .catch((err) => {'
-              - '       response.send(event, context, response.FAILED, {err});'
-              - '     });'
-              - ' }'
-              - '};'
+              - " if (event.RequestType == 'Delete') { "
+              - "   response.send(event, context, response.SUCCESS, {})"
+              - " }"
+              - " if (event.RequestType == 'Update' || event.RequestType == 'Create') {"
+              - "   const params = {"
+              - "     ClientId: event.ResourceProperties.clientId,"
+              - "     UserPoolId: event.ResourceProperties.userpoolId"
+              - "   };"
+              - "   identity.describeUserPoolClient(params).promise()"
+              - "     .then((res) => {"
+              - "       response.send(event, context, response.SUCCESS, {'appSecret': res.UserPoolClient.ClientSecret});"
+              - "     })"
+              - "     .catch((err) => {"
+              - "       response.send(event, context, response.FAILED, {err});"
+              - "     });"
+              - " }"
+              - "};"
       Handler: index.handler
       Runtime: nodejs12.x
-      Timeout: '300'
+      Timeout: "300"
       Role:
         Fn::GetAtt:
           - UserPoolClientRole
@@ -245,7 +245,7 @@ Resources:
       Roles:
         - Ref: UserPoolClientRole
       PolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Action:
@@ -260,7 +260,7 @@ Resources:
       Roles:
         - Ref: UserPoolClientRole
       PolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Action:
@@ -296,7 +296,7 @@ Resources:
           - ShouldNotCreateEnvResources
           - amplifyappd145314c_identitypool_d145314c
           - Fn::Join:
-              - ''
+              - ""
               - - amplifyappd145314c_identitypool_d145314c
                 - __
                 - Ref: env

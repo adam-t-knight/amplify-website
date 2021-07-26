@@ -5,16 +5,8 @@
       "lambdaFunction": "GetXkcdComic",
       "privacy": {
         "protected": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ],
-        "unauth": [
-          "/GET"
-        ]
+        "auth": ["/POST", "/GET", "/PUT", "/PATCH", "/DELETE"],
+        "unauth": ["/GET"]
       },
       "policyResourceName": "/GetXkcdComic"
     },
@@ -23,16 +15,8 @@
       "lambdaFunction": "GetNewYorkTimes",
       "privacy": {
         "protected": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ],
-        "unauth": [
-          "/GET"
-        ]
+        "auth": ["/POST", "/GET", "/PUT", "/PATCH", "/DELETE"],
+        "unauth": ["/GET"]
       },
       "policyResourceName": "/GetNewYorkTimes"
     },
@@ -41,16 +25,8 @@
       "lambdaFunction": "GetWeather",
       "privacy": {
         "protected": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ],
-        "unauth": [
-          "/GET"
-        ]
+        "auth": ["/POST", "/GET", "/PUT", "/PATCH", "/DELETE"],
+        "unauth": ["/GET"]
       },
       "policyResourceName": "/GetWeather"
     },
@@ -59,16 +35,8 @@
       "lambdaFunction": "GetStock",
       "privacy": {
         "protected": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ],
-        "unauth": [
-          "/GET"
-        ]
+        "auth": ["/POST", "/GET", "/PUT", "/PATCH", "/DELETE"],
+        "unauth": ["/GET"]
       },
       "policyResourceName": "/GetStock"
     }
@@ -99,34 +67,22 @@
     {
       "category": "function",
       "resourceName": "GetXkcdComic",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
+      "attributes": ["Name", "Arn"]
     },
     {
       "category": "function",
       "resourceName": "GetNewYorkTimes",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
+      "attributes": ["Name", "Arn"]
     },
     {
       "category": "function",
       "resourceName": "GetWeather",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
+      "attributes": ["Name", "Arn"]
     },
     {
       "category": "function",
       "resourceName": "GetStock",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
+      "attributes": ["Name", "Arn"]
     }
   ]
 }
