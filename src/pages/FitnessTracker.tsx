@@ -9,32 +9,11 @@ import {
 import TrainingMaxWeightsTable from '../components/TrainingMaxFitnessTable';
 import WeeklyFitnessTable from '../components/WeeklyFitnessTable';
 import '../assets/css/FitnessTracker.css';
-
-type WeeklyExercise = {
-  id: string;
-  dayOfWeek: string;
-  dayOfWeekNum: number;
-  name: string;
-  exerciseNum: number;
-  setNum: number;
-  reps: string;
-  weight: number;
-  ratio: number;
-  createdOn: Date;
-  updatedOn: Date;
-};
-
-type WeeklyExercises = Array<WeeklyExercise>;
-
-type TrainingMaxWeight = {
-  id: string;
-  name: string;
-  weight: number;
-  createdOn: Date;
-  updatedOn: Date;
-};
-
-type TrainingMaxWeights = Array<TrainingMaxWeight>;
+import {
+  TrainingMaxWeights,
+  WeeklyExercise,
+  WeeklyExercises,
+} from '../shared/types/FitnessTrackerTypes';
 
 function FitnessTracker() {
   const [trainingMaxList, setTrainingMaxList] =

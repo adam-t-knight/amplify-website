@@ -1,61 +1,52 @@
 import { useState, useEffect } from 'react';
-/* import { onAuthUIStateChange } from '@aws-amplify/ui-components'; */
-import { Auth, API } from 'aws-amplify';
+import { API } from 'aws-amplify';
 import { Link } from 'react-router-dom';
 import {
   AmplifyAuthenticator,
   AmplifySignIn,
 } from '@aws-amplify/ui-react';
+import {
+  AuthState,
+  onAuthUIStateChange,
+  CognitoUserInterface,
+} from '@aws-amplify/ui-components';
 import moment from 'moment-timezone';
-import { listWeeklyExercises } from '../graphql/queries';
 import { createWeeklyExercise } from '../graphql/mutations';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/css/CreateWeeklyExercise.css';
-
-const initialFormState = {
-  dayOfWeekNum: '',
-  name: '',
-  exerciseNum: '',
-  setNum: '',
-  reps: '',
-  ratio: '',
-};
+import {
+  WeeklyExercises,
+  blankWeeklyExercise,
+} from '../shared/types/FitnessTrackerTypes';
+import { fetchWeeklyExercises } from '../shared/lib/FitnessTrackerFetch';
 
 /**
  * Page to allow authenticated user to write a new weekly max exercise to the database
  */
 const CreateWeeklyExercise = () => {
-  const [exercises, setExercises] = useState([]);
-  const [formData, setFormData] = useState(initialFormState);
-  /*   const [authState, setAuthState] = useState();
-  const [user, setUser] = useState(); */
+  const [exercises, setExercises] = useState<WeeklyExercises>([]);
+  const [formData, setFormData] = useState(blankWeeklyExercise);
+  const [authState, setAuthState] = useState<AuthState>();
+  const [user, setUser] = useState<
+    CognitoUserInterface | undefined
+  >();
 
   /**
-   * Fetches exercises from weekly exercise db
+   * Refreshes exercises from weekly exercise db
    */
-  async function fetchExercises() {
-    const apiData = await API.graphql({ query: listWeeklyExercises });
-    const weeklyExercises = apiData.data.listWeeklyExercises.items;
-
-    weeklyExercises.sort(
-      (a, b) =>
-        a.dayOfWeekNum - b.dayOfWeekNum ||
-        a.exerciseNum - b.exerciseNum ||
-        a.setNum - b.setNum,
-    );
-
-    setExercises(weeklyExercises);
+  async function refreshWeeklyExercises() {
+    setExercises(await fetchWeeklyExercises());
   }
 
   /**
-   * Sets auth state and fetches on change
+   * Sets auth state and refreshes exercises on change
    */
   useEffect(() => {
-    /*     onAuthUIStateChange((nextAuthState, authData) => {
+    onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
-      setUser(authData);
-    }); */
-    fetchExercises();
+      setUser(authData as CognitoUserInterface);
+    });
+    refreshWeeklyExercises();
   }, []);
 
   /**
@@ -77,10 +68,10 @@ const CreateWeeklyExercise = () => {
       variables: { input: formData },
     });
     setExercises([...exercises, formData]);
-    setFormData(initialFormState);
+    setFormData(blankWeeklyExercise);
   }
 
-  return Auth.user ? (
+  return authState === AuthState.SignedIn && user ? (
     <div id="CreateWeeklyExercise">
       <h2>Create Weekly Exercise</h2>
       <Link to="/fitness-tracker">Back</Link>
@@ -105,7 +96,7 @@ const CreateWeeklyExercise = () => {
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    dayOfWeekNum: e.target.value,
+                    dayOfWeekNum: +e.target.value,
                   })
                 }
                 placeholder="Day of Week Number"
@@ -131,7 +122,7 @@ const CreateWeeklyExercise = () => {
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    exerciseNum: e.target.value,
+                    exerciseNum: +e.target.value,
                   })
                 }
                 placeholder="Exercise Number"
@@ -144,7 +135,10 @@ const CreateWeeklyExercise = () => {
                 name="setNumInput"
                 type="number"
                 onChange={(e) =>
-                  setFormData({ ...formData, setNum: e.target.value })
+                  setFormData({
+                    ...formData,
+                    setNum: +e.target.value,
+                  })
                 }
                 placeholder="Set Number"
                 value={formData.setNum}
@@ -167,7 +161,7 @@ const CreateWeeklyExercise = () => {
                 name="ratioInput"
                 type="number"
                 onChange={(e) =>
-                  setFormData({ ...formData, ratio: e.target.value })
+                  setFormData({ ...formData, ratio: +e.target.value })
                 }
                 placeholder="Ratio"
                 value={formData.ratio}
@@ -219,7 +213,7 @@ const CreateWeeklyExercise = () => {
       </div>
     </div>
   ) : (
-    <AmplifyAuthenticator hideDefault>
+    <AmplifyAuthenticator>
       <AmplifySignIn slot="sign-in" hideSignUp />
     </AmplifyAuthenticator>
   );

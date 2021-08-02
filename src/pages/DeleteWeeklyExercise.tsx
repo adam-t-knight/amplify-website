@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
-/* import { onAuthUIStateChange } from '@aws-amplify/ui-components'; */
-import { Auth, API } from 'aws-amplify';
+import { API } from 'aws-amplify';
+import {
+  AuthState,
+  onAuthUIStateChange,
+  CognitoUserInterface,
+} from '@aws-amplify/ui-components';
 import { Link } from 'react-router-dom';
 import {
   AmplifyAuthenticator,
   AmplifySignIn,
 } from '@aws-amplify/ui-react';
 import moment from 'moment-timezone';
-import { listWeeklyExercises } from '../graphql/queries';
+import { WeeklyExercises } from '../shared/types/FitnessTrackerTypes';
+import { fetchWeeklyExercises } from '../shared/lib/FitnessTrackerFetch';
 import { deleteWeeklyExercise } from '../graphql/mutations';
 import '../assets/css/DeleteWeeklyExercise.css';
 
@@ -15,43 +20,35 @@ import '../assets/css/DeleteWeeklyExercise.css';
  * Page to allow authenticated user to delete a training max exercise from the database
  */
 const DeleteWeeklyExercise = () => {
-  const [exercises, setExercises] = useState([]);
-  /*   const [authState, setAuthState] = useState();
-  const [user, setUser] = useState(); */
+  const [exercises, setExercises] = useState<WeeklyExercises>([]);
+  const [authState, setAuthState] = useState<AuthState>();
+  const [user, setUser] = useState<
+    CognitoUserInterface | undefined
+  >();
 
   /**
-   * Function to retrieve Exercises from the database
+   * Refreshes exercises from weekly exercise db
    */
-  async function fetchExercises() {
-    const apiData = await API.graphql({ query: listWeeklyExercises });
-    const weeklyExercises = apiData.data.listWeeklyExercises.items;
-
-    weeklyExercises.sort(
-      (a, b) =>
-        a.dayOfWeekNum - b.dayOfWeekNum ||
-        a.exerciseNum - b.exerciseNum ||
-        a.setNum - b.setNum,
-    );
-
-    setExercises(weeklyExercises);
+  async function refreshWeeklyExercises() {
+    setExercises(await fetchWeeklyExercises());
   }
 
   /**
-   * Sets auth state and fetches on change
+   * Sets auth state and refreshes exercises on change
    */
   useEffect(() => {
-    /*     onAuthUIStateChange((nextAuthState, authData) => {
+    onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
-      setUser(authData);
-    }); */
-    fetchExercises();
+      setUser(authData as CognitoUserInterface);
+    });
+    refreshWeeklyExercises();
   }, []);
 
   /**
    * Function to delete Exercises from the database
    * @param {string} id id key of exercise to be deleted
    */
-  async function deleteExercise({ id }) {
+  async function deleteExercise(id: string) {
     const newExercisesArray = exercises.filter(
       (exercise) => exercise.id !== id,
     );
@@ -62,7 +59,7 @@ const DeleteWeeklyExercise = () => {
     });
   }
 
-  return Auth.user ? (
+  return authState === AuthState.SignedIn && user ? (
     <div id="DeleteWeeklyExercise">
       <h2>Delete Weekly Exercise</h2>
       <Link to="/fitness-tracker">Back</Link>
@@ -102,7 +99,7 @@ const DeleteWeeklyExercise = () => {
                 <td>
                   <button
                     type="button"
-                    onClick={() => deleteExercise(exercise)}
+                    onClick={() => deleteExercise(exercise.id)}
                   >
                     Delete
                   </button>
@@ -114,7 +111,7 @@ const DeleteWeeklyExercise = () => {
       </div>
     </div>
   ) : (
-    <AmplifyAuthenticator hideDefault>
+    <AmplifyAuthenticator>
       <AmplifySignIn slot="sign-in" hideSignUp />
     </AmplifyAuthenticator>
   );

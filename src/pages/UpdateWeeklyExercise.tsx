@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
-/* import { onAuthUIStateChange } from '@aws-amplify/ui-components'; */
-import { Auth, API } from 'aws-amplify';
+import { API } from 'aws-amplify';
+import {
+  AuthState,
+  onAuthUIStateChange,
+  CognitoUserInterface,
+} from '@aws-amplify/ui-components';
 
 import { Link } from 'react-router-dom';
 import {
@@ -9,65 +13,52 @@ import {
 } from '@aws-amplify/ui-react';
 import moment from 'moment-timezone';
 import { updateWeeklyExercise } from '../graphql/mutations';
-import { listWeeklyExercises } from '../graphql/queries';
+import { fetchWeeklyExercises } from '../shared/lib/FitnessTrackerFetch';
 import '../assets/css/UpdateWeeklyExercise.css';
+import { blankWeeklyExercise } from '../shared/types/FitnessTrackerTypes';
 
 /**
  * Page to allow authenticated user to update a new weekly exercise in the database
  */
 const UpdateWeeklyExercise = () => {
-  const blankExercise = {
-    dayOfWeekNum: '',
-    name: '',
-    exerciseNum: '',
-    setNum: '',
-    reps: '',
-    ratio: '',
-  };
   const [oldExerciseValues, setOldExerciseValues] = useState([
-    { ...blankExercise },
+    { ...blankWeeklyExercise },
   ]);
   const [newExerciseValues, setNewExerciseValues] = useState([
-    { ...blankExercise },
+    { ...blankWeeklyExercise },
   ]);
 
-  /*   const [authState, setAuthState] = useState();
-  const [user, setUser] = useState(); */
+  const [authState, setAuthState] = useState<AuthState>();
+  const [user, setUser] = useState<
+    CognitoUserInterface | undefined
+  >();
 
   /**
    * Fetches exercises from weekly exercise table
    */
-  async function fetchExercises() {
-    const apiData = await API.graphql({ query: listWeeklyExercises });
-    const weeklyExercises = apiData.data.listWeeklyExercises.items;
-
-    weeklyExercises.sort(
-      (a, b) =>
-        a.dayOfWeekNum - b.dayOfWeekNum ||
-        a.exerciseNum - b.exerciseNum ||
-        a.setNum - b.setNum,
-    );
+  async function refreshWeeklyExercises() {
+    const weeklyExercises = await fetchWeeklyExercises();
 
     setOldExerciseValues(weeklyExercises);
     setNewExerciseValues(JSON.parse(JSON.stringify(weeklyExercises))); // only the second needs to pass by value
   }
 
   /**
-   * Sets auth state and fetches on change
+   * Sets auth state and refreshes exercises on change
    */
   useEffect(() => {
-    /*     onAuthUIStateChange((nextAuthState, authData) => {
+    onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
-      setUser(authData);
-    }); */
-    fetchExercises();
+      setUser(authData as CognitoUserInterface);
+    });
+    refreshWeeklyExercises();
   }, []);
 
   /**
    * Updates exercise to db using form data
    * @param {string} idx id key of exercise to be updated
    */
-  async function updateExercise(idx) {
+  async function updateExercise(idx: number) {
     if (
       oldExerciseValues[idx].dayOfWeekNum !==
         newExerciseValues[idx].dayOfWeekNum ||
@@ -97,16 +88,23 @@ const UpdateWeeklyExercise = () => {
   /**
    * Updates exercise function variable using form data
    */
-  const updateFieldChanged = (index) => (e) => {
-    const newArr = [...newExerciseValues];
+  const updateFieldChanged =
+    (index: number) =>
+    (e: { target: { name: string | number; value: any } }) => {
+      if (e.target.name === 'name') {
+        const newArr = [...newExerciseValues];
+        newArr[index].name = e.target.value;
+        newArr[index].updatedOn = moment().toDate();
+        setNewExerciseValues(newArr);
+      } else if (e.target.name === 'weight') {
+        const newArr = [...newExerciseValues];
+        newArr[index].weight = e.target.value;
+        newArr[index].updatedOn = moment().toDate();
+        setNewExerciseValues(newArr);
+      }
+    };
 
-    newArr[index][e.target.name] = e.target.value; // [e.target.name] is like newArr[index].name or .weight but as a variable
-    newArr[index].updatedOn = moment().toISOString();
-
-    setNewExerciseValues(newArr);
-  };
-
-  return Auth.user ? (
+  return authState === AuthState.SignedIn && user ? (
     <div id="UpdateWeeklyExercise">
       <h2>Update Weekly Exercise</h2>
       <Link to="/fitness-tracker">Back</Link>
@@ -200,7 +198,7 @@ const UpdateWeeklyExercise = () => {
       </div>
     </div>
   ) : (
-    <AmplifyAuthenticator hideDefault>
+    <AmplifyAuthenticator>
       <AmplifySignIn slot="sign-in" hideSignUp />
     </AmplifyAuthenticator>
   );

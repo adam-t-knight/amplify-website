@@ -1,19 +1,24 @@
 import { useState, useEffect } from 'react';
-/* import { onAuthUIStateChange } from '@aws-amplify/ui-components'; */
-import { Auth, API } from 'aws-amplify';
+import { API } from 'aws-amplify';
 
 import { Link } from 'react-router-dom';
 import {
   AmplifyAuthenticator,
   AmplifySignIn,
 } from '@aws-amplify/ui-react';
+import {
+  AuthState,
+  onAuthUIStateChange,
+  CognitoUserInterface,
+} from '@aws-amplify/ui-components';
 import moment from 'moment-timezone';
 import {
   createTrainingMaxExercise,
   createTrainingMaxExerciseHistory,
 } from '../graphql/mutations';
-import { listTrainingMaxExercises } from '../graphql/queries';
 import '../assets/css/CreateTrainingMaxExercise.css';
+import { TrainingMaxWeights } from '../shared/types/FitnessTrackerTypes';
+import { fetchTrainingMaxExercises } from '../shared/lib/FitnessTrackerFetch';
 
 const initialFormState = { name: '', weight: '' };
 
@@ -21,33 +26,32 @@ const initialFormState = { name: '', weight: '' };
  * Page to allow authenticated user to write a new training max exercise to the database
  */
 const CreateTrainingMaxExercise = () => {
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState<TrainingMaxWeights>([]);
   const [formData, setFormData] = useState(initialFormState);
-  /*   const [authState, setAuthState] = useState();
-  const [user, setUser] = useState(); */
+  const [authState, setAuthState] = useState<AuthState>();
+  const [user, setUser] = useState<
+    CognitoUserInterface | undefined
+  >();
+
+  /* issues with displaying quickly */
 
   /**
-   * Fetches exercises from training max db
+   * Refreshes exercises from training max db
    */
-  async function fetchExercises() {
-    const apiData = await API.graphql({
-      query: listTrainingMaxExercises,
-    });
-    const trainingMaxExercises =
-      apiData.data.listTrainingMaxExercises.items;
-
-    setExercises(trainingMaxExercises);
+  async function refreshTrainingMaxExercises() {
+    setExercises(await fetchTrainingMaxExercises());
   }
 
   /**
-   * Sets auth state and fetches on change
+   * Sets auth state and refreshes exercises on change
    */
   useEffect(() => {
-    /*     onAuthUIStateChange((nextAuthState, authData) => {
+    onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
-      setUser(authData);
-    }); */
-    fetchExercises();
+      setUser(authData as CognitoUserInterface);
+    });
+
+    refreshTrainingMaxExercises();
   }, []);
 
   /**
@@ -63,11 +67,11 @@ const CreateTrainingMaxExercise = () => {
       query: createTrainingMaxExerciseHistory,
       variables: { input: formData },
     });
-    setExercises([...exercises, formData]);
+    refreshTrainingMaxExercises();
     setFormData(initialFormState);
   }
 
-  return Auth.user ? (
+  return authState === AuthState.SignedIn && user ? (
     <div id="CreateTrainingMaxExercise">
       <h2>Create Training Max Exercise</h2>
       <Link to="/fitness-tracker">Back</Link>
@@ -97,7 +101,10 @@ const CreateTrainingMaxExercise = () => {
                 name="weightInput"
                 type="number"
                 onChange={(e) =>
-                  setFormData({ ...formData, weight: e.target.value })
+                  setFormData({
+                    ...formData,
+                    weight: e.target.value,
+                  })
                 }
                 placeholder="Weight"
                 value={formData.weight}
@@ -141,7 +148,7 @@ const CreateTrainingMaxExercise = () => {
       </div>
     </div>
   ) : (
-    <AmplifyAuthenticator hideDefault>
+    <AmplifyAuthenticator>
       <AmplifySignIn slot="sign-in" hideSignUp />
     </AmplifyAuthenticator>
   );

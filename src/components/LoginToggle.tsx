@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/css/LoginToggle.css';
 import {
@@ -9,6 +9,7 @@ import {
 import {
   AuthState,
   onAuthUIStateChange,
+  CognitoUserInterface,
 } from '@aws-amplify/ui-components';
 import { Button } from 'react-bootstrap';
 
@@ -19,27 +20,29 @@ const HIDE_LOGIN_BUTTON_TEXT = 'Hide Login';
  * Component to control sign in and sign out for users in nav bar
  */
 const LoginToggle = () => {
-  const [authState, setAuthState] = React.useState();
-  const [user, setUser] = React.useState();
-  const [loginVisibility, setLoginVisibility] = React.useState(false);
-  const [loginButtonText, setLoginButtonText] = React.useState(
+  const [authState, setAuthState] = useState<AuthState>();
+  const [user, setUser] = useState<
+    CognitoUserInterface | undefined
+  >();
+  const [loginVisibility, setLoginVisibility] = useState(false);
+  const [loginButtonText, setLoginButtonText] = useState(
     SHOW_LOGIN_BUTTON_TEXT,
   );
 
   /**
    * Sets auth state
    */
-  React.useEffect(() => {
+  useEffect(() => {
     onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
-      setUser(authData);
+      setUser(authData as CognitoUserInterface);
     });
   }, []);
 
   /**
    * Sets auth state and populates table
    */
-  function toggleLogin(e) {
+  function toggleLogin(e: { preventDefault: () => void }) {
     e.preventDefault();
     setLoginVisibility((state) => !state);
     if (loginVisibility) {
@@ -68,7 +71,7 @@ const LoginToggle = () => {
         </Button>
       </div>
       <div id="LoginSignIn" hidden={!loginVisibility}>
-        <AmplifyAuthenticator hideDefault>
+        <AmplifyAuthenticator>
           <AmplifySignIn slot="sign-in" hideSignUp />
         </AmplifyAuthenticator>
       </div>

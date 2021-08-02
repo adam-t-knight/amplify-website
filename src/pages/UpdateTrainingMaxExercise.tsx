@@ -18,16 +18,7 @@ import {
 } from '../graphql/mutations';
 import { listTrainingMaxExercises } from '../graphql/queries';
 import '../assets/css/UpdateTrainingMaxExercise.css';
-
-type TrainingMaxWeight = {
-  id: string;
-  name: string;
-  weight: number;
-  createdOn: Date;
-  updatedOn: Date;
-};
-
-type TrainingMaxWeights = Array<TrainingMaxWeight>;
+import { TrainingMaxWeights } from '../shared/types/FitnessTrackerTypes';
 
 /**
  * Page to allow authenticated user to update a new training max exercise in the database

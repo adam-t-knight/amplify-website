@@ -19,7 +19,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   rules: {
-    'prettier/prettier': ['error'],
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     // suppress errors for missing 'import React' in files
