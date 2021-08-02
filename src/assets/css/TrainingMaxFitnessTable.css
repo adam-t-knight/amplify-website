@@ -8,6 +8,14 @@
   margin-right: auto;
 }
 
+#TrainingMaxTable th {
+  background: #343a40;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  padding: 0 10px 0 10px;
+}
+
 #TrainingMaxTable td {
   padding: 10px;
 }
