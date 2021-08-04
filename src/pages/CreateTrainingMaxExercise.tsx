@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { API, Auth } from 'aws-amplify';
 
 import { Link } from 'react-router-dom';
@@ -62,10 +62,12 @@ const CreateTrainingMaxExercise = () => {
     refreshTrainingMaxExercises();
 
     if (authState === undefined) {
-      Auth.currentAuthenticatedUser().then((authData) => {
-        setAuthState(AuthState.SignedIn);
-        setUser(authData as CognitoUserInterface);
-      });
+      Auth.currentAuthenticatedUser()
+        .then((authData) => {
+          setAuthState(AuthState.SignedIn);
+          setUser(authData as CognitoUserInterface);
+        })
+        .catch(() => {});
     }
 
     return onAuthUIStateChange((nextAuthState, authData) => {
@@ -93,89 +95,94 @@ const CreateTrainingMaxExercise = () => {
     refreshTrainingMaxExercises();
   }
 
-  return authState === AuthState.SignedIn && user ? (
+  return (
     <div id="CreateTrainingMaxExercise">
       <h2>Create Training Max Exercise</h2>
       <Link to="/fitness-tracker">Back</Link>
-      <Formik
-        initialValues={{
-          name: '',
-          weight: 200,
-        }}
-        validationSchema={trainingMaxSchema}
-        onSubmit={(values) => {
-          createExercise(values);
-        }}
-      >
-        <Form>
-          <label htmlFor="name">
-            Exercise Name
-            <Field
-              id="name"
-              name="name"
-              placeholder="Squat"
-              type="text"
-            />
-            <ErrorMessage
-              name="name"
-              component="span"
-              className="error"
-            />
-          </label>
-          <label htmlFor="weight">
-            Exercise Weight (kg)
-            <Field id="weight" name="weight" type="number" />
-            <ErrorMessage
-              name="weight"
-              component="span"
-              className="error"
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
-      {!isLoading ? (
-        <div className="CreateTrainingMaxExerciseContainer">
-          <table className="CreateTrainingMaxExerciseTable">
-            <thead>
-              <tr>
-                <th scope="col">Exercise Name</th>
-                <th scope="col">Exercise Weight (kg)</th>
-                <th scope="col">Created On</th>
-                <th scope="col">Updated On</th>
-              </tr>
-            </thead>
-            <tbody>
-              {exercises.map((exercise) => (
-                <tr key={exercise.id}>
-                  <td>{exercise.name}</td>
-                  <td>{exercise.weight}</td>
-                  <td>
-                    {moment(exercise.createdOn)
-                      .format('DD-MM-YYYY HH:mm:ss')
-                      .toString()}
-                  </td>
-                  <td>
-                    {moment(exercise.updatedOn)
-                      .format('DD-MM-YYYY HH:mm:ss')
-                      .toString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      {authState === AuthState.SignedIn && user ? (
+        <>
+          <Formik
+            initialValues={{
+              name: '',
+              weight: 200,
+            }}
+            validationSchema={trainingMaxSchema}
+            onSubmit={(values) => {
+              createExercise(values);
+            }}
+          >
+            <Form>
+              <label htmlFor="name">
+                Exercise Name
+                <Field
+                  id="name"
+                  name="name"
+                  placeholder="Squat"
+                  type="text"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="span"
+                  className="error"
+                />
+              </label>
+              <label htmlFor="weight">
+                Exercise Weight (kg)
+                <Field id="weight" name="weight" type="number" />
+                <ErrorMessage
+                  name="weight"
+                  component="span"
+                  className="error"
+                />
+              </label>
+              <button type="submit">Submit</button>
+            </Form>
+          </Formik>
+
+          {!isLoading ? (
+            <div className="CreateTrainingMaxExerciseContainer">
+              <table className="CreateTrainingMaxExerciseTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Exercise Name</th>
+                    <th scope="col">Exercise Weight (kg)</th>
+                    <th scope="col">Created On</th>
+                    <th scope="col">Updated On</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {exercises.map((exercise) => (
+                    <tr key={exercise.id}>
+                      <td>{exercise.name}</td>
+                      <td>{exercise.weight}</td>
+                      <td>
+                        {moment(exercise.createdOn)
+                          .format('DD-MM-YYYY HH:mm:ss')
+                          .toString()}
+                      </td>
+                      <td>
+                        {moment(exercise.updatedOn)
+                          .format('DD-MM-YYYY HH:mm:ss')
+                          .toString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="CreateTrainingMaxExerciseContainer">
+              <h3>Loading! Please wait...</h3>
+            </div>
+          )}
+        </>
       ) : (
-        <div className="CreateTrainingMaxExerciseContainer">
-          <h3>Loading! Please wait...</h3>
+        <div>
+          <AmplifyAuthenticator>
+            <AmplifySignIn slot="sign-in" hideSignUp />
+          </AmplifyAuthenticator>
         </div>
       )}
-    </div>
-  ) : (
-    <div>
-      <AmplifyAuthenticator>
-        <AmplifySignIn slot="sign-in" hideSignUp />
-      </AmplifyAuthenticator>
     </div>
   );
 };
