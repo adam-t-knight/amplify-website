@@ -101,52 +101,6 @@ function FitnessTracker() {
       exerciseArray.push(newWeeklyExercise);
     });
 
-    /*     for (const exercise of exercises) {
-      const newWeeklyExercise = {} as weeklyExercise;
-
-      newWeeklyExercise.id = exercise.id;
-      newWeeklyExercise.dayOfWeekNum = exercise.dayOfWeekNum;
-      newWeeklyExercise.name = exercise.name;
-      newWeeklyExercise.exerciseNum = exercise.exerciseNum;
-      newWeeklyExercise.setNum = exercise.setNum;
-      newWeeklyExercise.reps = exercise.reps;
-      newWeeklyExercise.createdOn = exercise.createdOn;
-      newWeeklyExercise.updatedOn = exercise.updatedOn;
-
-      const trainingMaxWeight = trainingMaxMap.get(
-        newWeeklyExercise.name,
-      ) as number;
-      newWeeklyExercise.weight = roundToNearestFive(
-        exercise.ratio * trainingMaxWeight,
-      );
-
-      switch (exercise.dayOfWeekNum) {
-        case 1:
-          newWeeklyExercise.dayOfWeek = 'Sunday';
-          break;
-        case 2:
-          newWeeklyExercise.dayOfWeek = 'Monday';
-          break;
-        case 3:
-          newWeeklyExercise.dayOfWeek = 'Tuesday';
-          break;
-        case 4:
-          newWeeklyExercise.dayOfWeek = 'Wednesday';
-          break;
-        case 5:
-          newWeeklyExercise.dayOfWeek = 'Thursday';
-          break;
-        case 6:
-          newWeeklyExercise.dayOfWeek = 'Friday';
-          break;
-        case 7:
-          newWeeklyExercise.dayOfWeek = 'Saturday';
-          break;
-      }
-
-      exerciseArray.push(newWeeklyExercise);
-    } */
-
     exerciseArray.sort(
       (a, b) =>
         a.dayOfWeekNum - b.dayOfWeekNum ||
@@ -167,7 +121,7 @@ function FitnessTracker() {
     <div id="FitnessTracker">
       <h1>Fitness Tracker</h1>
       <div id="CurrentDayOfWeek">
-        Current day of the week: {currentDayOfWeek}
+        Current day of the week: <strong>{currentDayOfWeek}</strong>
       </div>
       {isLoaded &&
       trainingMaxList !== null &&
