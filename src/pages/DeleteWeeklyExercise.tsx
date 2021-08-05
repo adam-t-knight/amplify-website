@@ -125,7 +125,7 @@ const DeleteWeeklyExercise = () => {
               </table>
             </div>
           ) : (
-            <div className="DeleteTrainingMaxExerciseContainer">
+            <div className="DeleteWeeklyExerciseContainer">
               <h3>Loading! Please wait...</h3>
             </div>
           )}

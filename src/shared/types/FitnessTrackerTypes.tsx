@@ -9,14 +9,6 @@ export type TrainingMaxWeight = {
 
 export type TrainingMaxWeights = Array<TrainingMaxWeight>;
 
-/* export const blankTrainingMaxExercise = {
-  id: '',
-  name: '',
-  weight: 0,
-  createdOn: new Date(),
-  updatedOn: new Date(),
-}; */
-
 export type WeeklyExercise = {
   id: string;
   dayOfWeekNum: number;

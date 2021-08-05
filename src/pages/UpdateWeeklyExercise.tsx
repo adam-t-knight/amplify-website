@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API } from 'aws-amplify';
+import { Auth, API } from 'aws-amplify';
 import {
   AuthState,
   onAuthUIStateChange,
@@ -12,6 +12,7 @@ import {
   AmplifySignIn,
 } from '@aws-amplify/ui-react';
 import moment from 'moment-timezone';
+/* import { useForm } from 'react-hook-form'; */
 import { updateWeeklyExercise } from '../graphql/mutations';
 import { fetchWeeklyExercises } from '../shared/lib/FitnessTrackerFetch';
 import '../assets/css/UpdateWeeklyExercise.css';
@@ -28,10 +29,23 @@ const UpdateWeeklyExercise = () => {
     { ...blankWeeklyExercise },
   ]);
 
+  /*   const { register, handleSubmit, formState } = useForm({
+    mode: 'onChange',
+  });
+  const onSubmit = (data: any) => {
+    alert(JSON.stringify(data));
+  };
+  // make sure to read state before render to subscribe to the state update (Proxy).
+  const { dirtyFields } = formState;
+
+  // check your dev console, it's a Set
+  console.log(dirtyFields); */
+
   const [authState, setAuthState] = useState<AuthState>();
   const [user, setUser] = useState<
     CognitoUserInterface | undefined
   >();
+  const [isLoading, setIsLoading] = useState(true);
 
   /**
    * Fetches exercises from weekly exercise table
@@ -41,18 +55,30 @@ const UpdateWeeklyExercise = () => {
 
     setOldExerciseValues(weeklyExercises);
     setNewExerciseValues(JSON.parse(JSON.stringify(weeklyExercises))); // only the second needs to pass by value
+
+    setIsLoading(false);
   }
 
   /**
    * Sets auth state and refreshes exercises on change
    */
   useEffect(() => {
-    onAuthUIStateChange((nextAuthState, authData) => {
+    refreshWeeklyExercises();
+
+    if (authState === undefined) {
+      Auth.currentAuthenticatedUser()
+        .then((authData) => {
+          setAuthState(AuthState.SignedIn);
+          setUser(authData as CognitoUserInterface);
+        })
+        .catch(() => {});
+    }
+
+    return onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
       setUser(authData as CognitoUserInterface);
     });
-    refreshWeeklyExercises();
-  }, []);
+  }, [authState]);
 
   /**
    * Updates exercise to db using form data
@@ -121,103 +147,115 @@ const UpdateWeeklyExercise = () => {
       }
     };
 
-  return authState === AuthState.SignedIn && user ? (
+  return (
     <div id="UpdateWeeklyExercise">
       <h2>Update Weekly Exercise</h2>
       <Link to="/fitness-tracker">Back</Link>
-      <div id="UpdateWeeklyExerciseContainer">
-        <table id="UpdateWeeklyExerciseTable">
-          <thead>
-            <tr>
-              <th scope="col">Day of Week Number</th>
-              <th scope="col">Exercise Name</th>
-              <th scope="col">Exercise Number</th>
-              <th scope="col">Set Number</th>
-              <th scope="col">Reps</th>
-              <th scope="col">Ratio</th>
-              <th scope="col">Created On</th>
-              <th scope="col">Updated On</th>
-            </tr>
-          </thead>
-          <tbody>
-            {newExerciseValues.map((exercise, idx) => (
-              <tr key={exercise.id}>
-                <td>
-                  <input
-                    type="number"
-                    name="dayOfWeekNum"
-                    value={exercise.dayOfWeekNum}
-                    onChange={updateFieldChanged(idx)}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    name="name"
-                    value={exercise.name}
-                    onChange={updateFieldChanged(idx)}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    name="exerciseNum"
-                    value={exercise.exerciseNum}
-                    onChange={updateFieldChanged(idx)}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    name="setNum"
-                    value={exercise.setNum}
-                    onChange={updateFieldChanged(idx)}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    name="reps"
-                    value={exercise.reps}
-                    onChange={updateFieldChanged(idx)}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    name="ratio"
-                    value={exercise.ratio}
-                    onChange={updateFieldChanged(idx)}
-                  />
-                </td>
-                <td>
-                  {moment(exercise.createdOn)
-                    .format('DD-MM-YYYY HH:mm:ss')
-                    .toString()}
-                </td>
-                <td>
-                  {moment(exercise.updatedOn)
-                    .format('DD-MM-YYYY HH:mm:ss')
-                    .toString()}
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    onClick={() => updateExercise(idx)}
-                  >
-                    Save
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {authState === AuthState.SignedIn && user ? (
+        <>
+          {!isLoading ? (
+            <div id="UpdateWeeklyExerciseContainer">
+              <table id="UpdateWeeklyExerciseTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Day of Week Number</th>
+                    <th scope="col">Exercise Name</th>
+                    <th scope="col">Exercise Number</th>
+                    <th scope="col">Set Number</th>
+                    <th scope="col">Reps</th>
+                    <th scope="col">Ratio</th>
+                    <th scope="col">Created On</th>
+                    <th scope="col">Updated On</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {newExerciseValues.map((exercise, idx) => (
+                    <tr key={exercise.id}>
+                      <td>
+                        <input
+                          type="number"
+                          name="dayOfWeekNum"
+                          value={exercise.dayOfWeekNum}
+                          onChange={updateFieldChanged(idx)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          name="name"
+                          value={exercise.name}
+                          onChange={updateFieldChanged(idx)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="exerciseNum"
+                          value={exercise.exerciseNum}
+                          onChange={updateFieldChanged(idx)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="setNum"
+                          value={exercise.setNum}
+                          onChange={updateFieldChanged(idx)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          name="reps"
+                          value={exercise.reps}
+                          onChange={updateFieldChanged(idx)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="ratio"
+                          value={exercise.ratio}
+                          onChange={updateFieldChanged(idx)}
+                        />
+                      </td>
+                      <td>
+                        {moment(exercise.createdOn)
+                          .format('DD-MM-YYYY HH:mm:ss')
+                          .toString()}
+                      </td>
+                      <td>
+                        {moment(exercise.updatedOn)
+                          .format('DD-MM-YYYY HH:mm:ss')
+                          .toString()}
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => updateExercise(idx)}
+                        >
+                          Save
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="UpdateWeeklyExerciseContainer">
+              <h3>Loading! Please wait...</h3>
+            </div>
+          )}
+        </>
+      ) : (
+        <div>
+          <AmplifyAuthenticator>
+            <AmplifySignIn slot="sign-in" hideSignUp />
+          </AmplifyAuthenticator>
+        </div>
+      )}
     </div>
-  ) : (
-    <AmplifyAuthenticator>
-      <AmplifySignIn slot="sign-in" hideSignUp />
-    </AmplifyAuthenticator>
   );
 };
 

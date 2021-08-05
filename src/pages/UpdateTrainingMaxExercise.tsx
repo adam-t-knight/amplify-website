@@ -275,7 +275,7 @@ const UpdateTrainingMaxExercise = () => {
               </Formik>
             </div>
           ) : (
-            <div className="CreateWeeklyExerciseContainer">
+            <div className="UpdateWeeklyExerciseContainer">
               <h3>Loading! Please wait...</h3>
             </div>
           )}
