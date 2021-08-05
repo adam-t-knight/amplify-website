@@ -111,32 +111,36 @@ const CreateTrainingMaxExercise = () => {
               createExercise(values);
             }}
           >
-            <Form>
-              <label htmlFor="name">
-                Exercise Name
-                <Field
-                  id="name"
-                  name="name"
-                  placeholder="Squat"
-                  type="text"
-                />
-                <ErrorMessage
-                  name="name"
-                  component="span"
-                  className="error"
-                />
-              </label>
-              <label htmlFor="weight">
-                Exercise Weight (kg)
-                <Field id="weight" name="weight" type="number" />
-                <ErrorMessage
-                  name="weight"
-                  component="span"
-                  className="error"
-                />
-              </label>
-              <button type="submit">Submit</button>
-            </Form>
+            {({ isValid, dirty }) => (
+              <Form>
+                <label htmlFor="name">
+                  Exercise Name
+                  <Field
+                    id="name"
+                    name="name"
+                    placeholder="Squat"
+                    type="text"
+                  />
+                  <ErrorMessage
+                    name="name"
+                    component="span"
+                    className="error"
+                  />
+                </label>
+                <label htmlFor="weight">
+                  Exercise Weight (kg)
+                  <Field id="weight" name="weight" type="number" />
+                  <ErrorMessage
+                    name="weight"
+                    component="span"
+                    className="error"
+                  />
+                </label>
+                <button disabled={!isValid || !dirty} type="submit">
+                  Submit
+                </button>
+              </Form>
+            )}
           </Formik>
 
           {!isLoading ? (

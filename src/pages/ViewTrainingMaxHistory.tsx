@@ -66,7 +66,7 @@ const TrainingMaxHistory = () => {
     <div id="ViewTrainingMaxHistory">
       <h2>View Training Max Exercise History</h2>
       <Link to="/fitness-tracker">Back</Link>
-      {isLoaded && trainingMaxHistory ? (
+      {isLoaded ? (
         <div id="ViewTrainingMaxHistoryContainer">
           <h3>Selected Exercise: {trainingMaxName}</h3>
           <table id="ViewTrainingMaxHistoryTable">

@@ -91,14 +91,31 @@ const UpdateWeeklyExercise = () => {
   const updateFieldChanged =
     (index: number) =>
     (e: { target: { name: string | number; value: any } }) => {
-      if (e.target.name === 'name') {
+      if (e.target && e.target.name && e.target.value) {
         const newArr = [...newExerciseValues];
-        newArr[index].name = e.target.value;
-        newArr[index].updatedOn = moment().toDate();
-        setNewExerciseValues(newArr);
-      } else if (e.target.name === 'weight') {
-        const newArr = [...newExerciseValues];
-        newArr[index].weight = e.target.value;
+
+        switch (e.target.name) {
+          case 'dayOfWeekNum':
+            newArr[index].dayOfWeekNum = e.target.value;
+            break;
+          case 'name':
+            newArr[index].name = e.target.value;
+            break;
+          case 'exerciseNum':
+            newArr[index].exerciseNum = e.target.value;
+            break;
+          case 'setNum':
+            newArr[index].setNum = e.target.value;
+            break;
+          case 'reps':
+            newArr[index].reps = e.target.value;
+            break;
+          case 'ratio':
+            newArr[index].ratio = e.target.value;
+            break;
+          default:
+        }
+
         newArr[index].updatedOn = moment().toDate();
         setNewExerciseValues(newArr);
       }

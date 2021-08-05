@@ -9,7 +9,41 @@ export type TrainingMaxWeight = {
 
 export type TrainingMaxWeights = Array<TrainingMaxWeight>;
 
+/* export const blankTrainingMaxExercise = {
+  id: '',
+  name: '',
+  weight: 0,
+  createdOn: new Date(),
+  updatedOn: new Date(),
+}; */
+
 export type WeeklyExercise = {
+  id: string;
+  dayOfWeekNum: number;
+  name: string;
+  exerciseNum: number;
+  setNum: number;
+  reps: string;
+  ratio: number;
+  createdOn: Date;
+  updatedOn: Date;
+};
+
+export type WeeklyExercises = Array<WeeklyExercise>;
+
+export const blankWeeklyExercise = {
+  id: '',
+  dayOfWeekNum: 0,
+  name: '',
+  exerciseNum: 0,
+  setNum: 0,
+  reps: '',
+  ratio: 0,
+  createdOn: new Date(),
+  updatedOn: new Date(),
+};
+
+export type DisplayWeeklyExercise = {
   id: string;
   dayOfWeek: string;
   dayOfWeekNum: number;
@@ -23,26 +57,4 @@ export type WeeklyExercise = {
   updatedOn: Date;
 };
 
-export type WeeklyExercises = Array<WeeklyExercise>;
-
-export const blankWeeklyExercise = {
-  id: '',
-  dayOfWeek: '',
-  dayOfWeekNum: 0,
-  name: '',
-  exerciseNum: 0,
-  setNum: 0,
-  reps: '',
-  weight: 0,
-  ratio: 0,
-  createdOn: new Date(),
-  updatedOn: new Date(),
-};
-
-export const blankTrainingMaxExercise = {
-  id: '',
-  name: '',
-  weight: 0,
-  createdOn: new Date(),
-  updatedOn: new Date(),
-};
+export type DisplayWeeklyExercises = Array<DisplayWeeklyExercise>;
