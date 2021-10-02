@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 import LoginToggle from './LoginToggle';
 import Home from '../pages/Home';
-import Comedy from '../pages/Comedy';
 import FitnessTracker from '../pages/FitnessTracker';
 import CreateTrainingMaxExercise from '../pages/CreateTrainingMaxExercise';
 import DeleteTrainingMaxExercise from '../pages/DeleteTrainingMaxExercise';
@@ -36,10 +35,6 @@ const Main = () => (
               <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
                 <NavDropdown title="Pages" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/comedy">
-                    Comedy
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
                   <NavDropdown.Item href="/fitness-tracker">
                     Fitness Tracker
                   </NavDropdown.Item>
@@ -52,7 +47,6 @@ const Main = () => (
           </Navbar>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/comedy" component={Comedy} />
             <Route
               exact
               path="/fitness-tracker"

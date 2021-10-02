@@ -18,6 +18,7 @@ import {
   FieldArray,
   Form,
   ErrorMessage,
+  getIn,
 } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -28,21 +29,28 @@ import '../assets/css/UpdateTrainingMaxExercise.css';
 import {
   TrainingMaxWeight,
   TrainingMaxWeights,
+  blankTrainingMaxExercise,
 } from '../shared/types/FitnessTrackerTypes';
 import { fetchTrainingMaxExercises } from '../shared/lib/FitnessTrackerFetch';
+
+/* need to show confirmation of updating value. set button back to disabled? bug: not currently updating updated on value */
 
 /**
  * Page to allow authenticated user to update a new training max exercise in the database
  */
 const UpdateTrainingMaxExercise = () => {
-  const [exercises, setExercises] = useState<TrainingMaxWeights>([]);
+  const [initialExerciseValues, setInitialExerciseValues] =
+    useState<TrainingMaxWeights>([{ ...blankTrainingMaxExercise }]);
+  const [exercises, setExercises] = useState<TrainingMaxWeights>([
+    { ...blankTrainingMaxExercise },
+  ]);
   const [authState, setAuthState] = useState<AuthState>();
   const [user, setUser] = useState<
     CognitoUserInterface | undefined
   >();
   const [isLoading, setIsLoading] = useState(true);
 
-  /* problems */
+  /* problems with require on this. breaks lots of stuff! */
   const trainingMaxSchema = Yup.object().shape({
     exercises: Yup.array().of(
       Yup.object().shape({
@@ -53,7 +61,6 @@ const UpdateTrainingMaxExercise = () => {
             new RegExp('^[a-zA-Z ]*$'),
             'Can only contain letters and spaces',
           ),
-        /*           .required('Required'), */
         weight: Yup.number().positive('Must be positive'),
       }),
     ),
@@ -66,6 +73,9 @@ const UpdateTrainingMaxExercise = () => {
     const trainingMaxWeights = await fetchTrainingMaxExercises();
 
     setExercises(trainingMaxWeights);
+    setInitialExerciseValues(
+      JSON.parse(JSON.stringify(trainingMaxWeights)),
+    ); // only the second needs to pass by value
 
     setIsLoading(false);
   }
@@ -74,46 +84,27 @@ const UpdateTrainingMaxExercise = () => {
    * Looks at the arrays of touched fields and fields with errors. Disables button if there are errors or if field hasn't been touched
    */
   function buttonDisabler(
-    touched: any,
     errors: any,
-    idx: number,
     values: any,
     exercise: TrainingMaxWeight,
   ) {
-    if (errors && errors.exercises && errors.exercises[idx]) {
-      console.log('idx: ', idx);
-      console.log('errors.exercises[idx]: ', errors.exercises[idx]);
-      return true;
-    }
-    if (!touched || !touched.exercises || !touched.exercises[idx]) {
+    if (!values) {
       return true;
     }
 
-    /*     console.log('values: ', values);
-    console.log('exercise: ', exercise);
-    if (!values[idx]) {
-      return true;
-    } */
-
-    console.log(
-      'values.form.values[idx].name: ',
-      values.form.values[idx].name,
-    );
-    console.log(
-      'values.form.values[idx].weight: ',
-      values.form.values[idx].weight,
-    );
-    console.log('exercise.name: ', exercise.name);
-    console.log('exercise.weight: ', exercise.weight);
-
-    if (
-      values.form.values[idx].name === exercise.name &&
-      values.form.values[idx].weight === exercise.weight
-    ) {
+    if (errors) {
       return true;
     }
 
-    return false;
+    if (values.name && values.name !== exercise.name) {
+      return false;
+    }
+
+    if (values.weight && values.weight !== exercise.weight) {
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -143,14 +134,9 @@ const UpdateTrainingMaxExercise = () => {
    * @param {exercise} exercise for the original values
    */
   async function updateExercise(
-    touched: any,
-    errors: any,
     values: any,
     exercise: TrainingMaxWeight,
   ) {
-    console.log('touched: ', touched);
-    console.log('errors: ', errors);
-
     const updatedExercise = JSON.parse(
       JSON.stringify(exercise),
     ) as TrainingMaxWeight;
@@ -186,11 +172,11 @@ const UpdateTrainingMaxExercise = () => {
           {!isLoading ? (
             <div id="UpdateTrainingMaxExerciseContainer">
               <Formik
-                initialValues={{ ...exercises }}
+                initialValues={{ ...initialExerciseValues }}
                 validationSchema={trainingMaxSchema}
                 onSubmit={() => {}}
               >
-                {({ touched, errors }) => (
+                {({ errors }) => (
                   <Form>
                     <FieldArray name="TrainingMaxFieldArray">
                       {(values) => (
@@ -243,20 +229,23 @@ const UpdateTrainingMaxExercise = () => {
                                 <td>
                                   <button
                                     disabled={buttonDisabler(
-                                      touched,
-                                      errors,
-                                      idx,
-                                      values,
+                                      getIn(
+                                        errors,
+                                        `exercises.${idx}`,
+                                      ),
+                                      getIn(
+                                        values.form.values,
+                                        `exercises.${idx}`,
+                                      ),
                                       exercise,
                                     )}
                                     type="button"
                                     onClick={() =>
                                       updateExercise(
-                                        touched,
-                                        errors,
-                                        values.form.values.exercises[
-                                          idx
-                                        ],
+                                        getIn(
+                                          values.form.values,
+                                          `exercises.${idx}`,
+                                        ),
                                         exercise,
                                       )
                                     }

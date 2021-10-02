@@ -12,7 +12,6 @@ import {
   AmplifySignIn,
 } from '@aws-amplify/ui-react';
 import moment from 'moment-timezone';
-/* import { useForm } from 'react-hook-form'; */
 import { updateWeeklyExercise } from '../graphql/mutations';
 import { fetchWeeklyExercises } from '../shared/lib/FitnessTrackerFetch';
 import '../assets/css/UpdateWeeklyExercise.css';
@@ -28,18 +27,6 @@ const UpdateWeeklyExercise = () => {
   const [newExerciseValues, setNewExerciseValues] = useState([
     { ...blankWeeklyExercise },
   ]);
-
-  /*   const { register, handleSubmit, formState } = useForm({
-    mode: 'onChange',
-  });
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data));
-  };
-  // make sure to read state before render to subscribe to the state update (Proxy).
-  const { dirtyFields } = formState;
-
-  // check your dev console, it's a Set
-  console.log(dirtyFields); */
 
   const [authState, setAuthState] = useState<AuthState>();
   const [user, setUser] = useState<

@@ -150,11 +150,11 @@ function Weather() {
       >
         <Dropdown.Item eventKey="Vienna">Vienna</Dropdown.Item>
         <Dropdown.Item eventKey="Vancouver">Vancouver</Dropdown.Item>
-        <Dropdown.Item eventKey="Beijing">Beijing</Dropdown.Item>
         <Dropdown.Item eventKey="Berlin">Berlin</Dropdown.Item>
         <Dropdown.Item eventKey="Copenhagen">
           Copenhagen
         </Dropdown.Item>
+        <Dropdown.Item eventKey="Stockholm">Stockholm</Dropdown.Item>
         <Dropdown.Item eventKey="Madison">Madison</Dropdown.Item>
         <Dropdown.Item eventKey="Raleigh">Raleigh</Dropdown.Item>
       </DropdownButton>

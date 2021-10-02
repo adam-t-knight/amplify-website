@@ -2,6 +2,7 @@ import StockTicker from '../components/StockTicker';
 import WorldClock from '../components/WorldClock';
 import NewYorkTimes from '../components/NewYorkTimes';
 import Weather from '../components/Weather';
+import XkcdComic from '../components/XkcdComic';
 import '../assets/css/Home.css';
 
 /**
@@ -9,7 +10,7 @@ import '../assets/css/Home.css';
  */
 function Home() {
   return (
-    <div id="Home">
+    <div id="HomeTitle">
       <h1>Home</h1>
       <div id="LeftHomeColumn">
         <WorldClock />
@@ -19,6 +20,7 @@ function Home() {
         <Weather />
         <StockTicker />
       </div>
+      <XkcdComic />
     </div>
   );
 }

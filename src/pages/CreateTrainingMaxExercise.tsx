@@ -104,7 +104,7 @@ const CreateTrainingMaxExercise = () => {
           <Formik
             initialValues={{
               name: '',
-              weight: 200,
+              weight: 0,
             }}
             validationSchema={trainingMaxSchema}
             onSubmit={(values) => {

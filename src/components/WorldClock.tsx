@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import moment from 'moment';
 import '../assets/css/WorldClock.css';
 
-const DATE_FORMAT = 'ddd, MMM Do';
+const DATE_FORMAT = 'ddd, DD MMM ';
 const TIME_FORMAT = 'HH:mm:ss';
 
 /**
@@ -59,12 +59,6 @@ function WorldClock() {
             </td>
           </tr>
           <tr>
-            <td>Beijing</td>
-            <td>CN</td>
-            <td>{date.tz('Asia/Shanghai').format(DATE_FORMAT)}</td>
-            <td>{date.tz('Asia/Shanghai').format(TIME_FORMAT)}</td>
-          </tr>
-          <tr>
             <td>Berlin</td>
             <td>DE</td>
             <td>{date.tz('Europe/Berlin').format(DATE_FORMAT)}</td>
@@ -79,6 +73,12 @@ function WorldClock() {
             <td>
               {date.tz('Europe/Copenhagen').format(TIME_FORMAT)}
             </td>
+          </tr>
+          <tr>
+            <td>Stockholm</td>
+            <td>SE</td>
+            <td>{date.tz('Europe/Stockholm').format(DATE_FORMAT)}</td>
+            <td>{date.tz('Europe/Stockholm').format(TIME_FORMAT)}</td>
           </tr>
           <tr>
             <td>Madison</td>

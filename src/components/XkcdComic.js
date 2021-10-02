@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
+import moment from 'moment';
 import '../assets/css/XkcdComic.css';
 
 const xkcdComicUrl = 'https://xkcd.com/info.0.json';
+const DATE_FORMAT = 'DD MMM YYYY';
 
 /**
  * Fetches weather data based on symbols selected and passes them to the Stock component to be displayed.
@@ -29,7 +31,7 @@ function XkcdComic() {
 
   return (
     <div id="XkcdComic">
-      <h2>XKCD Comic</h2>
+      <h2>XKCD</h2>
       {isLoading ? (
         <div className="XkcdContainer">
           <h3>Loading! Please wait...</h3>
@@ -39,49 +41,21 @@ function XkcdComic() {
           <h3>
             Latest comic from <a href={xkcdComicUrl}>xkcd.com</a>:
           </h3>
-          <table id="XkcdTable">
-            <thead>
-              <tr>
-                <th scope="col">Category</th>
-                <th scope="col">Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Number</td>
-                <td>{xkcdComicData.num}</td>
-              </tr>
-              <tr>
-                <td>Day</td>
-                <td>{xkcdComicData.day}</td>
-              </tr>
-              <tr>
-                <td>Month</td>
-                <td>{xkcdComicData.month}</td>
-              </tr>
-              <tr>
-                <td>Year</td>
-                <td>{xkcdComicData.year}</td>
-              </tr>
-              <tr>
-                <td>Title</td>
-                <td>{xkcdComicData.title}</td>
-              </tr>
-              <tr>
-                <td>Image</td>
-                <td>
-                  <img
-                    src={xkcdComicData.img}
-                    alt={xkcdComicData.alt}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Alt Text</td>
-                <td>{xkcdComicData.alt}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div>
+            #{xkcdComicData.num},{' '}
+            {moment(
+              new Date(
+                xkcdComicData.year,
+                xkcdComicData.month,
+                xkcdComicData.day,
+              ),
+            ).format(DATE_FORMAT)}
+            , &ldquo;{xkcdComicData.title}&ldquo;
+          </div>
+          <div>
+            <img src={xkcdComicData.img} alt={xkcdComicData.alt} />
+          </div>
+          <div>Alt text: {xkcdComicData.alt}</div>
         </div>
       )}
     </div>
