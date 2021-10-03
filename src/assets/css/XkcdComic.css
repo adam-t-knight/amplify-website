@@ -10,3 +10,11 @@
 .XkcdContainer {
   margin-top: 30px;
 }
+
+#XkcdInfo {
+  margin-top: 15px;
+}
+
+#XkcdAltText {
+  margin-top: 10px;
+}

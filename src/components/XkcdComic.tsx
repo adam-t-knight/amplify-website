@@ -6,12 +6,22 @@ import '../assets/css/XkcdComic.css';
 const xkcdComicUrl = 'https://xkcd.com/info.0.json';
 const DATE_FORMAT = 'DD MMM YYYY';
 
+type Comic = {
+  year: number;
+  month: number;
+  day: number;
+  num: number;
+  title: string;
+  img: string;
+  alt: string;
+};
+
 /**
  * Fetches weather data based on symbols selected and passes them to the Stock component to be displayed.
  */
 function XkcdComic() {
-  const [xkcdComicData, setXkcdComicData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [xkcdComicData, setXkcdComicData] = useState<Comic>();
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   /**
    * Fetches XKCD comic and sets the data variables.
@@ -19,7 +29,7 @@ function XkcdComic() {
   const getXkcdComicWithFetch = async () => {
     const data = await API.get('ExternalAPIs', '/GetXkcdComic', '');
     setXkcdComicData(data);
-    setIsLoading(false);
+    setIsLoaded(true);
   };
 
   /**
@@ -32,30 +42,34 @@ function XkcdComic() {
   return (
     <div id="XkcdComic">
       <h2>XKCD</h2>
-      {isLoading ? (
-        <div className="XkcdContainer">
-          <h3>Loading! Please wait...</h3>
-        </div>
-      ) : (
+      {isLoaded && xkcdComicData ? (
         <div className="XkcdContainer">
           <h3>
             Latest comic from <a href={xkcdComicUrl}>xkcd.com</a>:
           </h3>
-          <div>
-            #{xkcdComicData.num},{' '}
-            {moment(
-              new Date(
-                xkcdComicData.year,
-                xkcdComicData.month,
-                xkcdComicData.day,
-              ),
-            ).format(DATE_FORMAT)}
-            , &ldquo;{xkcdComicData.title}&ldquo;
+          <div id="XkcdInfo">
+            <strong>
+              #{xkcdComicData.num},{' '}
+              {moment(
+                new Date(
+                  xkcdComicData.year,
+                  xkcdComicData.month,
+                  xkcdComicData.day,
+                ),
+              ).format(DATE_FORMAT)}
+              , &ldquo;{xkcdComicData.title}&ldquo;
+            </strong>
           </div>
-          <div>
+          <div id="XkcdImage">
             <img src={xkcdComicData.img} alt={xkcdComicData.alt} />
           </div>
-          <div>Alt text: {xkcdComicData.alt}</div>
+          <p id="XkcdAltText">
+            <strong>Alt text:</strong> {xkcdComicData.alt}
+          </p>
+        </div>
+      ) : (
+        <div className="XkcdContainer">
+          <h3>Loading! Please wait...</h3>
         </div>
       )}
     </div>

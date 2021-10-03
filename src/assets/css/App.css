@@ -1,12 +1,11 @@
 .App {
   text-align: center;
-  /*   background-color: #d7e1ec; */
-  background: rgb(2, 0, 36);
+  background: rgb(215, 225, 236);
   background: radial-gradient(
     circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(215, 225, 236, 1) 0%,
+    rgba(0, 212, 255, 1) 50%,
+    rgba(9, 9, 121, 1) 100%
   );
 }
 
