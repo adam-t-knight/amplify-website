@@ -19,7 +19,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   rules: {
-    'prettier/prettier': ['error'],
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     // suppress errors for missing 'import React' in files
@@ -28,6 +28,22 @@ module.exports = {
     'react/jsx-filename-extension': [
       1,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
+    'jsx-a11y/label-has-for': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
     ],
   },
   settings: {

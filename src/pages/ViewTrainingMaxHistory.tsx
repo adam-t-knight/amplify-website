@@ -4,16 +4,7 @@ import moment from 'moment-timezone';
 import { Link, useLocation } from 'react-router-dom';
 import { listTrainingMaxExerciseHistorys } from '../graphql/queries';
 import '../assets/css/ViewTrainingMaxHistory.css';
-
-type TrainingMaxWeight = {
-  id: string;
-  name: string;
-  weight: number;
-  createdOn: Date;
-  updatedOn: Date;
-};
-
-type TrainingMaxWeights = Array<TrainingMaxWeight>;
+import { TrainingMaxWeights } from '../shared/types/FitnessTrackerTypes';
 
 interface LocationState {
   name: string;
@@ -75,7 +66,7 @@ const TrainingMaxHistory = () => {
     <div id="ViewTrainingMaxHistory">
       <h2>View Training Max Exercise History</h2>
       <Link to="/fitness-tracker">Back</Link>
-      {isLoaded && trainingMaxHistory ? (
+      {isLoaded ? (
         <div id="ViewTrainingMaxHistoryContainer">
           <h3>Selected Exercise: {trainingMaxName}</h3>
           <table id="ViewTrainingMaxHistoryTable">

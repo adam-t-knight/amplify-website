@@ -1,24 +1,13 @@
 import { Link } from 'react-router-dom';
+import { DisplayWeeklyExercises } from '../shared/types/FitnessTrackerTypes';
 import '../assets/css/WeeklyFitnessTable.css';
-
-type WeeklyExercise = {
-  id: string;
-  dayOfWeek: string;
-  dayOfWeekNum: number;
-  name: string;
-  exerciseNum: number;
-  setNum: number;
-  reps: string;
-  weight: number;
-  ratio: number;
-};
-
-type WeeklyExercises = Array<WeeklyExercise>;
 
 /**
  * Component for showing weekly fitness exercises in a table. Populates table based on exercises passed to it.
  */
-function WeeklyFitnessTable(props: { exercises: WeeklyExercises }) {
+function WeeklyFitnessTable(props: {
+  exercises: DisplayWeeklyExercises;
+}) {
   const { exercises } = props;
 
   return (

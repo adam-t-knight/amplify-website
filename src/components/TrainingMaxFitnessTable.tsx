@@ -23,7 +23,7 @@ function TrainingMaxFitnessTable(props: {
   return (
     <div id="TrainingMaxContainer">
       <h2>Training Max Weights</h2>
-      <div id="TrainingMaxTableLinkBlock">
+      <div id="TrainingMaxTableLinkBlock1">
         <Link to="/fitness-tracker/update-training-max-exercise">
           Update Training Max Exercise
         </Link>
@@ -33,6 +33,8 @@ function TrainingMaxFitnessTable(props: {
         <Link to="/fitness-tracker/delete-training-max-exercise">
           Delete Training Max Exercise
         </Link>
+      </div>
+      <div id="TrainingMaxTableLinkBlock2">
         <Link to="/fitness-tracker/view-training-max-history">
           View Training Max History
         </Link>

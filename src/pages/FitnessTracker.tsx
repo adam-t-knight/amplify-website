@@ -1,46 +1,27 @@
 import { useState, useEffect } from 'react';
-import { API } from 'aws-amplify';
 import moment from 'moment-timezone';
-import {
-  listTrainingMaxExercises,
-  listWeeklyExercises,
-} from '../graphql/queries';
 
 import TrainingMaxWeightsTable from '../components/TrainingMaxFitnessTable';
 import WeeklyFitnessTable from '../components/WeeklyFitnessTable';
 import '../assets/css/FitnessTracker.css';
-
-type WeeklyExercise = {
-  id: string;
-  dayOfWeek: string;
-  dayOfWeekNum: number;
-  name: string;
-  exerciseNum: number;
-  setNum: number;
-  reps: string;
-  weight: number;
-  ratio: number;
-  createdOn: Date;
-  updatedOn: Date;
-};
-
-type WeeklyExercises = Array<WeeklyExercise>;
-
-type TrainingMaxWeight = {
-  id: string;
-  name: string;
-  weight: number;
-  createdOn: Date;
-  updatedOn: Date;
-};
-
-type TrainingMaxWeights = Array<TrainingMaxWeight>;
+import {
+  TrainingMaxWeights,
+  WeeklyExercises,
+  DisplayWeeklyExercise,
+  DisplayWeeklyExercises,
+} from '../shared/types/FitnessTrackerTypes';
+import {
+  fetchTrainingMaxExercises,
+  fetchWeeklyExercises,
+} from '../shared/lib/FitnessTrackerFetch';
 
 function FitnessTracker() {
   const [trainingMaxList, setTrainingMaxList] =
     useState<TrainingMaxWeights>([]);
   const [weeklyExerciseList, setWeeklyExerciseList] =
     useState<WeeklyExercises>([]);
+  const [displayWeeklyExerciseList, setDisplayWeeklyExerciseList] =
+    useState<DisplayWeeklyExercises>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const currentDayOfWeek = moment().format('dddd').toString();
@@ -50,132 +31,77 @@ function FitnessTracker() {
   }
 
   async function populateWeights() {
-    const listTrainingMaxExercisesData: any = await API.graphql({
-      query: listTrainingMaxExercises,
-    });
-    const weights =
-      listTrainingMaxExercisesData.data.listTrainingMaxExercises
-        .items;
+    const trainingMaxExercises = await fetchTrainingMaxExercises();
 
-    setTrainingMaxList(weights);
+    setTrainingMaxList(trainingMaxExercises);
 
     const trainingMaxMap = new Map(
-      weights.map(
+      trainingMaxExercises.map(
         (x: { name: string; weight: number }) =>
           [x.name, x.weight] as [string, number],
       ),
     );
 
-    const listWeeklyExercisesData: any = await API.graphql({
-      query: listWeeklyExercises,
-    });
-    const exercises: WeeklyExercises =
-      listWeeklyExercisesData.data.listWeeklyExercises.items;
+    const weeklyExercises = await fetchWeeklyExercises();
 
-    const exerciseArray: WeeklyExercises = [];
+    setWeeklyExerciseList(weeklyExercises);
 
-    exercises.forEach((exercise) => {
-      const newWeeklyExercise = {} as WeeklyExercise;
+    const displayWeeklyExercisesArray: DisplayWeeklyExercises = [];
 
-      newWeeklyExercise.id = exercise.id;
-      newWeeklyExercise.dayOfWeekNum = exercise.dayOfWeekNum;
-      newWeeklyExercise.name = exercise.name;
-      newWeeklyExercise.exerciseNum = exercise.exerciseNum;
-      newWeeklyExercise.setNum = exercise.setNum;
-      newWeeklyExercise.reps = exercise.reps;
-      newWeeklyExercise.createdOn = exercise.createdOn;
-      newWeeklyExercise.updatedOn = exercise.updatedOn;
+    weeklyExercises.forEach((exercise) => {
+      const newDisplayWeeklyExercise = {} as DisplayWeeklyExercise;
+
+      newDisplayWeeklyExercise.id = exercise.id;
+      newDisplayWeeklyExercise.dayOfWeekNum = exercise.dayOfWeekNum;
+      newDisplayWeeklyExercise.name = exercise.name;
+      newDisplayWeeklyExercise.exerciseNum = exercise.exerciseNum;
+      newDisplayWeeklyExercise.setNum = exercise.setNum;
+      newDisplayWeeklyExercise.reps = exercise.reps;
+      newDisplayWeeklyExercise.createdOn = exercise.createdOn;
+      newDisplayWeeklyExercise.updatedOn = exercise.updatedOn;
 
       const trainingMaxWeight = trainingMaxMap.get(
-        newWeeklyExercise.name,
+        newDisplayWeeklyExercise.name,
       ) as number;
-      newWeeklyExercise.weight = roundToNearestFive(
+      newDisplayWeeklyExercise.weight = roundToNearestFive(
         exercise.ratio * trainingMaxWeight,
       );
 
       switch (exercise.dayOfWeekNum) {
         case 1:
-          newWeeklyExercise.dayOfWeek = 'Sunday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Sunday';
           break;
         case 2:
-          newWeeklyExercise.dayOfWeek = 'Monday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Monday';
           break;
         case 3:
-          newWeeklyExercise.dayOfWeek = 'Tuesday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Tuesday';
           break;
         case 4:
-          newWeeklyExercise.dayOfWeek = 'Wednesday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Wednesday';
           break;
         case 5:
-          newWeeklyExercise.dayOfWeek = 'Thursday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Thursday';
           break;
         case 6:
-          newWeeklyExercise.dayOfWeek = 'Friday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Friday';
           break;
         case 7:
-          newWeeklyExercise.dayOfWeek = 'Saturday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Saturday';
           break;
         default:
-          newWeeklyExercise.dayOfWeek = 'Doomsday';
+          newDisplayWeeklyExercise.dayOfWeek = 'Doomsday';
       }
 
-      exerciseArray.push(newWeeklyExercise);
+      if (
+        newDisplayWeeklyExercise.weight &&
+        newDisplayWeeklyExercise.dayOfWeek !== 'Doomsday'
+      ) {
+        displayWeeklyExercisesArray.push(newDisplayWeeklyExercise);
+      }
     });
 
-    /*     for (const exercise of exercises) {
-      const newWeeklyExercise = {} as weeklyExercise;
-
-      newWeeklyExercise.id = exercise.id;
-      newWeeklyExercise.dayOfWeekNum = exercise.dayOfWeekNum;
-      newWeeklyExercise.name = exercise.name;
-      newWeeklyExercise.exerciseNum = exercise.exerciseNum;
-      newWeeklyExercise.setNum = exercise.setNum;
-      newWeeklyExercise.reps = exercise.reps;
-      newWeeklyExercise.createdOn = exercise.createdOn;
-      newWeeklyExercise.updatedOn = exercise.updatedOn;
-
-      const trainingMaxWeight = trainingMaxMap.get(
-        newWeeklyExercise.name,
-      ) as number;
-      newWeeklyExercise.weight = roundToNearestFive(
-        exercise.ratio * trainingMaxWeight,
-      );
-
-      switch (exercise.dayOfWeekNum) {
-        case 1:
-          newWeeklyExercise.dayOfWeek = 'Sunday';
-          break;
-        case 2:
-          newWeeklyExercise.dayOfWeek = 'Monday';
-          break;
-        case 3:
-          newWeeklyExercise.dayOfWeek = 'Tuesday';
-          break;
-        case 4:
-          newWeeklyExercise.dayOfWeek = 'Wednesday';
-          break;
-        case 5:
-          newWeeklyExercise.dayOfWeek = 'Thursday';
-          break;
-        case 6:
-          newWeeklyExercise.dayOfWeek = 'Friday';
-          break;
-        case 7:
-          newWeeklyExercise.dayOfWeek = 'Saturday';
-          break;
-      }
-
-      exerciseArray.push(newWeeklyExercise);
-    } */
-
-    exerciseArray.sort(
-      (a, b) =>
-        a.dayOfWeekNum - b.dayOfWeekNum ||
-        a.exerciseNum - b.exerciseNum ||
-        a.setNum - b.setNum,
-    );
-
-    setWeeklyExerciseList(exerciseArray);
+    setDisplayWeeklyExerciseList(displayWeeklyExercisesArray);
 
     setIsLoaded(true);
   }
@@ -188,7 +114,7 @@ function FitnessTracker() {
     <div id="FitnessTracker">
       <h1>Fitness Tracker</h1>
       <div id="CurrentDayOfWeek">
-        Current day of the week: {currentDayOfWeek}
+        Current day of the week: <strong>{currentDayOfWeek}</strong>
       </div>
       {isLoaded &&
       trainingMaxList !== null &&
@@ -198,7 +124,9 @@ function FitnessTracker() {
             <TrainingMaxWeightsTable exercises={trainingMaxList} />
           </div>
           <div id="RightFitnessColumn">
-            <WeeklyFitnessTable exercises={weeklyExerciseList} />
+            <WeeklyFitnessTable
+              exercises={displayWeeklyExerciseList}
+            />
           </div>
         </div>
       ) : (

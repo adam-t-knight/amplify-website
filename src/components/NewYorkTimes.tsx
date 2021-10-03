@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
-import moment from 'moment-timezone';
 import NewYorkTimesArticles from './NewYorkTimesArticles';
 import '../assets/css/NewYorkTimes.css';
 
@@ -90,14 +89,7 @@ function NewYorkTimes() {
         </div>
       ) : (
         <div className="nytContainer">
-          <h3>
-            Last updated{' '}
-            {moment(nytData.lastUpdated)
-              .tz('America/New_York')
-              .format('MM-DD-YYYY HH:mm')
-              .toString()}
-          </h3>
-          <h3>{nytData.numResults} results</h3>
+          <h3>Current Top Stories</h3>
           <NewYorkTimesArticles articles={nytData.results} />
         </div>
       )}

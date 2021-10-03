@@ -4,18 +4,17 @@
   background-color: #ffffff;
   width: 828px;
   min-height: 450px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .XkcdContainer {
   margin-top: 30px;
 }
 
-#XkcdTable {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+#XkcdInfo {
+  margin-top: 15px;
 }
 
-#XkcdTable td {
-  padding: 10px;
+#XkcdAltText {
+  margin-top: 10px;
 }
