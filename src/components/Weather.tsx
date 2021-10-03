@@ -14,7 +14,7 @@ const initialCurrentWeatherData = {
     clouds: 0,
     dewPoint: 0,
     temp: 0,
-    feelsLike: 0,
+    feels_like: 0,
     humidity: 0,
     pressure: 0,
     sunrise: 0,
@@ -33,7 +33,7 @@ type DailyWeatherData = {
   clouds: number;
   dewPoint: number;
   temp: DailyTemps;
-  feelsLike: DailyFeelsLikeTemps;
+  feels_like: DailyFeelsLikeTemps;
   humidity: number;
   pressure: number;
   sunrise: number;
@@ -75,7 +75,7 @@ type CurrentData = {
   clouds: number;
   dewPoint: number;
   temp: number;
-  feelsLike: number;
+  feels_like: number;
   humidity: number;
   pressure: number;
   sunrise: number;
@@ -173,7 +173,7 @@ function Weather() {
                 <td>Curr. Temp / Feels Like (°C)</td>
                 <td>
                   {weatherCurrentData.current.temp} /{' '}
-                  {weatherCurrentData.current.feelsLike}
+                  {weatherCurrentData.current.feels_like}
                 </td>
               </tr>
               <tr>
