@@ -16,17 +16,3 @@
   float: left;
   width: 410px;
 }
-
-#LeftSidebar {
-  /* background-image: linear-gradient(to right, white, #d7e1ec, white); */
-  background: rgb(2, 0, 36);
-  background: radial-gradient(
-    circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-}
-
-#RightSidebar {
-}

@@ -11,7 +11,7 @@ function WeeklyFitnessTable(props: {
   const { exercises } = props;
 
   return (
-    <div id="WeeklyFitnessTable">
+    <div id="WeeklyContainer">
       <h2>Weekly Exercises</h2>
       <div id="WeeklyFitnessTableLinkBlock">
         <Link to="/fitness-tracker/update-weekly-exercise">
@@ -24,7 +24,7 @@ function WeeklyFitnessTable(props: {
           Delete Weekly Exercise
         </Link>
       </div>
-      <div id="WeeklyContainer" className="table-responsive">
+      <div id="WeeklyFitnessTable" className="table-responsive">
         <table id="WeeklyTable" className="table">
           <thead>
             <tr>

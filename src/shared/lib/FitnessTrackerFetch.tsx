@@ -2,6 +2,8 @@ import { API } from 'aws-amplify';
 import {
   listTrainingMaxExercises,
   listWeeklyExercises,
+  listCardioPRsHistorys,
+  listCardioLogs,
 } from '../../graphql/queries';
 import { WeeklyExercises } from '../types/FitnessTrackerTypes';
 
@@ -45,4 +47,27 @@ export async function fetchWeeklyExercises() {
   return sortWeeklyExercises(
     listWeeklyExercisesData.data.listWeeklyExercises.items,
   );
+}
+
+/**
+ * Fetches exercises from training max db
+ */
+export async function fetchCardioPRs() {
+  const listTrainingMaxExercisesData: any = await API.graphql({
+    query: listCardioPRsHistorys,
+  });
+
+  return listTrainingMaxExercisesData.data.listCardioPRsHistorys
+    .items;
+}
+
+/**
+ * Fetches exercises from training max db
+ */
+export async function fetchCardioLogEntries() {
+  const listCardioLogsData: any = await API.graphql({
+    query: listCardioLogs,
+  });
+
+  return listCardioLogsData.data.listCardioLogs.items;
 }

@@ -1,5 +1,7 @@
 type TrainingMaxExercise
-  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }) {
+  @model(
+    timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }
+  ) {
   id: ID!
   name: String!
   weight: Int!
@@ -8,7 +10,9 @@ type TrainingMaxExercise
 }
 
 type TrainingMaxExerciseHistory
-  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }) {
+  @model(
+    timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }
+  ) {
   id: ID!
   name: String!
   weight: Int!
@@ -17,7 +21,9 @@ type TrainingMaxExerciseHistory
 }
 
 type WeeklyExercise
-  @model(timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }) {
+  @model(
+    timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }
+  ) {
   id: ID!
   dayOfWeekNum: Int!
   name: String!
@@ -25,6 +31,43 @@ type WeeklyExercise
   setNum: Int!
   reps: String!
   ratio: Float!
+  createdOn: AWSDateTime!
+  updatedOn: AWSDateTime!
+}
+
+type CardioPRs
+  @model(
+    timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }
+  ) {
+  id: ID!
+  exerciseName: String!
+  category: String!
+  value: Int!
+  createdOn: AWSDateTime!
+  updatedOn: AWSDateTime!
+}
+
+type CardioPRsHistory
+  @model(
+    timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }
+  ) {
+  id: ID!
+  exerciseName: String!
+  category: String!
+  value: Int!
+  createdOn: AWSDateTime!
+  updatedOn: AWSDateTime!
+}
+
+type CardioLog
+  @model(
+    timestamps: { createdAt: "createdOn", updatedAt: "updatedOn" }
+  ) {
+  id: ID!
+  exerciseName: String!
+  distance: Int!
+  time: Int!
+  elevationGain: Int!
   createdOn: AWSDateTime!
   updatedOn: AWSDateTime!
 }

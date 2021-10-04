@@ -1,0 +1,14 @@
+.CreateCardioPRContainer {
+  margin-top: 30px;
+}
+
+.CreateCardioPRTable {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.CreateCardioPRTable td,
+.CreateCardioPRTable th {
+  padding: 10px;
+}

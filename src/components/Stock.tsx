@@ -40,7 +40,7 @@ function Stock(props: { stockData: Stocks }) {
             stockData.map((item) => (
               <tr key={moment(item.date).valueOf()}>
                 <td>
-                  {moment(item.date).format('MMM Do').toString()}
+                  {moment(item.date).format('DD MMM').toString()}
                 </td>
                 <td>{item.high}</td>
                 <td>{item.low}</td>

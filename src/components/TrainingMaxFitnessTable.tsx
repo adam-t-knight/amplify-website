@@ -39,46 +39,48 @@ function TrainingMaxFitnessTable(props: {
           View Training Max History
         </Link>
       </div>
-      <table id="TrainingMaxTable">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Weight (kg)</th>
-            <th scope="col">Created On</th>
-            <th scope="col">Updated On</th>
-          </tr>
-        </thead>
-        <tbody>
-          {exercises.map((exercise) => (
-            <tr key={exercise.id}>
-              <td>
-                <Link
-                  to={{
-                    pathname:
-                      '/fitness-tracker/view-training-max-history',
-                    state: {
-                      name: exercise.name,
-                    },
-                  }}
-                >
-                  {exercise.name}
-                </Link>
-              </td>
-              <td>{exercise.weight}</td>
-              <td>
-                {moment(exercise.createdOn)
-                  .format('DD-MM-YYYY HH:mm:ss')
-                  .toString()}
-              </td>
-              <td>
-                {moment(exercise.updatedOn)
-                  .format('DD-MM-YYYY HH:mm:ss')
-                  .toString()}
-              </td>
+      <div id="TrainingMaxTable" className="table-responsive">
+        <table id="TrainingTable" className="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Weight (kg)</th>
+              <th scope="col">Created On</th>
+              <th scope="col">Updated On</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {exercises.map((exercise) => (
+              <tr key={exercise.id}>
+                <td>
+                  <Link
+                    to={{
+                      pathname:
+                        '/fitness-tracker/view-training-max-history',
+                      state: {
+                        name: exercise.name,
+                      },
+                    }}
+                  >
+                    {exercise.name}
+                  </Link>
+                </td>
+                <td>{exercise.weight}</td>
+                <td>
+                  {moment(exercise.createdOn)
+                    .format('DD-MM-YYYY HH:mm:ss')
+                    .toString()}
+                </td>
+                <td>
+                  {moment(exercise.updatedOn)
+                    .format('DD-MM-YYYY HH:mm:ss')
+                    .toString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

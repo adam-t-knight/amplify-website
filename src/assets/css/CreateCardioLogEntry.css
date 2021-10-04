@@ -1,0 +1,14 @@
+.CreateCardioLogEntryContainer {
+  margin-top: 30px;
+}
+
+.CreateCardioLogEntryTable {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.CreateCardioLogEntryTable td,
+.CreateCardioLogEntryTable th {
+  padding: 10px;
+}
