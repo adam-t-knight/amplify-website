@@ -58,3 +58,26 @@ export type DisplayWeeklyExercise = {
 };
 
 export type DisplayWeeklyExercises = Array<DisplayWeeklyExercise>;
+
+export type CardioLogEntry = {
+  id: string;
+  exerciseName: string;
+  distance: number;
+  time: number;
+  elevationGain: number;
+  createdOn: Date;
+  updatedOn: Date;
+};
+
+export type CardioLogEntries = Array<CardioLogEntry>;
+
+export type CardioPR = {
+  id: string;
+  exerciseName: string;
+  category: string;
+  value: number;
+  createdOn: Date;
+  updatedOn: Date;
+};
+
+export type CardioPRs = Array<CardioPR>;

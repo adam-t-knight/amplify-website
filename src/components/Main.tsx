@@ -16,6 +16,8 @@ import ViewTrainingMaxHistory from '../pages/ViewTrainingMaxHistory';
 import CreateWeeklyExercise from '../pages/CreateWeeklyExercise';
 import DeleteWeeklyExercise from '../pages/DeleteWeeklyExercise';
 import UpdateWeeklyExercise from '../pages/UpdateWeeklyExercise';
+import CreateCardioPR from '../pages/CreateCardioPR';
+import CreateCardioLogEntry from '../pages/CreateCardioLogEntry';
 
 const Main = () => (
   <div id="Main">
@@ -86,6 +88,16 @@ const Main = () => (
               exact
               path="/fitness-tracker/update-weekly-exercise"
               component={UpdateWeeklyExercise}
+            />
+            <Route
+              exact
+              path="/fitness-tracker/create-cardio-pr"
+              component={CreateCardioPR}
+            />
+            <Route
+              exact
+              path="/fitness-tracker/create-cardio-log-entry"
+              component={CreateCardioLogEntry}
             />
           </Switch>
         </Router>

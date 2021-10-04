@@ -104,3 +104,102 @@ export const listWeeklyExercises = /* GraphQL */ `
     }
   }
 `;
+export const getCardioPRs = /* GraphQL */ `
+  query GetCardioPRs($id: ID!) {
+    getCardioPRs(id: $id) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const listCardioPRss = /* GraphQL */ `
+  query ListCardioPRss(
+    $filter: ModelCardioPRsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCardioPRss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        exerciseName
+        category
+        value
+        createdOn
+        updatedOn
+      }
+      nextToken
+    }
+  }
+`;
+export const getCardioPRsHistory = /* GraphQL */ `
+  query GetCardioPRsHistory($id: ID!) {
+    getCardioPRsHistory(id: $id) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const listCardioPRsHistorys = /* GraphQL */ `
+  query ListCardioPRsHistorys(
+    $filter: ModelCardioPRsHistoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCardioPRsHistorys(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        exerciseName
+        category
+        value
+        createdOn
+        updatedOn
+      }
+      nextToken
+    }
+  }
+`;
+export const getCardioLog = /* GraphQL */ `
+  query GetCardioLog($id: ID!) {
+    getCardioLog(id: $id) {
+      id
+      exerciseName
+      distance
+      time
+      elevationGain
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const listCardioLogs = /* GraphQL */ `
+  query ListCardioLogs(
+    $filter: ModelCardioLogFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCardioLogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        exerciseName
+        distance
+        time
+        elevationGain
+        createdOn
+        updatedOn
+      }
+      nextToken
+    }
+  }
+`;

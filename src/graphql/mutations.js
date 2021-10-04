@@ -139,3 +139,141 @@ export const deleteWeeklyExercise = /* GraphQL */ `
     }
   }
 `;
+export const createCardioPRs = /* GraphQL */ `
+  mutation CreateCardioPRs(
+    $input: CreateCardioPRsInput!
+    $condition: ModelCardioPRsConditionInput
+  ) {
+    createCardioPRs(input: $input, condition: $condition) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const updateCardioPRs = /* GraphQL */ `
+  mutation UpdateCardioPRs(
+    $input: UpdateCardioPRsInput!
+    $condition: ModelCardioPRsConditionInput
+  ) {
+    updateCardioPRs(input: $input, condition: $condition) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const deleteCardioPRs = /* GraphQL */ `
+  mutation DeleteCardioPRs(
+    $input: DeleteCardioPRsInput!
+    $condition: ModelCardioPRsConditionInput
+  ) {
+    deleteCardioPRs(input: $input, condition: $condition) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const createCardioPRsHistory = /* GraphQL */ `
+  mutation CreateCardioPRsHistory(
+    $input: CreateCardioPRsHistoryInput!
+    $condition: ModelCardioPRsHistoryConditionInput
+  ) {
+    createCardioPRsHistory(input: $input, condition: $condition) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const updateCardioPRsHistory = /* GraphQL */ `
+  mutation UpdateCardioPRsHistory(
+    $input: UpdateCardioPRsHistoryInput!
+    $condition: ModelCardioPRsHistoryConditionInput
+  ) {
+    updateCardioPRsHistory(input: $input, condition: $condition) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const deleteCardioPRsHistory = /* GraphQL */ `
+  mutation DeleteCardioPRsHistory(
+    $input: DeleteCardioPRsHistoryInput!
+    $condition: ModelCardioPRsHistoryConditionInput
+  ) {
+    deleteCardioPRsHistory(input: $input, condition: $condition) {
+      id
+      exerciseName
+      category
+      value
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const createCardioLog = /* GraphQL */ `
+  mutation CreateCardioLog(
+    $input: CreateCardioLogInput!
+    $condition: ModelCardioLogConditionInput
+  ) {
+    createCardioLog(input: $input, condition: $condition) {
+      id
+      exerciseName
+      distance
+      time
+      elevationGain
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const updateCardioLog = /* GraphQL */ `
+  mutation UpdateCardioLog(
+    $input: UpdateCardioLogInput!
+    $condition: ModelCardioLogConditionInput
+  ) {
+    updateCardioLog(input: $input, condition: $condition) {
+      id
+      exerciseName
+      distance
+      time
+      elevationGain
+      createdOn
+      updatedOn
+    }
+  }
+`;
+export const deleteCardioLog = /* GraphQL */ `
+  mutation DeleteCardioLog(
+    $input: DeleteCardioLogInput!
+    $condition: ModelCardioLogConditionInput
+  ) {
+    deleteCardioLog(input: $input, condition: $condition) {
+      id
+      exerciseName
+      distance
+      time
+      elevationGain
+      createdOn
+      updatedOn
+    }
+  }
+`;

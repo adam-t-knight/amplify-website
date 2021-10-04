@@ -3,7 +3,7 @@
   overflow: scroll;
 }
 
-#TrainingMaxContainer {
+#CardioLogContainer {
   height: 773px;
   width: 410px;
   margin-top: 8px;
@@ -12,12 +12,7 @@
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-#TrainingTable {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#TrainingTable th {
+#CardioLogTable th {
   background: #343a40;
   color: #fff;
   position: sticky;
@@ -25,18 +20,10 @@
   padding: 0 10px 0 10px;
 }
 
-#TrainingTable td {
+#CardioLogTable td {
   padding: 10px;
 }
 
-#TrainingMaxTableLinkBlock1 {
+#CardioLogTableLinkBlock {
   padding-bottom: 15px;
-  float: left;
-  padding-left: 5px;
-}
-
-#TrainingMaxTableLinkBlock2 {
-  padding-bottom: 15px;
-  float: right;
-  padding-right: 5px;
 }
