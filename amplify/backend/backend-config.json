@@ -1,94 +1,28 @@
 {
-  "api": {
-    "ExternalAPIs": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "GetXkcdComic"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "GetNewYorkTimes"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "GetWeather"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "GetStock"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    },
-    "FitnessTracker": {
-      "output": {
-        "authConfig": {
-          "additionalAuthenticationProviders": [],
-          "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 365,
-              "description": "demo"
-            },
-            "authenticationType": "API_KEY"
-          }
-        }
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "AppSync"
-    }
-  },
   "auth": {
-    "amplifyappd145314c": {
+    "amplifywebsite2b87a4d4": {
       "customAuth": false,
       "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    }
-  },
-  "function": {
-    "GetNewYorkTimes": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "GetStock": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "GetWeather": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "GetXkcdComic": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "storage": {
-    "imagestorage": {
-      "providerPlugin": "awscloudformation",
-      "service": "S3"
     }
   }
 }

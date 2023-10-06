@@ -1,4 +1,32 @@
 {
+  "aeriela": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifywebsite-aeriela-125218-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-aeriela-125218-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-aeriela-125218-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplifywebsite-aeriela-125218-deployment",
+      "UnauthRoleName": "amplify-amplifywebsite-aeriela-125218-unauthRole",
+      "StackName": "amplify-amplifywebsite-aeriela-125218",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-aeriela-125218/2ee836d0-6447-11ee-a37d-0a3b5bfa2093",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {},
+        "amplifywebsite2b87a4d4": {}
+      },
+      "function": {
+        "GetNewYorkTimes": {},
+        "GetStock": {},
+        "GetWeather": {},
+        "GetXkcdComic": {}
+      },
+      "storage": {
+        "imagestorage": {}
+      }
+    }
+  },
   "tomi": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplifywebsite-tomi-195914-authRole",

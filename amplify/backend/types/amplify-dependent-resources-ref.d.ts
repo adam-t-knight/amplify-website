@@ -1,51 +1,14 @@
 export type AmplifyDependentResourcesAttributes = {
-  "api": {
-    "ExternalAPIs": {
-      "ApiId": "string",
-      "ApiName": "string",
-      "RootUrl": "string"
-    }
-  },
   "auth": {
-    "amplifyappd145314c": {
+    "amplifywebsite2b87a4d4": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "CreatedSNSRole": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
+      "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
-    }
-  },
-  "function": {
-    "GetNewYorkTimes": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "GetStock": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "GetWeather": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "GetXkcdComic": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "Name": "string",
-      "Region": "string"
-    }
-  },
-  "storage": {
-    "imagestorage": {
-      "BucketName": "string",
-      "Region": "string"
     }
   }
 }
