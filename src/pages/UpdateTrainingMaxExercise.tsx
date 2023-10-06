@@ -19,6 +19,8 @@ import {
   Form,
   ErrorMessage,
   getIn,
+  FormikValues,
+  FormikErrors,
 } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -80,12 +82,13 @@ const UpdateTrainingMaxExercise = () => {
     setIsLoading(false);
   }
 
+  // TODO make this cleaner. Just get FormikValues instead of both FormikValues and FormikErrors
   /**
    * Looks at the arrays of touched fields and fields with errors. Disables button if there are errors or if field hasn't been touched
    */
   function buttonDisabler(
-    errors: any,
-    values: any,
+    errors: FormikErrors<FormikValues>,
+    values: FormikValues,
     exercise: TrainingMaxWeight,
   ) {
     if (!values) {
@@ -134,7 +137,7 @@ const UpdateTrainingMaxExercise = () => {
    * @param {exercise} exercise for the original values
    */
   async function updateExercise(
-    values: any,
+    values: FormikValues,
     exercise: TrainingMaxWeight,
   ) {
     const updatedExercise = JSON.parse(

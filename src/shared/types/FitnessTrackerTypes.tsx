@@ -81,3 +81,21 @@ export type CardioPR = {
 };
 
 export type CardioPRs = Array<CardioPR>;
+
+export type CardioLog = {
+  name: string;
+  id: string;
+  exerciseName: string;
+  distance: number;
+  time: number;
+  elevationGain: number;
+  createdOn: Date;
+  updatedOn: Date;
+};
+
+export type GetCardioLogsQuery = {
+  listCardioLogs: {
+    items: CardioLog[];
+    nextToken: string;
+  };
+};

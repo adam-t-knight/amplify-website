@@ -49,8 +49,10 @@ export async function fetchWeeklyExercises() {
   );
 }
 
+// TODO update syntax as in below
+
 /**
- * Fetches exercises from training max db
+ * Fetches cardio PRs from training max db
  */
 export async function fetchCardioPRs() {
   const listTrainingMaxExercisesData: any = await API.graphql({
@@ -62,7 +64,7 @@ export async function fetchCardioPRs() {
 }
 
 /**
- * Fetches exercises from training max db
+ * Fetches cardio log entries from training max db
  */
 export async function fetchCardioLogEntries() {
   const listCardioLogsData: any = await API.graphql({

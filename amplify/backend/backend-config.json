@@ -1,69 +1,75 @@
 {
-  "auth": {
-    "amplifyappd145314c": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
   "api": {
     "ExternalAPIs": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
           "category": "function",
-          "resourceName": "GetXkcdComic",
-          "attributes": ["Name", "Arn"]
+          "resourceName": "GetXkcdComic"
         },
         {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
           "category": "function",
-          "resourceName": "GetNewYorkTimes",
-          "attributes": ["Name", "Arn"]
+          "resourceName": "GetNewYorkTimes"
         },
         {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
           "category": "function",
-          "resourceName": "GetWeather",
-          "attributes": ["Name", "Arn"]
+          "resourceName": "GetWeather"
         },
         {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
           "category": "function",
-          "resourceName": "GetStock",
-          "attributes": ["Name", "Arn"]
+          "resourceName": "GetStock"
         }
-      ]
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     },
     "FitnessTracker": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
       "output": {
         "authConfig": {
+          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
               "description": "demo"
-            }
-          },
-          "additionalAuthenticationProviders": []
+            },
+            "authenticationType": "API_KEY"
+          }
         }
-      }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
     }
   },
-  "storage": {
-    "imagestorage": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation"
+  "auth": {
+    "amplifyappd145314c": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
     }
   },
   "function": {
-    "GetXkcdComic": {
+    "GetNewYorkTimes": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "GetNewYorkTimes": {
+    "GetStock": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -73,10 +79,16 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "GetStock": {
+    "GetXkcdComic": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    }
+  },
+  "storage": {
+    "imagestorage": {
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

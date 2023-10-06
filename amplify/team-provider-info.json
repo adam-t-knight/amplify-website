@@ -108,5 +108,29 @@
         }
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifywebsite-dev-103409-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-dev-103409-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-dev-103409-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplifywebsite-dev-103409-deployment",
+      "UnauthRoleName": "amplify-amplifywebsite-dev-103409-unauthRole",
+      "StackName": "amplify-amplifywebsite-dev-103409",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-dev-103409/1f563380-6423-11ee-86df-023739db58c7",
+      "AmplifyAppId": "d1jlbefkm0m4rx"
+    },
+    "categories": {
+      "auth": {
+        "amplifyappd145314c": {}
+      },
+      "function": {
+        "GetXkcdComic": {},
+        "GetNewYorkTimes": {},
+        "GetWeather": {},
+        "GetStock": {}
+      }
+    }
   }
 }
