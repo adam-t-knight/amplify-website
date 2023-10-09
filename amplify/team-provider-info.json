@@ -1,163 +1,19 @@
 {
-  "aeriela": {
+  "anabella": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplifywebsite-aeriela-125218-authRole",
-      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-aeriela-125218-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-aeriela-125218-authRole",
+      "AuthRoleName": "amplify-amplifywebsite-anabella-132244-authRole",
+      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-anabella-132244-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-anabella-132244-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-amplifywebsite-aeriela-125218-deployment",
-      "UnauthRoleName": "amplify-amplifywebsite-aeriela-125218-unauthRole",
-      "StackName": "amplify-amplifywebsite-aeriela-125218",
-      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-aeriela-125218/2ee836d0-6447-11ee-a37d-0a3b5bfa2093",
+      "DeploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
+      "UnauthRoleName": "amplify-amplifywebsite-anabella-132244-unauthRole",
+      "StackName": "amplify-amplifywebsite-anabella-132244",
+      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-anabella-132244/6f897bf0-644b-11ee-8cdb-0a9c3a2e2e85",
       "AmplifyAppId": "d1jlbefkm0m4rx"
     },
     "categories": {
       "auth": {
-        "amplifyappd145314c": {},
         "amplifywebsite2b87a4d4": {}
-      },
-      "function": {
-        "GetNewYorkTimes": {},
-        "GetStock": {},
-        "GetWeather": {},
-        "GetXkcdComic": {}
-      },
-      "storage": {
-        "imagestorage": {}
-      }
-    }
-  },
-  "tomi": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-amplifywebsite-tomi-195914-authRole",
-      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-tomi-195914-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-tomi-195914-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-amplifywebsite-tomi-195914-deployment",
-      "UnauthRoleName": "amplify-amplifywebsite-tomi-195914-unauthRole",
-      "StackName": "amplify-amplifywebsite-tomi-195914",
-      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-tomi-195914/f42e1230-ee4b-11eb-a6fa-0a728ed0c300",
-      "AmplifyAppId": "d1jlbefkm0m4rx",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplifywebsite-tomi-195914-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
-    },
-    "categories": {
-      "auth": {
-        "amplifyappd145314c": {}
-      },
-      "function": {
-        "GetXkcdComic": {
-          "deploymentBucketName": "amplify-amplifywebsite-tomi-195914-deployment",
-          "s3Key": "amplify-builds/GetXkcdComic-394b6c554d6158316e49-build.zip"
-        },
-        "GetNewYorkTimes": {
-          "deploymentBucketName": "amplify-amplifywebsite-tomi-195914-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-314f412f3774506e5366-build.zip"
-        },
-        "GetWeather": {
-          "deploymentBucketName": "amplify-amplifywebsite-tomi-195914-deployment",
-          "s3Key": "amplify-builds/GetWeather-756953412f4454525863-build.zip"
-        },
-        "GetStock": {
-          "deploymentBucketName": "amplify-amplifywebsite-tomi-195914-deployment",
-          "s3Key": "amplify-builds/GetStock-2f31464e4176697a3758-build.zip"
-        }
-      }
-    }
-  },
-  "madelin": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-amplifywebsite-madelin-213247-authRole",
-      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-madelin-213247-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-madelin-213247-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
-      "UnauthRoleName": "amplify-amplifywebsite-madelin-213247-unauthRole",
-      "StackName": "amplify-amplifywebsite-madelin-213247",
-      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-madelin-213247/0915c040-e4eb-11eb-b411-029341a13002",
-      "AmplifyAppId": "d1jlbefkm0m4rx",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplifywebsite-madelin-213247-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
-    },
-    "categories": {
-      "auth": {
-        "amplifyappd145314c": {}
-      },
-      "function": {
-        "GetXkcdComic": {
-          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
-          "s3Key": "amplify-builds/GetXkcdComic-4e543464395661413438-build.zip"
-        },
-        "GetNewYorkTimes": {
-          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-6d38464958512b44647a-build.zip"
-        },
-        "GetWeather": {
-          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
-          "s3Key": "amplify-builds/GetWeather-51512b597a6b45504448-build.zip"
-        },
-        "GetStock": {
-          "deploymentBucketName": "amplify-amplifywebsite-madelin-213247-deployment",
-          "s3Key": "amplify-builds/GetStock-67684467563665315a35-build.zip"
-        }
-      }
-    }
-  },
-  "amanda": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-amplify-website-amanda-124526-authRole",
-      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-amanda-124526-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplify-website-amanda-124526-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-amplify-website-amanda-124526-deployment",
-      "UnauthRoleName": "amplify-amplify-website-amanda-124526-unauthRole",
-      "StackName": "amplify-amplify-website-amanda-124526",
-      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplify-website-amanda-124526/9e59fe30-9eb1-11eb-9bba-02ee62609f84",
-      "AmplifyAppId": "d1jlbefkm0m4rx"
-    },
-    "categories": {
-      "auth": {
-        "amplifyappd145314c": {}
-      },
-      "function": {
-        "GetXkcdComic": {
-          "deploymentBucketName": "amplify-amplify-website-amanda-124526-deployment",
-          "s3Key": "amplify-builds/GetXkcdComic-4e543464395661413438-build.zip"
-        },
-        "GetNewYorkTimes": {
-          "deploymentBucketName": "amplify-amplify-website-amanda-124526-deployment",
-          "s3Key": "amplify-builds/GetNewYorkTimes-6d38464958512b44647a-build.zip"
-        },
-        "GetWeather": {
-          "deploymentBucketName": "amplify-amplify-website-amanda-124526-deployment",
-          "s3Key": "amplify-builds/GetWeather-51512b597a6b45504448-build.zip"
-        },
-        "GetStock": {
-          "deploymentBucketName": "amplify-amplify-website-amanda-124526-deployment",
-          "s3Key": "amplify-builds/GetStock-67684467563665315a35-build.zip"
-        }
-      }
-    }
-  },
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-amplifywebsite-dev-103409-authRole",
-      "UnauthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-dev-103409-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::931583138449:role/amplify-amplifywebsite-dev-103409-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-amplifywebsite-dev-103409-deployment",
-      "UnauthRoleName": "amplify-amplifywebsite-dev-103409-unauthRole",
-      "StackName": "amplify-amplifywebsite-dev-103409",
-      "StackId": "arn:aws:cloudformation:us-east-2:931583138449:stack/amplify-amplifywebsite-dev-103409/1f563380-6423-11ee-86df-023739db58c7",
-      "AmplifyAppId": "d1jlbefkm0m4rx"
-    },
-    "categories": {
-      "auth": {
-        "amplifyappd145314c": {}
-      },
-      "function": {
-        "GetXkcdComic": {},
-        "GetNewYorkTimes": {},
-        "GetWeather": {},
-        "GetStock": {}
       }
     }
   }
