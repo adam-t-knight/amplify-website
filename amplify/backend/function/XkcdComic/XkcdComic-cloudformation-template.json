@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.6.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "GetXkcdComic",
+            "XkcdComic",
             {
               "Fn::Join": [
                 "",
                 [
-                  "GetXkcdComic",
+                  "XkcdComic",
                   "-",
                   {
                     "Ref": "env"
@@ -78,9 +78,9 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs18.x",
         "Layers": [],
-        "Timeout": "25"
+        "Timeout": 25
       }
     },
     "LambdaExecutionRole": {
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "amplifywebsiteLambdaRole72244ec3",
+            "amplifywebsiteLambdaRole3b91f0e3",
             {
               "Fn::Join": [
                 "",
                 [
-                  "amplifywebsiteLambdaRole72244ec3",
+                  "amplifywebsiteLambdaRole3b91f0e3",
                   "-",
                   {
                     "Ref": "env"
@@ -188,6 +188,14 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
+      }
+    },
+    "LambdaExecutionRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaExecutionRole",
+          "Arn"
+        ]
       }
     }
   }

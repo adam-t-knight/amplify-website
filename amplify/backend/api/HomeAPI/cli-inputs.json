@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/xkcd-comic": {
+      "name": "/xkcd-comic",
+      "lambdaFunction": "XkcdComic",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/weather": {
+      "name": "/weather",
+      "lambdaFunction": "Weather",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

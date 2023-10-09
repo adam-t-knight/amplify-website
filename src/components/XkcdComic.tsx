@@ -27,7 +27,7 @@ function XkcdComic() {
    * Fetches XKCD comic and sets the data variables.
    */
   const getXkcdComicWithFetch = async () => {
-    const data = await API.get('ExternalAPIs', '/GetXkcdComic', '');
+    const data = await API.get('HomeAPI', '/xkcd-comic', '');
     setXkcdComicData(data);
     setIsLoaded(true);
   };

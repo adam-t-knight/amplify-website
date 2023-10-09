@@ -97,7 +97,7 @@ type WeatherPattern = {
 type WeatherPatterns = Array<WeatherPattern>;
 
 /**
- * Fetches weather data based on symbols selected and passes them to the Stock component to be displayed.
+ * Fetches weather data based on symbols selected and passes them to the Weather component to be displayed.
  */
 function Weather() {
   const [weatherCurrentData, setCurrentWeatherData] =
@@ -106,16 +106,13 @@ function Weather() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   /**
-   * Fetches stock data based on the inputted stock symbol.
+   * Fetches weather data based on the inputted city.
    * @param {string} city city of data to be fetched
    */
   const getWeatherWithFetch = async (selectedCity: string) => {
     setIsLoaded(false);
-    const data = await API.get(
-      'ExternalAPIs',
-      `/GetWeather?city=${selectedCity}`,
-      '',
-    );
+    const data = await API.get('HomeAPI', '/weather', '');
+    console.log(selectedCity);
     if (data) {
       setCurrentWeatherData(data);
     }
@@ -123,7 +120,7 @@ function Weather() {
   };
 
   /**
-   * Fetches stock symbol on change
+   * Fetches weather on city change
    */
   useEffect(() => {
     getWeatherWithFetch(city);
@@ -172,29 +169,29 @@ function Weather() {
               <tr>
                 <td>Curr. Temp / Feels Like (°C)</td>
                 <td>
-                  {weatherCurrentData.current.temp} /{' '}
-                  {weatherCurrentData.current.feels_like}
+                  {weatherCurrentData?.current?.temp} /{' '}
+                  {weatherCurrentData?.current?.feels_like}
                 </td>
               </tr>
               <tr>
                 <td>Low / High Temp (°C)</td>
                 <td>
-                  {weatherCurrentData.daily[0].temp.min} /{' '}
-                  {weatherCurrentData.daily[0].temp.max}
+                  {/*                   {weatherCurrentData?.daily[0]?.temp?.min} /{' '}
+                  {weatherCurrentData?.daily[0]?.temp?.max} */}
                 </td>
               </tr>
               <tr>
                 <td>Humidity (%)</td>
-                <td>{weatherCurrentData.current.humidity}</td>
+                <td>{weatherCurrentData?.current?.humidity}</td>
               </tr>
               <tr>
                 <td>Sunrise / Sunset</td>
                 <td>
-                  {moment(weatherCurrentData.current.sunrise * 1000)
+                  {moment(weatherCurrentData?.current?.sunrise * 1000)
                     .format('HH:mm')
                     .toLocaleString()}{' '}
                   /{' '}
-                  {moment(weatherCurrentData.current.sunset * 1000)
+                  {moment(weatherCurrentData?.current?.sunset * 1000)
                     .format('HH:mm')
                     .toLocaleString()}
                 </td>
@@ -202,11 +199,11 @@ function Weather() {
               <tr>
                 <td>Patterns</td>
                 <td>
-                  {weatherCurrentData.current.weather &&
-                    weatherCurrentData.current.weather.map(
+                  {weatherCurrentData?.current?.weather &&
+                    weatherCurrentData?.current?.weather?.map(
                       (weather) => (
-                        <li key={weather.id}>
-                          {weather.description}
+                        <li key={weather?.id}>
+                          {weather?.description}
                         </li>
                       ),
                     )}

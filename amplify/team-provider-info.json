@@ -14,6 +14,20 @@
     "categories": {
       "auth": {
         "amplifywebsite2b87a4d4": {}
+      },
+      "function": {
+        "XkcdComic": {
+          "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
+          "s3Key": "amplify-builds/XkcdComic-33716437717335447a6e-build.zip"
+        },
+        "Weather": {
+          "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
+          "s3Key": "amplify-builds/Weather-386b714d41506d6c4f75-build.zip"
+        },
+        "GetXkcdComic": {}
+      },
+      "api": {
+        "HomeAPI": {}
       }
     }
   }

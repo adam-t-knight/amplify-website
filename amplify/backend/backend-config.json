@@ -1,4 +1,28 @@
 {
+  "api": {
+    "HomeAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "XkcdComic"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "Weather"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "amplifywebsite2b87a4d4": {
       "customAuth": false,
@@ -23,6 +47,52 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "Weather": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "XkcdComic": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_Weather_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "Weather"
+        }
+      ]
+    },
+    "AMPLIFY_function_Weather_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "Weather"
+        }
+      ]
+    },
+    "AMPLIFY_function_XkcdComic_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "XkcdComic"
+        }
+      ]
+    },
+    "AMPLIFY_function_XkcdComic_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "XkcdComic"
+        }
+      ]
     }
   }
 }
