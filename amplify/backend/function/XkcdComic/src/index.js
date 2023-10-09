@@ -6,30 +6,37 @@ exports.handler = async (event) => {
 
   const xkcdComicUrl = 'https://xkcd.com/info.0.json';
 
-  try {
-    const res = await fetch(xkcdComicUrl);
+  fetch(xkcdComicUrl, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
+  })
+    .then((response) => response.json())
+    // use response of network on fetch Promise resolve
+    .then((data) => {
+      console.log(data);
+      return {
+        statusCode: 200,
+        //  Uncomment below to enable CORS requests
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+        },
+        body: JSON.stringify(data),
+      };
+    })
+    // handle fetch Promise error
+    .catch((error) => {
+      console.log(error);
 
-    console.log(JSON.stringify(res.data));
-
-    return {
-      statusCode: 200,
-      //  Uncomment below to enable CORS requests
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-      },
-      body: JSON.stringify(res.data),
-    };
-  } catch (e) {
-    console.log(e);
-
-    return {
-      statusCode: 400,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-      },
-      body: JSON.stringify(e),
-    };
-  }
+      return {
+        statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+        },
+        body: JSON.stringify(error),
+      };
+    });
 };

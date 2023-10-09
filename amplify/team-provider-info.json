@@ -18,7 +18,7 @@
       "function": {
         "XkcdComic": {
           "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
-          "s3Key": "amplify-builds/XkcdComic-33716437717335447a6e-build.zip"
+          "s3Key": "amplify-builds/XkcdComic-495477656a717746566c-build.zip"
         },
         "Weather": {
           "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
