@@ -16,15 +16,14 @@
         "amplifywebsite2b87a4d4": {}
       },
       "function": {
-        "XkcdComic": {
-          "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
-          "s3Key": "amplify-builds/XkcdComic-495477656a717746566c-build.zip"
-        },
         "Weather": {
           "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
           "s3Key": "amplify-builds/Weather-386b714d41506d6c4f75-build.zip"
         },
-        "GetXkcdComic": {}
+        "XkcdComic": {
+          "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
+          "s3Key": "amplify-builds/XkcdComic-58427a73534872443333-build.zip"
+        }
       },
       "api": {
         "HomeAPI": {}

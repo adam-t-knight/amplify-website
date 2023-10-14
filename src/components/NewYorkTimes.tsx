@@ -67,7 +67,7 @@ function NewYorkTimes() {
     const data = await API.get(
       'ExternalAPIs',
       '/GetNewYorkTimes',
-      '',
+      {},
     );
     setNytData(data);
     setIsLoading(false);

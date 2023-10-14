@@ -111,7 +111,7 @@ function Weather() {
    */
   const getWeatherWithFetch = async (selectedCity: string) => {
     setIsLoaded(false);
-    const data = await API.get('HomeAPI', '/weather', '');
+    const data = await API.get('HomeAPI', '/weather', {});
     console.log(selectedCity);
     if (data) {
       setCurrentWeatherData(data);

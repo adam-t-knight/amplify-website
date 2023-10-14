@@ -38,7 +38,7 @@ function StockTicker() {
     const stockJson = await API.get(
       'ExternalAPIs',
       `/GetStock?symbol=${selectedSymbol}`,
-      '',
+      {},
     );
     setStockData(stockJson.data);
     setIsLoaded(true);

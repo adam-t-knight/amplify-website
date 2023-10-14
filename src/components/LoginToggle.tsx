@@ -64,6 +64,7 @@ const LoginToggle = () => {
       <div>
         <Button
           id="LoginToggle"
+          // eslint-disable-next-line react/jsx-no-bind
           onClick={toggleLogin}
           variant="outline-light"
         >
