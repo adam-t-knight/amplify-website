@@ -5,7 +5,11 @@ exports.handler = async (event) => {
   console.info(`EVENT: ${JSON.stringify(event)}`);
 
   const xkcdComicUrl = 'https://xkcd.com/info.0.json';
+
+  let responseCode = 500;
+  let responseBody = "";
   
+  //TODO simplify this further. Do I need the Then and the Error block?
   await fetch(xkcdComicUrl, {
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -13,31 +17,24 @@ exports.handler = async (event) => {
     },
   })
   .then(async (response) => {
+    responseCode = response.status;
     if (response.ok) {
-      return await response.json();
+      responseBody = JSON.stringify(await response.json());
     } else {
       throw Error(`${response.status} - ${response.statusText}`);
     }
   })
-  .then((responseJson) => {
-    return {
-      "statusCode": 200,
-      "body": JSON.stringify(responseJson),
-      "headers": {
-        "Access-Control-Allow-Origin": '*',
-        "Access-Control-Allow-Headers": '*',
-      },
-    };
-  })
   .catch((error) => {
     console.error(error);
-    return {
-      "statusCode": 400,
-      "body": JSON.stringify(error),
-      "headers": {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-      },
-    };
+    responseBody = JSON.stringify(error);
   });
+
+  return {
+    statusCode: responseCode,
+    body: responseBody,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
+  };
 };

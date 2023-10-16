@@ -22,7 +22,7 @@
         },
         "XkcdComic": {
           "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
-          "s3Key": "amplify-builds/XkcdComic-4859594b694a6c366644-build.zip"
+          "s3Key": "amplify-builds/XkcdComic-744d7576593945564538-build.zip"
         }
       },
       "api": {

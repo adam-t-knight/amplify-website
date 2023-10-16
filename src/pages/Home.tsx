@@ -1,6 +1,6 @@
-import StockTicker from '../components/StockTicker';
+// import StockTicker from '../components/StockTicker';
 import WorldClock from '../components/WorldClock';
-import NewYorkTimes from '../components/NewYorkTimes';
+// import NewYorkTimes from '../components/NewYorkTimes';
 import Weather from '../components/Weather';
 import XkcdComic from '../components/XkcdComic';
 import '../assets/css/Home.css';
@@ -14,11 +14,11 @@ function Home() {
       <h1>Home</h1>
       <div id="LeftHomeColumn">
         <WorldClock />
-        <NewYorkTimes />
+        {/* <NewYorkTimes /> */}
       </div>
       <div id="RightHomeColumn">
         <Weather />
-        <StockTicker />
+        {/* <StockTicker /> */}
       </div>
       <XkcdComic />
     </div>
