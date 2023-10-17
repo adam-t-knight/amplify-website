@@ -4,9 +4,11 @@
 exports.handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
 
-  const axios = require('axios');
-  const AWS = require('aws-sdk');
+  const { SecretsManagerClient, GetSecretValueCommand } = require("@aws-sdk/client-secrets-manager");
+
   const secretName = 'WEATHER_API_KEY';
+  let secretValue = "";
+
   const UNITS = 'metric';
   const EXCLUSIONS = 'minutely,hourly,alerts';
 
@@ -18,7 +20,7 @@ exports.handler = async (event) => {
   const MADISON = 'Madison';
   const RALEIGH = 'Raleigh';
 
-  const city = event.queryStringParameters.city;
+  const city = event?.queryStringParameters?.city;
 
   let LAT = '0';
   let LON = '0';
@@ -52,6 +54,9 @@ exports.handler = async (event) => {
       LAT = '35.7796';
       LON = '-78.6382';
       break;
+    default:
+      LAT = '35.7796';
+      LON = '-78.6382';
   }
 
   const getUrl =
@@ -65,63 +70,44 @@ exports.handler = async (event) => {
     EXCLUSIONS +
     '&appid=';
 
-  const secretsManager = new AWS.SecretsManager();
-
   try {
-    const data = await secretsManager
-      .getSecretValue({
-        SecretId: secretName,
-      })
-      .promise();
+    const secretClient = new SecretsManagerClient();
 
-    if (data) {
-      if (data.SecretString) {
-        const secret = data.SecretString;
-        const splitSecret = secret.replace(/(["{}])/g, '').split(':');
-
-        if (event.requestContext.authorizer) {
-          console.log(
-            'claims: ',
-            event.requestContext.authorizer.claims,
-          );
-        }
-
-        try {
-          const res = await axios.get(getUrl + splitSecret[1]);
-
-          return {
-            statusCode: 200,
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': '*',
-            },
-            body: JSON.stringify(res.data),
-          };
-        } catch (e) {
-          console.log(e);
-
-          return {
-            statusCode: 400,
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': '*',
-            },
-            body: JSON.stringify(e),
-          };
-        }
-      }
-    }
+    const secretInput = {
+      SecretId: secretName,
+    };
+    const secretCommand = new GetSecretValueCommand(secretInput);
+    const secretCommandResponse = await secretClient.send(secretCommand);
+  
+    const parsedSecret = await JSON.parse(secretCommandResponse.SecretString);
+    secretValue = parsedSecret[secretName];
   } catch (e) {
-    console.log('Error retrieving secrets');
-    console.log(e);
+    const errorString = JSON.stringify(e);
+    console.error(`Error retrieving secrets: ${errorString}`);
 
     return {
       statusCode: 400,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
       },
-      body: JSON.stringify(e),
+      body: errorString,
     };
   }
+
+  const response = await fetch(getUrl + secretValue);
+  const responseBody = JSON.stringify(await response.json());
+
+  if(!response.ok) {
+    console.error(`${response.status} - ${response.statusText}: ${responseBody}`);
+  }
+
+  return {
+    statusCode: response.status,
+    body: responseBody,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
+  };
 };

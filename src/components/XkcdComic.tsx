@@ -53,7 +53,7 @@ function XkcdComic() {
               {moment(
                 new Date(
                   xkcdComicData.year,
-                  xkcdComicData.month,
+                  xkcdComicData.month - 1,
                   xkcdComicData.day,
                 ),
               ).format(DATE_FORMAT)}

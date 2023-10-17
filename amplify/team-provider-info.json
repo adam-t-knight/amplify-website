@@ -18,11 +18,11 @@
       "function": {
         "Weather": {
           "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
-          "s3Key": "amplify-builds/Weather-386b714d41506d6c4f75-build.zip"
+          "s3Key": "amplify-builds/Weather-774e4c6f41786c41735a-build.zip"
         },
         "XkcdComic": {
           "deploymentBucketName": "amplify-amplifywebsite-anabella-132244-deployment",
-          "s3Key": "amplify-builds/XkcdComic-744d7576593945564538-build.zip"
+          "s3Key": "amplify-builds/XkcdComic-703170452f382b4e7932-build.zip"
         }
       },
       "api": {
